@@ -9,8 +9,18 @@ public class Comida {
     private String detalle;
     private int cantCalorias;
     private int idComida;
+    private boolean estado;
 
     public Comida() {
+    }
+
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void IsEstado(boolean estado) {
+        this.estado = estado;
+
     }
 
     public String getNombre() {

@@ -15,8 +15,17 @@ public class Dieta {
     private LocalDate fechaFinal;
     private double pesoInicial;
     private double pesoFinal;
+    private boolean estado;
 
     public Dieta() {
+    }
+
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void IsEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public int getIdDieta() {
@@ -74,5 +83,5 @@ public class Dieta {
     public void setPesoFinal(double pesoFinal) {
         this.pesoFinal = pesoFinal;
     }
-    
+
 }
