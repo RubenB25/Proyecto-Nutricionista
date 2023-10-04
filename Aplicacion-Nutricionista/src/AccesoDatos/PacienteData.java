@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,7 +43,6 @@ public class PacienteData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paciente " + e.getMessage());
         }
     }
-  
 
     public Paciente buscarPacientePorDni(int dni) {
         Paciente paciente = null;
@@ -55,7 +55,7 @@ public class PacienteData {
             ResultSet resultado = ps.executeQuery();
 
             if (resultado.next()) {
-            paciente = new Paciente();
+                paciente = new Paciente();
 
                 paciente.setIdPaciente(resultado.getInt("id_paciente"));
                 paciente.setDni(resultado.getInt("dni"));
@@ -72,7 +72,8 @@ public class PacienteData {
         }
         return paciente;
     }
-     public void modificarPaciente(Paciente paciente) {
+
+    public void modificarPaciente(Paciente paciente) {
         String sql = "update pacientes set nombre = ?, apellido = ?, dni = ?,celular = ?, estado = ? "
                 + "where id_paciente = ?";
         try {
@@ -92,8 +93,10 @@ public class PacienteData {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla paciente " + e.getMessage());
-        }}
-     public void eliminarPaciente(int id) {
+        }
+    }
+
+    public void eliminarPaciente(int id) {
         String sql = "update pacientes set estado = 0 where idAlumno = ?";
         try {
             PreparedStatement ps = conex.prepareStatement(sql);
@@ -101,12 +104,37 @@ public class PacienteData {
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Alumno dado de baja correctamente.");
+                JOptionPane.showMessageDialog(null, "Paciente dado de baja correctamente.");
             }
             ps.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno 5" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pacientes " + e.getMessage());
 
         }
+    }
+
+    public ArrayList<Paciente> listarPaciente() {
+        ArrayList<Paciente> pacientes = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM pacientes WHERE estado = 1 ";
+            PreparedStatement psa = conex.prepareStatement(sql);
+            ResultSet rs = psa.executeQuery();
+            while (rs.next()) {
+                Paciente paciente = new Paciente();
+                
+                paciente.setIdPaciente(rs.getInt("id_paciente"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setCelular(rs.getInt("celular"));
+                paciente.setEstado(rs.getBoolean("estado"));
+                pacientes.add(paciente);
+            }
+            psa.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Pacientes" + ex.getMessage());
+        }
+        return pacientes;
     }
 }

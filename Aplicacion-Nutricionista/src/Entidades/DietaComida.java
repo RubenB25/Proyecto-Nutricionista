@@ -13,11 +13,11 @@ public class DietaComida {
     public DietaComida() {
     }
 
-    public boolean getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
-    public void IsEstado(boolean estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
