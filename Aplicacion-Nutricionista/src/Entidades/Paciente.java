@@ -17,6 +17,26 @@ public class Paciente {
     public Paciente() {
     }
 
+    public Paciente(String nombre, String apellido, int dni, String domicilio, int celular, boolean estado) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.celular = celular;
+        this.estado = estado;
+    }
+
+    public Paciente(String nombre, String apellido, int dni, String domicilio, int celular, int idPaciente, boolean estado) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.celular = celular;
+        this.idPaciente = idPaciente;
+        this.estado = estado;
+    }
+
+    
     public boolean isEstado() {
         return estado;
     }

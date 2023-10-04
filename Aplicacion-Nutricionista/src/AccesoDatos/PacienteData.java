@@ -23,8 +23,8 @@ public class PacienteData {
 
     public void guardarPaciente(Paciente paciente) {
         String sql = "INSERT INTO `pacientes`( `nombre`, `apellido`, `dni`, "
-                + "`domicilio`, `celular`) "
-                + "VALUES (?,?,?,?,?)";
+                + "`domicilio`, `celular`,estado) "
+                + "VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, paciente.getNombre());
@@ -97,7 +97,7 @@ public class PacienteData {
     }
 
     public void eliminarPaciente(int id) {
-        String sql = "update pacientes set estado = 0 where idAlumno = ?";
+        String sql = "update pacientes set estado = 0 where id_paciente = ?";
         try {
             PreparedStatement ps = conex.prepareStatement(sql);
             ps.setInt(1, id);
