@@ -1,6 +1,5 @@
 package Entidades;
 
-import java.security.PrivateKey;
 import java.time.LocalDate;
 
 /**
@@ -49,7 +48,6 @@ public class Dieta {
         this.estado = estado;
     }
 
-    
     public int getIdDieta() {
         return idDieta;
     }

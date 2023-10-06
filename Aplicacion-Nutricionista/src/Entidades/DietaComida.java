@@ -1,5 +1,7 @@
 package Entidades;
 
+import Enums.HorarioComida;
+
 /**
  * @author User2021SD
  */
@@ -9,6 +11,7 @@ public class DietaComida {
     private Comida comida;
     private Dieta dieta;
     private boolean estado;
+    private HorarioComida horarioComida;
 
     public DietaComida() {
     }

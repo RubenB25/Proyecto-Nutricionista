@@ -1,6 +1,5 @@
 package AccesoDatos;
 
-import Entidades.Comida;
 import Entidades.Dieta;
 import Entidades.Paciente;
 import java.sql.Connection;
@@ -8,7 +7,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
@@ -18,10 +16,10 @@ import org.mariadb.jdbc.Statement;
  */
 public class DietaData {
 
-    private Connection con = null;
+    private Connection conex = null;
 
     public DietaData() {
-        con = Conexion.getConex();
+        conex = Conexion.getConex();
     }
 
     public void nuevaDieta(Dieta dieta) {
@@ -29,7 +27,7 @@ public class DietaData {
                 + "nombre, peso_inicial,peso_final,  estado)"
                 + "VALUES (?, ?, ?, ?, ?, ?, 1)";
         try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = conex.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getPaciente().getIdPaciente());
             ps.setDate(2, Date.valueOf(dieta.getInicioDieta()));
             ps.setDate(3, Date.valueOf(dieta.getFinDieta()));
@@ -58,7 +56,7 @@ public class DietaData {
                     + "nombre, peso_inicial,peso_final,  estado)"
                     + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = conex.prepareStatement(sql);
             ps.setInt(1, dieta.getIdDieta());
             ps.setDate(2, Date.valueOf(dieta.getFechaInicial()));
             ps.setDate(3, Date.valueOf(dieta.getFechaFinal()));
@@ -86,7 +84,7 @@ public class DietaData {
         ArrayList<Dieta> listaDietas = new ArrayList<>();
         try {
             String sql = "SELECT * FROM dietas WHERE nombre = " + nombre;
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = conex.prepareStatement(sql);
             ps.setString(1, nombre);
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
@@ -105,7 +103,7 @@ public class DietaData {
         ArrayList<String> dietas = new ArrayList<>();
         try {
             String sql = "SELECT * From comidas WHERE estado = 1";
-            PreparedStatement psm = con.prepareStatement(sql);
+            PreparedStatement psm = conex.prepareStatement(sql);
             ResultSet resultado = psm.executeQuery();
             while (resultado.next()) {
   
