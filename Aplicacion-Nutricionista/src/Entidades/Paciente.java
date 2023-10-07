@@ -9,6 +9,8 @@ public class Paciente {
     private String nombre;
     private String apellido;
     private int dni;
+    private double pesoActual;
+    private double pesoDeseado;
     private String domicilio;
     private int celular;
     private int idPaciente;
@@ -36,16 +38,6 @@ public class Paciente {
         this.estado = estado;
     }
 
-    
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
-   
     public String getNombre() {
         return nombre;
     }
@@ -68,6 +60,22 @@ public class Paciente {
 
     public void setDni(int dni) {
         this.dni = dni;
+    }
+
+    public double getPesoActual() {
+        return pesoActual;
+    }
+
+    public void setPesoActual(double pesoActual) {
+        this.pesoActual = pesoActual;
+    }
+
+    public double getPesoDeseado() {
+        return pesoDeseado;
+    }
+
+    public void setPesoDeseado(double pesoDeseado) {
+        this.pesoDeseado = pesoDeseado;
     }
 
     public String getDomicilio() {
@@ -94,8 +102,12 @@ public class Paciente {
         this.idPaciente = idPaciente;
     }
 
-    public boolean IsEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
 }
