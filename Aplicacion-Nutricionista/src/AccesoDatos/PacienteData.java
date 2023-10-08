@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 public class PacienteData {
 
     private Connection conex = null;
+  
 
     public PacienteData() {
         conex = Conexion.getConex();
@@ -135,5 +136,21 @@ public class PacienteData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Pacientes" + ex.getMessage());
         }
         return pacientes;
+    }
+
+    public String getApellido() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getNombre() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean isEstado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getDomicilio() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,90 +1,124 @@
 package Vistas;
 
-/** @author Gabriel */
-public class NutricionistaEscritorio extends javax.swing.JFrame {
+import java.awt.Dimension;
+import java.awt.Font;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
+/**
+ * @author Gabriel
+ */
+public class NutricionistaEscritorio extends javax.swing.JFrame {
+public static PacienteABM JIPacienteABM = new PacienteABM();
     public NutricionistaEscritorio() {
         initComponents();
+        JFrame frame = new JFrame();
+        frame.setSize(800, 800);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Crear un JLabel personalizado con alineación centrada
+
+        JLabel titleLabel = new JLabel("cargar datos");
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        // Alineación horizontal centrada
+        titleLabel.setVerticalAlignment(JLabel.CENTER);   // Alineación vertical centrada
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
+
+        // Establecer el JLabel como el contenido del JFrame
+        frame.setContentPane(titleLabel);
+
+        frame.setVisible(true);
+        frame.setContentPane(titleLabel);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jDescritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMformularioPaciente = new javax.swing.JMenuItem();
+        jMbuscarPaciente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMlistarPacientes = new javax.swing.JMenuItem();
+        jMregistrarDieta = new javax.swing.JMenuItem();
+        jMmodificarDieta = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        jMhistorialPaciente = new javax.swing.JMenuItem();
+        jMregistrarConsulta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        jMadministrarComida = new javax.swing.JMenuItem();
+        jMbuscarComida = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jDescritorioLayout = new javax.swing.GroupLayout(jDescritorio);
+        jDescritorio.setLayout(jDescritorioLayout);
+        jDescritorioLayout.setHorizontalGroup(
+            jDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jDescritorioLayout.setVerticalGroup(
+            jDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 279, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Pacientes");
 
-        jMenuItem1.setText("Formulario paciente");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Buscar paciente");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMformularioPaciente.setText("Formulario paciente");
+        jMformularioPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMformularioPacienteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(jMformularioPaciente);
+
+        jMbuscarPaciente.setText("Buscar paciente");
+        jMbuscarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMbuscarPacienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMbuscarPaciente);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Dietas");
 
-        jMenuItem3.setText("Listar pacientes");
-        jMenu2.add(jMenuItem3);
+        jMlistarPacientes.setText("Listar pacientes");
+        jMenu2.add(jMlistarPacientes);
 
-        jMenuItem4.setText("Registrar dieta");
-        jMenu2.add(jMenuItem4);
+        jMregistrarDieta.setText("Registrar dieta");
+        jMenu2.add(jMregistrarDieta);
 
-        jMenuItem5.setText("Modificar dieta");
-        jMenu2.add(jMenuItem5);
+        jMmodificarDieta.setText("Modificar dieta");
+        jMenu2.add(jMmodificarDieta);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Consulta");
 
-        jMenuItem7.setText("Historial de paciente");
-        jMenu3.add(jMenuItem7);
+        jMhistorialPaciente.setText("Historial de paciente");
+        jMenu3.add(jMhistorialPaciente);
 
-        jMenuItem8.setText("Registrar consulta");
-        jMenu3.add(jMenuItem8);
+        jMregistrarConsulta.setText("Registrar consulta");
+        jMregistrarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMregistrarConsultaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMregistrarConsulta);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Comidas");
 
-        jMenuItem6.setText("Administrar comida");
-        jMenu4.add(jMenuItem6);
+        jMadministrarComida.setText("Administrar comida");
+        jMenu4.add(jMadministrarComida);
 
-        jMenuItem9.setText("Buscar comida");
-        jMenu4.add(jMenuItem9);
+        jMbuscarComida.setText("Buscar comida");
+        jMenu4.add(jMbuscarComida);
 
         jMenuBar1.add(jMenu4);
 
@@ -94,22 +128,46 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDescritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDescritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMbuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMbuscarPacienteActionPerformed
+        jDescritorio.removeAll();
+        jDescritorio.repaint();
+        PacienteABM fp = new PacienteABM();
+        fp.setVisible(true);
+        jDescritorio.add(fp);
+        Dimension desktopSize = jDescritorio.getSize();
+        Dimension frameSize = fp.getSize();
+        fp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        jDescritorio.moveToFront(fp);
+    }//GEN-LAST:event_jMbuscarPacienteActionPerformed
+
+    private void jMformularioPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMformularioPacienteActionPerformed
+        jDescritorio.removeAll();
+        jDescritorio.repaint();
+        PacienteABM fp = new PacienteABM();
+        fp.setVisible(true);
+        jDescritorio.add(fp);
+        Dimension desktopSize = jDescritorio.getSize();
+        Dimension frameSize = fp.getSize();
+        fp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        jDescritorio.moveToFront(fp); 
+    }//GEN-LAST:event_jMformularioPacienteActionPerformed
+
+    private void jMregistrarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMregistrarConsultaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMregistrarConsultaActionPerformed
 
     public static void main(String args[]) {
- 
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NutricionistaEscritorio().setVisible(true);
@@ -118,21 +176,21 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane jDescritorio;
+    private javax.swing.JMenuItem jMadministrarComida;
+    private javax.swing.JMenuItem jMbuscarComida;
+    private javax.swing.JMenuItem jMbuscarPaciente;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMformularioPaciente;
+    private javax.swing.JMenuItem jMhistorialPaciente;
+    private javax.swing.JMenuItem jMlistarPacientes;
+    private javax.swing.JMenuItem jMmodificarDieta;
+    private javax.swing.JMenuItem jMregistrarConsulta;
+    private javax.swing.JMenuItem jMregistrarDieta;
     // End of variables declaration//GEN-END:variables
 
 }

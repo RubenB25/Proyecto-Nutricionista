@@ -18,7 +18,7 @@ public class AplicacionNutricionista {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-           Paciente paciente1 = new Paciente("Pepito", "De la Vega", 123456789, "CALLE 3", 29646464, 1,true);
+         /*  Paciente paciente1 = new Paciente("Pepito", "De la Vega", 123456789, "CALLE 3", 29646464, 1,true);
            
            PacienteData pd = new PacienteData();
 //             Paciente agregado
@@ -33,7 +33,7 @@ public class AplicacionNutricionista {
 //              Dar de baja a paciente
             paciente1.setEstado(false);
             
-            pd.eliminarPaciente(1);
+            pd.eliminarPaciente(1);*/
     }
     
 }
