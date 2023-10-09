@@ -176,7 +176,7 @@ public static PacienteABM JIPacienteABM = new PacienteABM();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDescritorio;
+    public static javax.swing.JDesktopPane jDescritorio;
     private javax.swing.JMenuItem jMadministrarComida;
     private javax.swing.JMenuItem jMbuscarComida;
     private javax.swing.JMenuItem jMbuscarPaciente;

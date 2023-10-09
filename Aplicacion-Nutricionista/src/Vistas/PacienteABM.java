@@ -42,6 +42,10 @@ public class PacienteABM extends javax.swing.JInternalFrame {
         jBbuscar = new javax.swing.JButton();
         jBhistorial = new javax.swing.JButton();
         jBmodificar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jRActivoSi = new javax.swing.JRadioButton();
+        jRActivoNo = new javax.swing.JRadioButton();
+        jBeliminar = new javax.swing.JButton();
 
         setTitle("Formulario Paciente");
         setPreferredSize(new java.awt.Dimension(500, 477));
@@ -100,47 +104,90 @@ public class PacienteABM extends javax.swing.JInternalFrame {
 
         jBhistorial.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBhistorial.setText("Historial");
+        jBhistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBhistorialActionPerformed(evt);
+            }
+        });
 
         jBmodificar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBmodificar.setText("Modificar");
+        jBmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBmodificarActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Activo:");
+
+        jRActivoSi.setBackground(new java.awt.Color(204, 204, 204));
+        jRActivoSi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jRActivoSi.setText("Si");
+
+        jRActivoNo.setBackground(new java.awt.Color(204, 204, 204));
+        jRActivoNo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jRActivoNo.setText("No");
+
+        jBeliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jBeliminar.setText("Eliminar");
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLcelular)
-                    .addComponent(jLdireccion)
-                    .addComponent(jLapellido)
-                    .addComponent(jLnombre)
-                    .addComponent(jLdni))
-                .addGap(44, 44, 44)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel5)
+                                .addGap(125, 125, 125)
+                                .addComponent(jRActivoSi, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jRActivoNo)
+                                .addGap(46, 46, 46))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLcelular)
+                                    .addComponent(jLdireccion)
+                                    .addComponent(jLapellido)
+                                    .addComponent(jLnombre)
+                                    .addComponent(jLdni))
+                                .addGap(44, 44, 44)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTFnombre)
+                                    .addComponent(jTFapellido)
+                                    .addComponent(jTFdireccion)
+                                    .addComponent(jTFcelular)
+                                    .addComponent(jTFdocumento))))
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jBhistorial)
+                        .addGap(34, 34, 34)
+                        .addComponent(jBmodificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBeliminar)
+                        .addGap(28, 28, 28)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTFnombre)
-                    .addComponent(jTFapellido)
-                    .addComponent(jTFdireccion)
-                    .addComponent(jTFcelular)
-                    .addComponent(jTFdocumento))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBnuevo, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBbuscar, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jBnuevo, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jBbuscar, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jBsalir))
                 .addGap(77, 77, 77))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jBhistorial)
-                .addGap(73, 73, 73)
-                .addComponent(jBmodificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addComponent(jBsalir)
-                .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +196,7 @@ public class PacienteABM extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLnombre)
                     .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLapellido)
                     .addComponent(jTFapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -162,11 +209,18 @@ public class PacienteABM extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLcelular)
                     .addComponent(jTFcelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRActivoNo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRActivoSi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBhistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
         );
 
@@ -175,7 +229,7 @@ public class PacienteABM extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 21, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -193,62 +247,135 @@ public class PacienteABM extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
+        PacienteData pacienteData = new PacienteData();
 
-        PacienteData paciente = new PacienteData();
         try {
             dni = Integer.parseInt(jTFdocumento.getText());
 
-            Paciente pacienteObtenido = paciente.buscarPacientePorDni(dni);
-            if (pacienteObtenido != null) {
-                if (!"".equals(jTFdocumento.getText()) && paciente != null) {
-                    jTFapellido.setText(pacienteObtenido.getApellido());
-                    jTFnombre.setText(pacienteObtenido.getNombre());
-                    // jTFdireccion.setText(pacienteObtenido.getDomicilio());
-                    jTFcelular.setText(pacienteObtenido.getCelular() + "");
-                    jTFdireccion.setText(pacienteObtenido.getDomicilio());
-                    /*   Integer.parseInt.(jTFcelular.g;
-                if (paciente.isEstado() == true) {
-                }*/
+            paciente = pacienteData.buscarPacientePorDni(dni);
+            if (!"".equals(jTFdocumento.getText()) && paciente != null) {
+                jTFapellido.setText(paciente.getApellido());
+                jTFnombre.setText(paciente.getNombre());
+                jTFdireccion.setText(paciente.getDomicilio());
+                jTFcelular.setText(Integer.toString(paciente.getCelular()));
+                if (paciente.isEstado()) {
+                    jRActivoSi.setSelected(true);
+                } else {
+                    jRActivoNo.setSelected(true);
                 }
+
             }
-            JOptionPane.showMessageDialog(null, " No hay ningun paciente con ese dni, cree un formulario para el nuevo paciente");
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El dni no es valido coloque uno vigente " + e);
+            JOptionPane.showMessageDialog(this, "Verifique los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBbuscarActionPerformed
 
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
-        if (!validarString()) {
-            PacienteData paciente = new PacienteData();
-            if (!"".equals(jTFdocumento.getText()) && !"".equals(jTFnombre.getText()) && !"".equals(jTFapellido.getText()) != null) {
+        //if (!validarString()) {
+        PacienteData pacienteData = new PacienteData();
+        if (!"".equals(jTFdocumento.getText()) && !"".equals(jTFnombre.getText()) && !"".equals(jTFapellido.getText()) && jTFdireccion != null) {
 
-                try {
-                    dni = Integer.parseInt(jTFdocumento.getText());
-                    if (jRActivoSi.isSelected()) {
-                        Alumno alumnoNuevo = new Alumno(dni, jTFapellido.getText(), jTFnombre.getText(), jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), true);
-                        alumnoData.guardarAlumno(alumnoNuevo);
-                    }
-                    if (jRActivoNo.isSelected()) {
-                        Alumno alumnoNuevo = new Alumno(dni, jTFapellido.getText(), jTFnombre.getText(), jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), false);
-                        alumnoData.guardarAlumno(alumnoNuevo);
-                    }
-
-                    limpiarCampos();
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Datos invalidos.");
+            try {
+                dni = Integer.parseInt(jTFdocumento.getText());
+                int celular = Integer.parseInt(jTFcelular.getText());
+                if (jRActivoSi.isSelected()) {
+                    Paciente pacienteNuevo = new Paciente(jTFnombre.getText(), jTFapellido.getText(), dni, jTFdireccion.getText(), celular, true);
+                    pacienteData.guardarPaciente(pacienteNuevo);
                 }
+                if (jRActivoNo.isSelected()) {
+                    Paciente pacienteNuevo = new Paciente(jTFnombre.getText(), jTFapellido.getText(), dni, jTFdireccion.getText(), celular, true);
+                    pacienteData.guardarPaciente(pacienteNuevo);
+                }
+
+                limpiarCampos();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Datos invalidos.");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debe completar todos los campos.");
-
-        }else {
-            JOptionPane.showMessageDialog(this, "Verifique los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-      }      // TODO add your handling code here:
+        }
+        //} else {
+        //    JOptionPane.showMessageDialog(this, "Verifique los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        // }
     }//GEN-LAST:event_jBnuevoActionPerformed
-    public boolean validarString() {
 
+    private void jBhistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBhistorialActionPerformed
+        // TODO add your handling code here:
+        HistorialDePaciente historial = new HistorialDePaciente();
+        NutricionistaEscritorio.jDescritorio.add(historial);
+        historial.setVisible(true);
+        String nombre=paciente.getNombre();
+        
+
+    }//GEN-LAST:event_jBhistorialActionPerformed
+
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+        // TODO add your handling code here:
+        PacienteData pacienteData = new PacienteData();
+        try {
+            Paciente pacienteAEliminar = pacienteData.buscarPacientePorDni(Integer.parseInt(jTFdocumento.getText()));
+
+            int idPaciente = pacienteAEliminar.getIdPaciente();
+
+            int opcion = JOptionPane.showConfirmDialog(null, "Se dara de baja el alumno seleccionado", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.YES_OPTION) {
+                pacienteData.eliminarPaciente(idPaciente);
+            }
+
+            limpiarCampos();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un documento y buscar el alumno para eliminar.");
+        }
+    }//GEN-LAST:event_jBeliminarActionPerformed
+
+    private void jBmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmodificarActionPerformed
+        PacienteData pacienteData = new PacienteData();
+
+        // if (!validarString()) {
+        if (verificarCampos()) {
+
+            paciente.setDni(Integer.parseInt(jTFdocumento.getText()));
+            paciente.setApellido(jTFapellido.getText());
+            paciente.setNombre(jTFnombre.getText());
+            paciente.setDomicilio(jTFdireccion.getText());
+            paciente.setCelular(Integer.parseInt(jTFcelular.getText()));
+            if (jRActivoSi.isSelected()) {
+                paciente.setEstado(true);
+            } else if (jRActivoNo.isSelected()) {
+                paciente.setEstado(false);
+            }
+            pacienteData.modificarPaciente(paciente);
+
+            limpiarCampos();
+
+            JOptionPane.showMessageDialog(this, "Verifique los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_jBmodificarActionPerformed
+    public boolean verificarCampos() {
+        //boolean bm = getSelection();
+        try {
+            dni = Integer.parseInt(jTFdocumento.getText());
+            int celular = Integer.parseInt(jTFcelular.getText());
+            if ((!"".equals(jTFapellido.getText()) && !"".equals(jTFnombre.getText()))
+                    && jTFdireccion.getText() != null && dni != 0 && celular != 0) { //(jRActivoNo.isSelected() || jRActivoSi.isSelected())
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese un documento valido");
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
+
+    /*  public boolean validarString() {
+        boolean vacio;
         String inputA = jTFapellido.getText();
         String inputN = jTFnombre.getText() + inputA;
+        
         if (!inputN.isEmpty()) {
             for (char c : inputN.toCharArray()) {
                 if (Character.isDigit(c)) {
@@ -260,29 +387,35 @@ public class PacienteABM extends javax.swing.JInternalFrame {
                 }
 
             }
-        }
-    }
 
+            //JOptionPane.showMessageDialog(null," debes ingresar los datos correctamente");
+        }
+        return vacio = true;
+    }*/
     public void limpiarCampos() {
         jTFdocumento.setText("");
         jTFapellido.setText("");
         jTFnombre.setText("");
-        jTFcelular.set jLFecha
-        .setText("");
+        jTFcelular.setText("");
+        jTFdireccion.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBbuscar;
+    private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBhistorial;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
     private javax.swing.JButton jBsalir;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLapellido;
     private javax.swing.JLabel jLcelular;
     private javax.swing.JLabel jLdireccion;
     private javax.swing.JLabel jLdni;
     private javax.swing.JLabel jLnombre;
-    private javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRActivoNo;
+    private javax.swing.JRadioButton jRActivoSi;
     private javax.swing.JTextField jTFapellido;
     private javax.swing.JTextField jTFcelular;
     private javax.swing.JTextField jTFdireccion;
