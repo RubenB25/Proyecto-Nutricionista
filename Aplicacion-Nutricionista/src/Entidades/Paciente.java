@@ -1,5 +1,7 @@
 package Entidades;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author User2021SD
@@ -9,32 +11,29 @@ public class Paciente {
     private String nombre;
     private String apellido;
     private int dni;
+    private String domicilio;
+    private String celular;
+    private LocalDate fechaNac;
+    private String edad;
     private double pesoActual;
     private double pesoDeseado;
-    private String domicilio;
-    private int celular;
     private int idPaciente;
     private boolean estado;
 
     public Paciente() {
     }
 
-    public Paciente(String nombre, String apellido, int dni, String domicilio, int celular, boolean estado) {
+    public Paciente(String nombre, String apellido, int dni, String domicilio, String celular,
+            LocalDate fechaNac, String edad, double pesoActual, double pesoDeseado, boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.celular = celular;
-        this.estado = estado;
-    }
-
-    public Paciente(String nombre, String apellido, int dni, String domicilio, int celular, int idPaciente, boolean estado) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.domicilio = domicilio;
-        this.celular = celular;
-        this.idPaciente = idPaciente;
+        this.fechaNac = fechaNac;
+        this.edad = edad;
+        this.pesoActual = pesoActual;
+        this.pesoDeseado = pesoDeseado;
         this.estado = estado;
     }
 
@@ -62,6 +61,38 @@ public class Paciente {
         this.dni = dni;
     }
 
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public LocalDate getFechaNac() {
+        return fechaNac;
+    }
+
+    public void setFechaNac(LocalDate fechaNac) {
+        this.fechaNac = fechaNac;
+    }
+
+    public String getEdad() {
+        return edad;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
+    }
+
     public double getPesoActual() {
         return pesoActual;
     }
@@ -76,22 +107,6 @@ public class Paciente {
 
     public void setPesoDeseado(double pesoDeseado) {
         this.pesoDeseado = pesoDeseado;
-    }
-
-    public String getDomicilio() {
-        return domicilio;
-    }
-
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
-
-    public int getCelular() {
-        return celular;
-    }
-
-    public void setCelular(int celular) {
-        this.celular = celular;
     }
 
     public int getIdPaciente() {
