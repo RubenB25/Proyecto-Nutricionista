@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 public class PacienteData {
 
     private Connection conex = null;
-  
 
     public PacienteData() {
         conex = Conexion.getConex();
@@ -32,6 +31,7 @@ public class PacienteData {
             ps.setInt(3, paciente.getDni());
             ps.setString(4, paciente.getDomicilio());
             ps.setInt(5, paciente.getCelular());
+            ps.setBoolean(6, paciente.isEstado());
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
@@ -46,7 +46,7 @@ public class PacienteData {
 
     public Paciente buscarPacientePorDni(int dni) {
         Paciente paciente = null;
-        String sql = "select estado,id_paciente, nombre, apellido ,dni, celular "
+        String sql = "select estado,id_paciente, nombre, apellido ,dni,domicilio, celular "
                 + "from pacientes where dni= ?";
         PreparedStatement ps = null;
         try {
@@ -58,9 +58,10 @@ public class PacienteData {
                 paciente = new Paciente();
 
                 paciente.setIdPaciente(resultado.getInt("id_paciente"));
-                paciente.setDni(resultado.getInt("dni"));
-                paciente.setApellido(resultado.getString("apellido"));
                 paciente.setNombre(resultado.getString("nombre"));
+                paciente.setApellido(resultado.getString("apellido"));
+                paciente.setDni(resultado.getInt("dni"));
+                paciente.setDomicilio(resultado.getString("domicilio"));
                 paciente.setCelular(resultado.getInt("celular"));
                 paciente.setEstado(resultado.getBoolean("estado"));
             } else {
@@ -74,16 +75,17 @@ public class PacienteData {
     }
 
     public void modificarPaciente(Paciente paciente) {
-        String sql = "update pacientes set nombre = ?, apellido = ?, dni = ?,celular = ?, estado = ? "
+        String sql = "update pacientes set nombre = ?, apellido = ?, dni = ?,domicilio=?,celular = ?, estado = ? "
                 + "where id_paciente = ?";
         try {
             PreparedStatement ps = conex.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
             ps.setString(2, paciente.getApellido());
             ps.setInt(3, paciente.getDni());
-            ps.setInt(4, paciente.getCelular());
-            ps.setBoolean(5, paciente.isEstado());
-            ps.setInt(6, paciente.getIdPaciente());
+            ps.setString(4, paciente.getDomicilio());
+            ps.setInt(5, paciente.getCelular());
+            ps.setBoolean(6, paciente.isEstado());
+            ps.setInt(7, paciente.getIdPaciente());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -121,11 +123,12 @@ public class PacienteData {
             ResultSet rs = psa.executeQuery();
             while (rs.next()) {
                 Paciente paciente = new Paciente();
-                
+
                 paciente.setIdPaciente(rs.getInt("id_paciente"));
                 paciente.setNombre(rs.getString("nombre"));
                 paciente.setApellido(rs.getString("apellido"));
                 paciente.setDni(rs.getInt("dni"));
+                paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setCelular(rs.getInt("celular"));
                 paciente.setEstado(rs.getBoolean("estado"));
                 pacientes.add(paciente);

@@ -1,20 +1,33 @@
 
 package Vistas;
 
+import AccesoDatos.PacienteData;
 import javax.swing.JOptionPane;
 
 public class HistorialDePaciente extends javax.swing.JInternalFrame {
 
-    private String nombre;
+    private String nombre2,apellido2;
 
     /**
      * Creates new form Historial
      */
     public HistorialDePaciente() {
         initComponents();
-jTFnombre.setText(nombre);
-    }
+    PacienteABM recibe= new PacienteABM();
+    recibe.setVisible(true);}
+       /* recibe.jTFnombre.setText(jTFrecibirnombre.getText());
+        recibe.jTFapellido.setText(jTFrecibirapellido.getText());
+       // NutricionistaEscritorio.jDescritorio.add(HistorialDePaciente);
+       jTFrecibirapellido.setText("");
+       jTFrecibirnombre.setText("");
+           //  PacienteData pacien= new PacienteData();
 
+       
+    }
+   /* public void setdato(String dato,String dato2){
+    this.dato=dato;
+    this.dato2=dato2;
+}*/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -23,8 +36,8 @@ jTFnombre.setText(nombre);
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
-        jTFnombre = new javax.swing.JTextField();
-        jTFapellido = new javax.swing.JTextField();
+        jTFrecibirnombre = new javax.swing.JTextField();
+        jTFrecibirapellido = new javax.swing.JTextField();
         jTFpeso = new javax.swing.JTextField();
         jTFestatura = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -40,12 +53,13 @@ jTFnombre.setText(nombre);
         jBdieta = new javax.swing.JButton();
         jBguardar = new javax.swing.JButton();
         jBmedidas = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setTitle("Historial");
 
-        jTFnombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTFrecibirnombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jTFapellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTFrecibirapellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jTFpeso.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -93,6 +107,13 @@ jTFnombre.setText(nombre);
         jBmedidas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBmedidas.setText("Medidas");
 
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,8 +140,8 @@ jTFnombre.setText(nombre);
                                             .addComponent(jLabel2))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTFnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                                            .addComponent(jTFapellido)))
+                                            .addComponent(jTFrecibirnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                                            .addComponent(jTFrecibirapellido)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -137,7 +158,8 @@ jTFnombre.setText(nombre);
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jBdieta)
                                     .addComponent(jBguardar)
-                                    .addComponent(jBmedidas))))
+                                    .addComponent(jBmedidas)
+                                    .addComponent(jButton1))))
                         .addContainerGap(60, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -145,14 +167,15 @@ jTFnombre.setText(nombre);
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFrecibirnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jBdieta))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTFapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                    .addComponent(jTFrecibirapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBguardar)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -182,7 +205,7 @@ jTFnombre.setText(nombre);
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jLresultado, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
@@ -204,6 +227,11 @@ jTFnombre.setText(nombre);
        }
     }//GEN-LAST:event_jBIMCActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -214,6 +242,7 @@ jTFnombre.setText(nombre);
     private javax.swing.JButton jBdieta;
     private javax.swing.JButton jBguardar;
     private javax.swing.JButton jBmedidas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -222,10 +251,12 @@ jTFnombre.setText(nombre);
     private javax.swing.JLabel jLresultado;
     private javax.swing.JRadioButton jRBhombre;
     private javax.swing.JRadioButton jRBmujer;
-    private javax.swing.JTextField jTFapellido;
     private javax.swing.JTextField jTFedad;
     private javax.swing.JTextField jTFestatura;
-    private javax.swing.JTextField jTFnombre;
     private javax.swing.JTextField jTFpeso;
+    public static javax.swing.JTextField jTFrecibirapellido;
+    public static javax.swing.JTextField jTFrecibirnombre;
     // End of variables declaration//GEN-END:variables
+
+    
 }

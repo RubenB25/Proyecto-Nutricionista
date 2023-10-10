@@ -12,23 +12,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
 public static PacienteABM JIPacienteABM = new PacienteABM();
     public NutricionistaEscritorio() {
         initComponents();
-        JFrame frame = new JFrame();
-        frame.setSize(800, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Crear un JLabel personalizado con alineación centrada
-
-        JLabel titleLabel = new JLabel("cargar datos");
-        titleLabel.setHorizontalAlignment(JLabel.CENTER);
-
-        // Alineación horizontal centrada
-        titleLabel.setVerticalAlignment(JLabel.CENTER);   // Alineación vertical centrada
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
-
-        // Establecer el JLabel como el contenido del JFrame
-        frame.setContentPane(titleLabel);
-
-        frame.setVisible(true);
-        frame.setContentPane(titleLabel);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -57,11 +41,11 @@ public static PacienteABM JIPacienteABM = new PacienteABM();
         jDescritorio.setLayout(jDescritorioLayout);
         jDescritorioLayout.setHorizontalGroup(
             jDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 757, Short.MAX_VALUE)
         );
         jDescritorioLayout.setVerticalGroup(
             jDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 588, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Pacientes");
@@ -128,11 +112,13 @@ public static PacienteABM JIPacienteABM = new PacienteABM();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDescritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDescritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDescritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDescritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

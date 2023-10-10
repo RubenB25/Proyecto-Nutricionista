@@ -26,6 +26,7 @@ public class PacienteABM extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLdni = new javax.swing.JLabel();
         jLnombre = new javax.swing.JLabel();
@@ -122,10 +123,12 @@ public class PacienteABM extends javax.swing.JInternalFrame {
         jLabel5.setText("Activo:");
 
         jRActivoSi.setBackground(new java.awt.Color(204, 204, 204));
+        buttonGroup1.add(jRActivoSi);
         jRActivoSi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jRActivoSi.setText("Si");
 
         jRActivoNo.setBackground(new java.awt.Color(204, 204, 204));
+        buttonGroup1.add(jRActivoNo);
         jRActivoNo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jRActivoNo.setText("No");
 
@@ -216,11 +219,12 @@ public class PacienteABM extends javax.swing.JInternalFrame {
                         .addComponent(jRActivoNo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jRActivoSi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBhistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
         );
 
@@ -229,7 +233,7 @@ public class PacienteABM extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 21, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -247,17 +251,19 @@ public class PacienteABM extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-        PacienteData pacienteData = new PacienteData();
-
+        PacienteData pacientedata = new PacienteData();
+        String[] datos=new String[2];
+        
         try {
             dni = Integer.parseInt(jTFdocumento.getText());
-
-            paciente = pacienteData.buscarPacientePorDni(dni);
+            paciente = pacientedata.buscarPacientePorDni(dni);
             if (!"".equals(jTFdocumento.getText()) && paciente != null) {
                 jTFapellido.setText(paciente.getApellido());
                 jTFnombre.setText(paciente.getNombre());
                 jTFdireccion.setText(paciente.getDomicilio());
                 jTFcelular.setText(Integer.toString(paciente.getCelular()));
+               datos[0]=paciente.getNombre();
+                datos[1]=paciente.getApellido();
                 if (paciente.isEstado()) {
                     jRActivoSi.setSelected(true);
                 } else {
@@ -301,10 +307,20 @@ public class PacienteABM extends javax.swing.JInternalFrame {
 
     private void jBhistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBhistorialActionPerformed
         // TODO add your handling code here:
-        HistorialDePaciente historial = new HistorialDePaciente();
-        NutricionistaEscritorio.jDescritorio.add(historial);
-        historial.setVisible(true);
-        String nombre=paciente.getNombre();
+        HistorialDePaciente  envia = new HistorialDePaciente();
+        envia.setVisible(true);
+        String info= jTFnombre.getText();
+        String info2=jTFapellido.getText();
+        envia.jTFrecibirnombre.setText(info);
+        envia.jTFrecibirapellido.setText(info2);
+       // HistorialDePaciente recibir = new HistorialDePaciente();
+        NutricionistaEscritorio.jDescritorio.add(envia);
+       
+        
+         //envia.setVisible(true);
+      // jTFnombre.setText("");
+       //jTFapellido.setText("");
+      
         
 
     }//GEN-LAST:event_jBhistorialActionPerformed
@@ -401,6 +417,7 @@ public class PacienteABM extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBbuscar;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBhistorial;
@@ -416,10 +433,10 @@ public class PacienteABM extends javax.swing.JInternalFrame {
     public static javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRActivoNo;
     private javax.swing.JRadioButton jRActivoSi;
-    private javax.swing.JTextField jTFapellido;
+    public static javax.swing.JTextField jTFapellido;
     private javax.swing.JTextField jTFcelular;
     private javax.swing.JTextField jTFdireccion;
     private javax.swing.JTextField jTFdocumento;
-    private javax.swing.JTextField jTFnombre;
+    public static javax.swing.JTextField jTFnombre;
     // End of variables declaration//GEN-END:variables
 }
