@@ -29,8 +29,8 @@ public class DietaData {
         try {
             PreparedStatement ps = conex.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getPaciente().getIdPaciente());
-            ps.setDate(2, Date.valueOf(dieta.getInicioDieta()));
-            ps.setDate(3, Date.valueOf(dieta.getFinDieta()));
+            ps.setDate(2, Date.valueOf(dieta.getFechaInicial()));
+            ps.setDate(3, Date.valueOf(dieta.getFechaFinal()));
             ps.setString(4, dieta.getNombre());
             ps.setDouble(5, dieta.getPesoInicial());
             ps.setDouble(6, dieta.getPesoFinal());
@@ -40,7 +40,7 @@ public class DietaData {
             ResultSet resultado = ps.getGeneratedKeys();
 
             if (resultado.next()) {
-                dieta.setIdComida(resultado.getInt(1));
+                dieta.setIdDieta(resultado.getInt(1));
                 JOptionPane.showMessageDialog(null, "Dieta ingresada correctamente");
             }
             ps.close();

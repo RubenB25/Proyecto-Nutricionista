@@ -5,10 +5,12 @@
  */
 package Vistas.Dietas;
 
+import AccesoDatos.Comparador;
 import AccesoDatos.DietaData;
 import Entidades.Dieta;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +23,7 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
     private final DefaultTableModel model;
     private String estado;
     private final DietaData dietas = new DietaData();
+    private int indice = 0;
 
     public ListarPacientes() {
         initComponents();
@@ -140,10 +143,11 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBVigentes)
-                    .addComponent(jBNoVigentes)
-                    .addComponent(jRBInvisible))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRBInvisible)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBVigentes)
+                        .addComponent(jBNoVigentes)))
                 .addGap(31, 31, 31))
         );
 
@@ -162,13 +166,8 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRBNoLLegoPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBNoLLegoPesoActionPerformed
-        // TODO add your handling code here:
-        jBVigentes.setEnabled(false);
-        jBNoVigentes.setEnabled(false);
-        limpiar();
-        model.setColumnCount(2);
-        model.addColumn("Peso Deseado");
-        model.addColumn("Peso Final");
+        indice = 2;
+        cambiarValores(indice);
         ArrayList<Dieta> listaDietasObtenidas = dietas.listarDietas();
         for (Dieta DietaObtenida : listaDietasObtenidas) {
             if (DietaObtenida.getPesoFinal() > DietaObtenida.getPaciente().getPesoDeseado() && !DietaObtenida.isEstado()) {
@@ -179,13 +178,10 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
 
     private void jRBListarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBListarTodoActionPerformed
         // TODO add your handling code here:
-        jBVigentes.setEnabled(true);
-        jBNoVigentes.setEnabled(true);
-        model.setColumnCount(2);
-        model.addColumn("Fecha finalización");
-        model.addColumn("Estado");
-        limpiar();
+        indice = 1;
+        cambiarValores(indice);
         ArrayList<Dieta> listaDietasObtenidas = dietas.listarDietas();
+        Collections.sort(listaDietasObtenidas, new Comparador());
         for (Dieta DietaObtenida : listaDietasObtenidas) {
             llenarLista(DietaObtenida);
             
@@ -196,33 +192,27 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
 
     private void jBVigentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVigentesActionPerformed
         // TODO add your handling code here:
-        model.setColumnCount(2);
-        model.addColumn("Fecha finalización");
-        model.addColumn("Estado");
-        jRBInvisible.setSelected(true);
-        limpiar();
+        indice = 3;
+        cambiarValores(indice);
         ArrayList<Dieta> listaDietasObtenidas = dietas.listarDietas();
         for (Dieta DietaObtenida : listaDietasObtenidas) {
-            if(DietaObtenida.isEstado()){
-            llenarLista(DietaObtenida);
+            if (DietaObtenida.isEstado()) {
+                llenarLista(DietaObtenida);
             }
         }
     }//GEN-LAST:event_jBVigentesActionPerformed
 
     private void jBNoVigentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNoVigentesActionPerformed
         // TODO add your handling code here:
-        jRBInvisible.setSelected(true);
-        model.setColumnCount(2);
-        model.addColumn("Fecha finalización");
-        model.addColumn("Estado");
-        limpiar();
+        indice = 3;
+        cambiarValores(indice);
         ArrayList<Dieta> listaDietasObtenidas = dietas.listarDietas();
         for (Dieta DietaObtenida : listaDietasObtenidas) {
-            if(!DietaObtenida.isEstado()){
-            llenarLista(DietaObtenida);
+            if (!DietaObtenida.isEstado()) {
+                llenarLista(DietaObtenida);
             }
         }
-    
+
     }//GEN-LAST:event_jBNoVigentesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,7 +227,7 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTListarPacientes;
     // End of variables declaration//GEN-END:variables
-
+     
     private void llenarLista(Dieta DietaObtenida) {
 
         if (DietaObtenida.isEstado()) {
@@ -246,6 +236,33 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
         model.addRow(new Object[]{DietaObtenida.getPaciente().getNombre() + " " + DietaObtenida.getPaciente().getApellido(), DietaObtenida.getNombre(), DietaObtenida.getFechaFinal(), estado});
 
         estado = "No vigente";
+    }
+      
+    private void cambiarValores(int indice) {
+        switch (indice) {
+            case 1:
+                jBVigentes.setEnabled(true);
+                jBNoVigentes.setEnabled(true);
+                model.setColumnCount(2);
+                model.addColumn("Fecha finalización");
+                model.addColumn("Estado");
+                limpiar();
+                break;
+            case 2:
+                jBVigentes.setEnabled(false);
+                jBNoVigentes.setEnabled(false);
+                limpiar();
+                model.setColumnCount(2);
+                model.addColumn("Peso Deseado");
+                model.addColumn("Peso Final");
+                limpiar();
+                break;
+            case 3:
+                jRBInvisible.setSelected(true);
+                limpiar();
+                break;
+        }
+
     }
 
     public void limpiar() {

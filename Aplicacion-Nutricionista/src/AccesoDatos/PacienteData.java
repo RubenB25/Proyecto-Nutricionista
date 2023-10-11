@@ -7,7 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,7 +38,7 @@ public class PacienteData {
             ps.setString(4, paciente.getDomicilio());
             ps.setString(5, paciente.getCelular());
             ps.setDate(6, Date.valueOf(paciente.getFechaNac()));
-            ps.setString(7, paciente.getEdad());
+            ps.setInt(7, paciente.getEdad());
             ps.setDouble(8, paciente.getPesoActual());
             ps.setDouble(9, paciente.getPesoDeseado());
             ps.setBoolean(10, paciente.isEstado());
@@ -126,12 +131,19 @@ public class PacienteData {
             ResultSet rs = psa.executeQuery();
             while (rs.next()) {
                 Paciente paciente = new Paciente();
-
                 paciente.setIdPaciente(rs.getInt("id_paciente"));
                 paciente.setNombre(rs.getString("nombre"));
                 paciente.setApellido(rs.getString("apellido"));
                 paciente.setDni(rs.getInt("dni"));
+                paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setCelular(rs.getString("celular"));
+                Date fechaN = (rs.getDate("fecha_nacimiento"));
+                String fechaNS= fechaN.toString();
+                LocalDate fechaLD = LocalDate.parse(fechaNS);
+                paciente.setFechaNac(fechaLD);
+                paciente.setEdad(rs.getInt("edad"));
+                paciente.setPesoActual(rs.getDouble("peso_inicial"));
+                paciente.setPesoDeseado(rs.getDouble("peso_deseado"));
                 paciente.setEstado(rs.getBoolean("estado"));
                 pacientes.add(paciente);
             }

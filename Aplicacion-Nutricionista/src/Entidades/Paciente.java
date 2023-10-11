@@ -14,7 +14,7 @@ public class Paciente {
     private String domicilio;
     private String celular;
     private LocalDate fechaNac;
-    private String edad;
+    private int edad;
     private double pesoActual;
     private double pesoDeseado;
     private int idPaciente;
@@ -24,7 +24,7 @@ public class Paciente {
     }
 
     public Paciente(String nombre, String apellido, int dni, String domicilio, String celular,
-            LocalDate fechaNac, String edad, double pesoActual, double pesoDeseado, boolean estado) {
+            LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -85,11 +85,11 @@ public class Paciente {
         this.fechaNac = fechaNac;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
@@ -125,4 +125,10 @@ public class Paciente {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return  nombre + " "+ apellido+" | DNI: "+ dni+"";
+    }
+    
+    
 }

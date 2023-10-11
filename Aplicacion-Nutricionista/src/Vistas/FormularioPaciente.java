@@ -188,7 +188,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
 
         Paciente paciente = new Paciente(jTnombre.getText(), jTapellido.getText(),
                 Integer.parseInt(jTdocumento.getText()), jTdomicilio.getText(), jTcelular.getText(),
-                jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), jTFedad.getText(),
+                jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), Integer.parseInt(jTFedad.getText()),
                 Double.parseDouble(jTpesoActual.getText()), Double.parseDouble(jTPesoDeseado.getText()), true);
         pacienteData.guardarPaciente(paciente);
 
