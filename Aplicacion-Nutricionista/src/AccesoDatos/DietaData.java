@@ -80,17 +80,19 @@ public class DietaData {
 
     }
 
-    public ArrayList<Dieta> buscarDieta(String nombre) {
+    public ArrayList<Dieta> listarDietas() {
         ArrayList<Dieta> listaDietas = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM dietas WHERE nombre = " + nombre;
+            String sql = "Select  * from dietas d Inner join pacientes p on d.id_paciente =  p.id_paciente";
             PreparedStatement ps = conex.prepareStatement(sql);
-            ps.setString(1, nombre);
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
                 Paciente paciente = new Paciente();
-                paciente.setIdPaciente(resultado.getInt("id_paciente"));
-                Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente, resultado.getDate("fechaInicial").toLocalDate(), resultado.getDate("fechaFinal").toLocalDate(), resultado.getDouble("pesoInicial"), resultado.getDouble("pesoFinal"), resultado.getBoolean("estado"));
+                paciente.setIdPaciente(resultado.getInt("id_paciente")); 
+                paciente.setApellido(resultado.getString("p.apellido"));
+                paciente.setNombre(resultado.getString("p.nombre"));
+                paciente.setPesoDeseado(resultado.getInt("p.peso_deseado"));
+               Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente, resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("peso_inicial"), resultado.getDouble("peso_final"), resultado.getBoolean("d.estado"));
                 listaDietas.add(dieta);
             }
         } catch (SQLException e) {

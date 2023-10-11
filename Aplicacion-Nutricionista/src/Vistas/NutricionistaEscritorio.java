@@ -1,5 +1,10 @@
 package Vistas;
 
+import Vistas.Dietas.ListarPacientes;
+import Vistas.Dietas.RegistrarDieta;
+import java.awt.Dimension;
+import javax.swing.JInternalFrame;
+
 /**
  * @author Gabriel
  */
@@ -19,7 +24,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         jMIformularioPaciente = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMBListarPacientes = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -35,11 +40,11 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         jDPescritorio.setLayout(jDPescritorioLayout);
         jDPescritorioLayout.setHorizontalGroup(
             jDPescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 741, Short.MAX_VALUE)
         );
         jDPescritorioLayout.setVerticalGroup(
             jDPescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 561, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Pacientes");
@@ -64,10 +69,20 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
 
         jMenu2.setText("Dietas");
 
-        jMenuItem3.setText("Listar pacientes");
-        jMenu2.add(jMenuItem3);
+        jMBListarPacientes.setText("Listar pacientes");
+        jMBListarPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMBListarPacientesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMBListarPacientes);
 
         jMenuItem4.setText("Registrar dieta");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Modificar dieta");
@@ -101,11 +116,15 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDPescritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDPescritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDPescritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDPescritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -123,6 +142,62 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         fp.moveToFront();
         fp.setVisible(true);
     }//GEN-LAST:event_jMIformularioPacienteActionPerformed
+
+    private void jMBListarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBListarPacientesActionPerformed
+        ListarPacientes vistaLP = new ListarPacientes();
+
+        // Verifica si el JInternalFrame ya está en el JDesktopPane
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == vistaLP.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+            jDPescritorio.add(vistaLP);
+            Dimension desktopSize = jDPescritorio.getSize();
+            Dimension frameSize = vistaLP.getSize();
+            vistaLP.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+
+            // Hace que el JInternalFrame sea visible
+            vistaLP.setVisible(true);
+        }                      
+    }//GEN-LAST:event_jMBListarPacientesActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        RegistrarDieta vistaRD = new RegistrarDieta();
+        // Verifica si el JInternalFrame ya está en el JDesktopPane
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == vistaRD.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+            jDPescritorio.add(vistaRD);
+            Dimension desktopSize = jDPescritorio.getSize();
+            Dimension frameSize = vistaRD.getSize();
+            vistaRD.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+            vistaRD.setVisible(true);
+        }                      
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     public static void main(String args[]) {
          try {
@@ -151,6 +226,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDPescritorio;
+    private javax.swing.JMenuItem jMBListarPacientes;
     private javax.swing.JMenuItem jMIformularioPaciente;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -158,7 +234,6 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
