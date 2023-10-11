@@ -34,9 +34,7 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
         jTaltura = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jBimc = new javax.swing.JButton();
-        jBmedidas = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jBdieta = new javax.swing.JButton();
         jTfechafin = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -85,14 +83,8 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
             }
         });
 
-        jBmedidas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBmedidas.setText("Medidas");
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Fecha consulta");
-
-        jBdieta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBdieta.setText("Dietas");
 
         jTfechafin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -136,9 +128,7 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jBimc)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBdieta)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(28, 28, 28))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,10 +148,6 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTfechafin, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBmedidas)
-                .addGap(175, 175, 175))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,7 +174,7 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
                             .addComponent(jTaltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 36, Short.MAX_VALUE)
+                        .addGap(0, 38, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -202,20 +188,13 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jTpesodeseado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTfechafin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
-                        .addGap(41, 41, 41)
-                        .addComponent(jBmedidas)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jBimc))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jBdieta)))
-                        .addGap(82, 82, 82))))
+                        .addGap(73, 73, 73)
+                        .addComponent(jBimc)
+                        .addGap(109, 109, 109))))
         );
 
         pack();
@@ -254,9 +233,7 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBdieta;
     private javax.swing.JButton jBimc;
-    private javax.swing.JButton jBmedidas;
     private javax.swing.JButton jBsalir;
     private com.toedter.calendar.JCalendar jCfecha;
     private javax.swing.JLabel jLabel1;
