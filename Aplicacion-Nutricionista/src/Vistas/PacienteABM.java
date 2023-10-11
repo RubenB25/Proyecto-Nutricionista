@@ -19,9 +19,11 @@ public class PacienteABM extends javax.swing.JInternalFrame {
 
     public PacienteABM() {
         initComponents();
-        paciente = new Paciente();
+       // paciente = new Paciente();
+       
     }
-
+public static String texto;
+public static String texto2;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -307,23 +309,22 @@ public class PacienteABM extends javax.swing.JInternalFrame {
 
     private void jBhistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBhistorialActionPerformed
         // TODO add your handling code here:
-        HistorialDePaciente  envia = new HistorialDePaciente();
-        envia.setVisible(true);
-        String info= jTFnombre.getText();
-        String info2=jTFapellido.getText();
-        envia.jTFrecibirnombre.setText(info);
-        envia.jTFrecibirapellido.setText(info2);
-       // HistorialDePaciente recibir = new HistorialDePaciente();
-        NutricionistaEscritorio.jDescritorio.add(envia);
-       
-        
-         //envia.setVisible(true);
-      // jTFnombre.setText("");
-       //jTFapellido.setText("");
-      
+          texto = jTFnombre.getText();
+          texto2=jTFapellido.getText();
+        HistorialDePaciente envia = new HistorialDePaciente();
+        envia.setVisible(true);  
+        this.setVisible(false);
+       NutricionistaEscritorio.jDescritorio.add(envia);
+     
+  
         
 
+      // jTFnombre.setText("");
+       //jTFapellido.setText("");              
     }//GEN-LAST:event_jBhistorialActionPerformed
+
+    
+
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
         // TODO add your handling code here:
