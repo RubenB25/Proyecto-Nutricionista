@@ -24,6 +24,7 @@ public class PacienteABM extends javax.swing.JInternalFrame {
     }
 public static String texto;
 public static String texto2;
+public static String texto3;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -310,7 +311,8 @@ public static String texto2;
     private void jBhistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBhistorialActionPerformed
         // TODO add your handling code here:
           texto = jTFnombre.getText();
-          texto2=jTFapellido.getText();
+          texto2 = jTFapellido.getText();
+          texto3 = jTFdocumento.getText();
         HistorialDePaciente envia = new HistorialDePaciente();
         envia.setVisible(true);  
         this.setVisible(false);

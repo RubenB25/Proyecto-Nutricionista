@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User2021SD
@@ -16,8 +18,12 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
      */
     public HistorialDePaciente() {
         initComponents();
+        PacienteABM recibe= new PacienteABM();   
+        jTrecibenombre.setText(recibe.texto);
+        jTrecibeapellido.setText(recibe.texto2);
+        jTrecibedni.setText(recibe.texto3);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,75 +34,92 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel9 = new javax.swing.JLabel();
-        jTrecibenombre1 = new javax.swing.JTextField();
+        jTrecibenombre = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTrecibeapellido1 = new javax.swing.JTextField();
+        jTrecibeapellido = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTrecibedni1 = new javax.swing.JTextField();
+        jTrecibedni = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTpesoinicio1 = new javax.swing.JTextField();
+        jTpesoinicio = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTaltura1 = new javax.swing.JTextField();
+        jTaltura = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTpesodeseado1 = new javax.swing.JTextField();
+        jTpesodeseado = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTfechafin1 = new javax.swing.JTextField();
+        jTfechafin = new javax.swing.JTextField();
         jBimc = new javax.swing.JButton();
-        jTexto = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDCalendario = new com.toedter.calendar.JDateChooser();
         jLabel16 = new javax.swing.JLabel();
         jBsalir = new javax.swing.JButton();
         jBmedida = new javax.swing.JButton();
         jBdieta = new javax.swing.JButton();
+        jLresultado = new javax.swing.JLabel();
+        jTresultado = new javax.swing.JTextField();
+
+        setTitle("Consulta");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Nombre:");
 
-        jTrecibenombre1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTrecibenombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Apellido:");
 
-        jTrecibeapellido1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTrecibeapellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("D.N.I.:");
 
-        jTrecibedni1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTrecibedni.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("Peso Inicial:");
 
-        jTpesoinicio1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTpesoinicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("Altura:");
 
-        jTaltura1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTaltura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel14.setText("Peso Deseado:");
 
-        jTpesodeseado1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTpesodeseado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Fecha Fin:");
 
-        jTfechafin1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTfechafin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jBimc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBimc.setText("IMC");
+        jBimc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBimcActionPerformed(evt);
+            }
+        });
 
-        jLabel16.setText("jLabel16");
+        jLabel16.setText("Fecha Consulta");
 
         jBsalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBsalir.setText("SALIR");
+        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsalirActionPerformed(evt);
+            }
+        });
 
         jBmedida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBmedida.setText("MEDIDA");
 
         jBdieta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBdieta.setText("DIETA");
+
+        jLresultado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jTresultado.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,21 +137,14 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel11)
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTfechafin1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTpesodeseado1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTaltura1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTpesoinicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTrecibedni1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTrecibeapellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTrecibenombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                            .addComponent(jTpesoinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTrecibedni, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTrecibeapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTrecibenombre, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel16)
@@ -136,10 +152,18 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jBsalir)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBmedida)
-                                    .addComponent(jBdieta))
-                                .addGap(35, 35, 35))))))
+                                    .addComponent(jDCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBdieta)
+                                    .addComponent(jBmedida))
+                                .addGap(35, 35, 35))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTresultado)
+                            .addComponent(jTfechafin, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(jTpesodeseado, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(jTaltura, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLresultado, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,63 +171,112 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTrecibenombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTrecibenombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(jTrecibeapellido1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTrecibeapellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTrecibedni1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTrecibedni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTpesoinicio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTpesoinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTaltura1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTaltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTpesodeseado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTpesodeseado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
-                    .addComponent(jTfechafin1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTfechafin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jBimc)
                         .addGap(46, 46, 46))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTexto)
-                        .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTresultado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jDCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jBsalir)
                 .addGap(18, 18, 18)
                 .addComponent(jBmedida)
                 .addGap(18, 18, 18)
                 .addComponent(jBdieta)
-                .addGap(177, 177, 177))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLresultado, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jBsalirActionPerformed
+
+    private void jBimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBimcActionPerformed
+     try {
+            double peso= Double.parseDouble(jTpesoinicio.getText());
+            double altura=Double.parseDouble(jTaltura.getText());
+            double imc= peso/altura;
+             
+                /* jTarea.setWrapStyleWord(true);
+                jTarea.setLineWrap(true);
+                jTarea.setCaretPosition(0);*/
+            if(imc <18.9){
+              
+                jLresultado.setText("Tiene Delgadez");
+               // jLresultado.setText("Tiene Delgadez, se recomienda comenzar con dieta de aumento de peso");
+            }else
+                if(imc >18.9 && imc<25){
+               
+                jLresultado.setText("Tiene peso Normal");
+               // jLresultado.setText("Tiene peso Normal a su Estatura y edad");
+                }else 
+                    if(imc >25 && imc<29.99){
+                                
+                jLresultado.setText("Tiene Sobrepeso");
+               // jLresultado.setText("Tiene Sobrepeso, se recomienda comenzar con dieta de descenso de peso");
+                    }else
+            if(imc >25 && imc<29.99){
+                           
+                jLresultado.setText("Tiene Obesidad");
+                //jLresultado.setText("Tiene Sobrepeso, se recomienda comenzar con dieta de descenso de peso");
+            }
+            if(imc >30 && imc<45){
+                
+                jLresultado.setText("Tiene Obesidad morbida");
+               // jLresultado.setText("Tiene Obesidad, se recomienda comenzar con dieta de descenso de peso inmediato para cuidar su salud");
+            } 
+            if(imc>45){
+                
+                jLresultado.setText("Tiene Obesidad, se recomienda comenzar con dieta de descenso de peso inmediato para cuidar su salud");
+               // jLresultado.setText("Tiene Obesidad, se recomienda comenzar con dieta de descenso de peso inmediato para cuidar su salud");
+            } 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,"tiene un error por no ingresar valor numerico en las opciones de altura y peso,"+ e);
+        }
+    }//GEN-LAST:event_jBimcActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBdieta;
-    private javax.swing.JButton jBimc;
+    public static javax.swing.JButton jBimc;
     private javax.swing.JButton jBmedida;
     private javax.swing.JButton jBsalir;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDCalendario;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -212,13 +285,14 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTaltura1;
-    private javax.swing.JTextField jTexto;
-    private javax.swing.JTextField jTfechafin1;
-    private javax.swing.JTextField jTpesodeseado1;
-    private javax.swing.JTextField jTpesoinicio1;
-    private javax.swing.JTextField jTrecibeapellido1;
-    private javax.swing.JTextField jTrecibedni1;
-    private javax.swing.JTextField jTrecibenombre1;
+    private javax.swing.JLabel jLresultado;
+    private javax.swing.JTextField jTaltura;
+    private javax.swing.JTextField jTfechafin;
+    private javax.swing.JTextField jTpesodeseado;
+    private javax.swing.JTextField jTpesoinicio;
+    private javax.swing.JTextField jTrecibeapellido;
+    private javax.swing.JTextField jTrecibedni;
+    private javax.swing.JTextField jTrecibenombre;
+    private javax.swing.JTextField jTresultado;
     // End of variables declaration//GEN-END:variables
 }
