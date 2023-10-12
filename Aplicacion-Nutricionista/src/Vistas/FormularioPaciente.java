@@ -190,7 +190,6 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
             int dniInt = Integer.parseInt(dni);
             return dniInt >= 1 && dniInt <= 99999999;
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             return false;
         }
     }
@@ -199,7 +198,6 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         try {
             return edad >= 1 && edad <= 150;
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             return false;
         }
     }
