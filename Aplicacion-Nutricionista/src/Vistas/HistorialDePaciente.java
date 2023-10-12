@@ -105,6 +105,11 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
 
         jBdieta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBdieta.setText("DIETA");
+        jBdieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBdietaActionPerformed(evt);
+            }
+        });
 
         jLresultado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -296,6 +301,11 @@ dispose();        // TODO add your handling code here:
 
             jLFecha.setText("Fecha: " + fechaN.format(dtf));// TODO add your handling code here:
     }//GEN-LAST:event_jDcalendarPropertyChange
+    }
+    
+    private void jBdietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdietaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBdietaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
