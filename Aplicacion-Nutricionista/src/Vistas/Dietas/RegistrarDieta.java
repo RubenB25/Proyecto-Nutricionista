@@ -9,10 +9,12 @@ import AccesoDatos.DietaData;
 import AccesoDatos.PacienteData;
 import Entidades.Dieta;
 import Entidades.Paciente;
+import java.awt.HeadlessException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -24,12 +26,15 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
     private DietaData dieta = new DietaData();
     private ArrayList<Paciente> listaPacientes;
     private PacienteData pacienteData = new PacienteData();
+    int contadorDePuntos = 0;
+
     /**
      * Creates new form RegistrarDieta
      */
     public RegistrarDieta() {
         initComponents();
         llenarCB();
+
     }
 
     /**
@@ -50,6 +55,10 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jCBListaPaciente = new javax.swing.JComboBox<>();
         jDCInicio = new com.toedter.calendar.JDateChooser();
+        JTextField textField = (JTextField) jDCInicio.getDateEditor().getUiComponent();
+
+        textField.setEditable(false);
+        textField.setFocusable(false);
         jDCFinalizacion = new com.toedter.calendar.JDateChooser();
         jTFNombreDieta = new javax.swing.JTextField();
         jTFPesoInicial = new javax.swing.JTextField();
@@ -100,6 +109,23 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
                 .addComponent(jLPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
+
+        JTextField textFieldF = (JTextField) jDCFinalizacion.getDateEditor().getUiComponent();
+
+        textFieldF.setEditable(false);
+        textFieldF.setFocusable(false);
+
+        jTFNombreDieta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFNombreDietaKeyReleased(evt);
+            }
+        });
+
+        jTFPesoInicial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFPesoInicialKeyReleased(evt);
+            }
+        });
 
         jLabel1.setText("Registrar dieta");
 
@@ -184,17 +210,58 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAgregarDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarDietaActionPerformed
-         if(comprobaciones()){
-            Paciente pacienteCB =(Paciente)jCBListaPaciente.getSelectedItem();
-            String nombre = jTFNombreDieta.getText();
-            LocalDate fechaInicio = jDCInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate fechaFin = jDCFinalizacion.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            double pesoInicial = Double.parseDouble(jTFPesoInicial.getText());
-            Dieta nuevaDieta = new Dieta(nombre, pacienteCB,fechaInicio,fechaFin, pesoInicial, 0, true);
-            dieta.nuevaDieta(nuevaDieta);
+        try {
+            if (comprobaciones()) {
+                Paciente pacienteCB = (Paciente) jCBListaPaciente.getSelectedItem();
+                String nombre = jTFNombreDieta.getText();
+                LocalDate fechaInicio = jDCInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fechaFin = jDCFinalizacion.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                double pesoInicial = Double.parseDouble(jTFPesoInicial.getText());
+                Dieta nuevaDieta = new Dieta(nombre, pacienteCB, fechaInicio, fechaFin, pesoInicial, 0, true);
+                dieta.nuevaDieta(nuevaDieta);
+                limpiarCampos();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Los datos no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBAgregarDietaActionPerformed
-    
+
+
+    private void jTFNombreDietaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreDietaKeyReleased
+        String texto = jTFNombreDieta.getText();
+        if (texto.length() > 0) {
+            StringBuilder resultado = new StringBuilder();
+            char espacioAnterior = ' ';
+
+            for (int i = 0; i < texto.length(); i++) {
+                char c = texto.charAt(i);
+                if (c != ' ' || espacioAnterior != ' ') {
+                    resultado.append(c);
+                }
+                espacioAnterior = c;
+            }
+            jTFNombreDieta.setText(resultado.toString().replaceAll("[^a-zA-Z0-9 ]", ""));
+        }
+    }//GEN-LAST:event_jTFNombreDietaKeyReleased
+
+    private void jTFPesoInicialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesoInicialKeyReleased
+        String texto = jTFPesoInicial.getText();
+        StringBuilder resultado = new StringBuilder();
+        boolean puntoEncontrado = false;
+
+        for (int i = 0; i < texto.length(); i++) {
+            char c = texto.charAt(i);
+            if (c != ' ' && (c != '.' || !puntoEncontrado)) {
+                resultado.append(c);
+                if (c == '.') {
+                    puntoEncontrado = true;
+                }
+            }
+        }
+        jTFPesoInicial.setText(resultado.toString().replaceAll("[^0-9.]", ""));
+
+    }//GEN-LAST:event_jTFPesoInicialKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregarDieta;
@@ -215,26 +282,36 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void llenarCB() {
-        
+
         for (Paciente paciente : pacienteData.listarPaciente()) {
             jCBListaPaciente.addItem(paciente);
         }
     }
+
     private boolean comprobaciones() {
         try {
 
-            if (!jTFNombreDieta.getText().isEmpty() && !jTFPesoInicial.getText().isEmpty()) {
+            if (!jTFNombreDieta.getText().isEmpty() && !jTFPesoInicial.getText().isEmpty() && jDCFinalizacion.getDate() != null && jDCInicio.getDate() != null) {
                 todoCorrecto = true;
                 if (jDCInicio.getDate().after(jDCFinalizacion.getDate())) {
-                     JOptionPane.showMessageDialog(this, "Verifique los campos de fechas", "Error", JOptionPane.ERROR_MESSAGE);
-                     todoCorrecto = false;
-                } 
+                    JOptionPane.showMessageDialog(this, "Verifique los campos de fechas.", "Error", JOptionPane.ERROR_MESSAGE);
+                    todoCorrecto = false;
+                }
+
             } else {
-                JOptionPane.showMessageDialog(this, "Verifique los campos", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Verifique los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
 
         }
+
         return todoCorrecto;
+    }
+
+    private void limpiarCampos() {
+        jTFNombreDieta.setText("");
+        jTFPesoInicial.setText("");
+        jDCFinalizacion.setDate(null);
+        jDCInicio.setDate(null);
     }
 }

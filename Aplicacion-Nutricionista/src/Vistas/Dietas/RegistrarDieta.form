@@ -197,12 +197,24 @@
               </AuxValues>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jDCInicio">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="JTextField textField = (JTextField) jDCInicio.getDateEditor().getUiComponent();&#xd;&#xa;&#xd;&#xa;textField.setEditable(false);&#xd;&#xa;textField.setFocusable(false);"/>
+              </AuxValues>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jDCFinalizacion">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JTextField textFieldF = (JTextField) jDCFinalizacion.getDateEditor().getUiComponent();&#xd;&#xa;&#xd;&#xa;textFieldF.setEditable(false);&#xd;&#xa;textFieldF.setFocusable(false);"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTFNombreDieta">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNombreDietaKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTFPesoInicial">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFPesoInicialKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
