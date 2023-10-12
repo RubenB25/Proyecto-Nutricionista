@@ -209,7 +209,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
     public static boolean validarCelular(String celular) {
         return Pattern.matches("^[0-9]+$", celular) && celular.length() <= 15;
     }
-
+//no es necesario se puede borrar
     public boolean validarFechNac(LocalDate fechaNac) {
         LocalDate fechaActual = LocalDate.now();
         return fechaNac.isBefore(fechaActual);
