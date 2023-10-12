@@ -142,7 +142,7 @@ public class PacienteData {
                 LocalDate fechaLD = LocalDate.parse(fechaNS);
                 paciente.setFechaNac(fechaLD);
                 paciente.setEdad(rs.getInt("edad"));
-                paciente.setPesoActual(rs.getDouble("peso_inicial"));
+                paciente.setPesoActual(rs.getDouble("peso_actual"));
                 paciente.setPesoDeseado(rs.getDouble("peso_deseado"));
                 paciente.setEstado(rs.getBoolean("estado"));
                 pacientes.add(paciente);
