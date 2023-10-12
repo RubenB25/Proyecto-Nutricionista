@@ -10,11 +10,11 @@ public class Paciente {
 
     private String nombre;
     private String apellido;
-    private int dni;
+    private String dni;
     private String domicilio;
     private String celular;
     private LocalDate fechaNac;
-    private String edad;
+    private int edad;
     private double pesoActual;
     private double pesoDeseado;
     private int idPaciente;
@@ -23,8 +23,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(String nombre, String apellido, int dni, String domicilio, String celular,
-            LocalDate fechaNac, String edad, double pesoActual, double pesoDeseado, boolean estado) {
+    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -53,11 +52,11 @@ public class Paciente {
         this.apellido = apellido;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -85,11 +84,11 @@ public class Paciente {
         this.fechaNac = fechaNac;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
@@ -124,5 +123,8 @@ public class Paciente {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+    
+    
 
+    
 }

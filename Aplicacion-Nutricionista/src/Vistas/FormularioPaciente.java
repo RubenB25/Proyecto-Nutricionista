@@ -2,7 +2,11 @@ package Vistas;
 
 import AccesoDatos.PacienteData;
 import Entidades.Paciente;
+import java.time.LocalDate;
+import java.time.Period;
 import java.time.ZoneId;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  * @author Gabriel
@@ -36,8 +40,8 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jTFedad = new javax.swing.JTextField();
         jDCfechaNacimiento = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBguardar = new javax.swing.JButton();
+        jBsalir = new javax.swing.JButton();
 
         jLabel1.setText("Nombre:");
 
@@ -49,12 +53,6 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Celular:");
 
-        jTapellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTapellidoActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Peso actual:");
 
         jLabel7.setText("Peso deseado:");
@@ -63,14 +61,14 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Edad:");
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBguardar.setText("Guardar");
+        jBguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBguardarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Salir");
+        jBsalir.setText("Salir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,9 +114,9 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
                         .addGap(59, 59, 59)
                         .addComponent(jTPesoDeseado, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jBguardar)
                         .addGap(219, 219, 219)
-                        .addComponent(jButton2))))
+                        .addComponent(jBsalir))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,8 +159,8 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
                     .addComponent(jTPesoDeseado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)))
+                    .addComponent(jBguardar)
+                    .addComponent(jBsalir)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,25 +177,103 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTapellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTapellidoActionPerformed
+    public boolean validarNombre(String nombre) {
+        return Pattern.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$", nombre) && nombre.length() <= 50;
+    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    public boolean validarApellido(String apellido) {
+        return Pattern.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$", apellido) && apellido.length() <= 50;
+    }
+
+    public boolean validarDocumento(String dni) {
+        try {
+            int dniInt = Integer.parseInt(dni);
+            return dniInt >= 1 && dniInt <= 99999999;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean validarEdad(int edad) {
+        try {
+            return edad >= 1 && edad <= 150;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean validarDomicilio(String domicilio) {
+        return Pattern.matches("^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\\s]+$", domicilio) && domicilio.length() <= 100;
+    }
+
+    public static boolean validarCelular(String celular) {
+        return Pattern.matches("^[0-9]+$", celular) && celular.length() <= 15;
+    }
+
+    public boolean validarFechNac(LocalDate fechaNac) {
+        LocalDate fechaActual = LocalDate.now();
+        return fechaNac.isBefore(fechaActual);
+    }
+
+    public boolean validarPesoActual(double pesoAct) {
+        try {
+            return pesoAct >= 0 && pesoAct <= 500;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean validarPesoDeseado(double pesoDes) {
+        try {
+            return pesoDes >= 0 && pesoDes <= 500;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean validarEdadYFecha(LocalDate fechaNacimiento, int edad) {
+        if (validarFechNac(fechaNacimiento)) {
+            LocalDate fechaActual = LocalDate.now();
+
+            Period periodo = Period.between(fechaNacimiento, fechaActual);
+            int edadCalculada = periodo.getYears();
+
+            return edadCalculada == edad;
+        }
+        return false;
+    }
+
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
         PacienteData pacienteData = new PacienteData();
+        String nombre = (jTnombre.getText().trim()).replaceAll("\\s+", " ");
+        String apellido = (jTapellido.getText().trim()).replaceAll("\\s+", " ");
+        String documento = (jTdocumento.getText().trim()).replaceAll("\\s+", " ");
+        String domicilio = (jTdomicilio.getText().trim()).replaceAll("\\s+", " ");
+        String celular = (jTcelular.getText().trim()).replaceAll("\\s+", " ");
+        int edad = Integer.parseInt(jTFedad.getText());
+        LocalDate fechaNac = jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        double pesoAct = Double.parseDouble(jTpesoActual.getText());
+        double pesoDes = Double.parseDouble(jTPesoDeseado.getText());
 
-        Paciente paciente = new Paciente(jTnombre.getText(), jTapellido.getText(),
-                Integer.parseInt(jTdocumento.getText()), jTdomicilio.getText(), jTcelular.getText(),
-                jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), jTFedad.getText(),
-                Double.parseDouble(jTpesoActual.getText()), Double.parseDouble(jTPesoDeseado.getText()), true);
-        pacienteData.guardarPaciente(paciente);
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (validarNombre(nombre) && validarApellido(apellido) && validarDocumento(documento)
+                && validarDomicilio(domicilio) && validarCelular(celular) && validarEdadYFecha(fechaNac, edad)
+                && validarEdad(edad) && validarPesoActual(pesoAct) && validarPesoDeseado(pesoDes)) {
+            Paciente paciente = new Paciente(nombre, apellido, documento, domicilio, celular,
+                    fechaNac, edad, pesoAct, pesoDes, true);
+            pacienteData.guardarPaciente(paciente);
+        } else {
+            JOptionPane.showMessageDialog(null, "Verifique los datos");
+        }
+    }//GEN-LAST:event_jBguardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBguardar;
+    private javax.swing.JButton jBsalir;
     private com.toedter.calendar.JDateChooser jDCfechaNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

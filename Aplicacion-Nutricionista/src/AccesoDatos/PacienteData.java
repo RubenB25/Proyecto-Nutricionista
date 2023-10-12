@@ -29,11 +29,11 @@ public class PacienteData {
             PreparedStatement ps = conex.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, paciente.getNombre());
             ps.setString(2, paciente.getApellido());
-            ps.setInt(3, paciente.getDni());
+            ps.setString(3, paciente.getDni());
             ps.setString(4, paciente.getDomicilio());
             ps.setString(5, paciente.getCelular());
             ps.setDate(6, Date.valueOf(paciente.getFechaNac()));
-            ps.setString(7, paciente.getEdad());
+            ps.setInt(7, paciente.getEdad());
             ps.setDouble(8, paciente.getPesoActual());
             ps.setDouble(9, paciente.getPesoDeseado());
             ps.setBoolean(10, paciente.isEstado());
@@ -63,7 +63,7 @@ public class PacienteData {
                 paciente = new Paciente();
 
                 paciente.setIdPaciente(resultado.getInt("id_paciente"));
-                paciente.setDni(resultado.getInt("dni"));
+                paciente.setDni(resultado.getString("dni"));
                 paciente.setApellido(resultado.getString("apellido"));
                 paciente.setNombre(resultado.getString("nombre"));
                 paciente.setCelular(resultado.getString("celular"));
@@ -85,7 +85,7 @@ public class PacienteData {
             PreparedStatement ps = conex.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
             ps.setString(2, paciente.getApellido());
-            ps.setInt(3, paciente.getDni());
+            ps.setString(3, paciente.getDni());
             ps.setString(4, paciente.getCelular());
             ps.setBoolean(5, paciente.isEstado());
             ps.setInt(6, paciente.getIdPaciente());
@@ -130,7 +130,7 @@ public class PacienteData {
                 paciente.setIdPaciente(rs.getInt("id_paciente"));
                 paciente.setNombre(rs.getString("nombre"));
                 paciente.setApellido(rs.getString("apellido"));
-                paciente.setDni(rs.getInt("dni"));
+                paciente.setDni(rs.getString("dni"));
                 paciente.setCelular(rs.getString("celular"));
                 paciente.setEstado(rs.getBoolean("estado"));
                 pacientes.add(paciente);
