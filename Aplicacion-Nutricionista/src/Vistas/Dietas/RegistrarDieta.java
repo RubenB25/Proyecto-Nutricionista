@@ -10,11 +10,15 @@ import AccesoDatos.PacienteData;
 import Entidades.Dieta;
 import Entidades.Paciente;
 import java.awt.HeadlessException;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import jdk.nashorn.internal.ir.ContinueNode;
 
 /**
  *
@@ -22,11 +26,11 @@ import javax.swing.JTextField;
  */
 public class RegistrarDieta extends javax.swing.JInternalFrame {
 
-    private boolean todoCorrecto = false;
     private DietaData dieta = new DietaData();
     private ArrayList<Paciente> listaPacientes;
     private PacienteData pacienteData = new PacienteData();
     int contadorDePuntos = 0;
+    char espacioAnterior = ' ';
 
     /**
      * Creates new form RegistrarDieta
@@ -116,14 +120,17 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
         textFieldF.setFocusable(false);
 
         jTFNombreDieta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFNombreDietaKeyReleased(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNombreDietaKeyTyped(evt);
             }
         });
 
         jTFPesoInicial.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFPesoInicialKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFPesoInicialKeyTyped(evt);
             }
         });
 
@@ -216,51 +223,63 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
                 String nombre = jTFNombreDieta.getText();
                 LocalDate fechaInicio = jDCInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate fechaFin = jDCFinalizacion.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                double pesoInicial = Double.parseDouble(jTFPesoInicial.getText());
-                Dieta nuevaDieta = new Dieta(nombre, pacienteCB, fechaInicio, fechaFin, pesoInicial, 0, true);
-                dieta.nuevaDieta(nuevaDieta);
-                limpiarCampos();
+                if (esTextoValido(nombre, jTFPesoInicial.getText())) {
+                    double pesoInicial = Double.parseDouble(jTFPesoInicial.getText());
+
+                    Dieta nuevaDieta = new Dieta(nombre, pacienteCB, fechaInicio, fechaFin, pesoInicial, 0, true);
+                    dieta.nuevaDieta(nuevaDieta);
+                    limpiarCampos();
+                } else {
+                    throw new IllegalArgumentException("Valores no permitidos.");
+                }
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Los datos no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException b) {
+            JOptionPane.showMessageDialog(this, b.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBAgregarDietaActionPerformed
 
 
-    private void jTFNombreDietaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreDietaKeyReleased
-        String texto = jTFNombreDieta.getText();
-        if (texto.length() > 0) {
-            StringBuilder resultado = new StringBuilder();
-            char espacioAnterior = ' ';
-
-            for (int i = 0; i < texto.length(); i++) {
-                char c = texto.charAt(i);
-                if (c != ' ' || espacioAnterior != ' ') {
-                    resultado.append(c);
-                }
-                espacioAnterior = c;
-            }
-            jTFNombreDieta.setText(resultado.toString().replaceAll("[^a-zA-Z0-9 ]", ""));
-        }
-    }//GEN-LAST:event_jTFNombreDietaKeyReleased
-
     private void jTFPesoInicialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesoInicialKeyReleased
-        String texto = jTFPesoInicial.getText();
-        StringBuilder resultado = new StringBuilder();
-        boolean puntoEncontrado = false;
+        String stringPeso = jTFPesoInicial.getText();
 
-        for (int i = 0; i < texto.length(); i++) {
-            char c = texto.charAt(i);
-            if (c != ' ' && (c != '.' || !puntoEncontrado)) {
-                resultado.append(c);
-                if (c == '.') {
-                    puntoEncontrado = true;
-                }
-            }
+        char c = evt.getKeyChar();
+        if (c == KeyEvent.VK_DELETE) {
+            // Tecla de borrar detectada, restaura el contenido original
+            jTFPesoInicial.setText(stringPeso);
         }
-        jTFPesoInicial.setText(resultado.toString().replaceAll("[^0-9.]", ""));
+
 
     }//GEN-LAST:event_jTFPesoInicialKeyReleased
+
+    private void jTFNombreDietaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreDietaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (!Character.isLetter(c) && !Character.isDigit(c) && c != ' ') {
+            evt.consume(); // Consumir caracteres no válidos
+        } else if (c == ' ' && espacioAnterior == ' ') {
+            evt.consume(); // Consumir espacio adicional
+        }
+
+        espacioAnterior = c;
+    }//GEN-LAST:event_jTFNombreDietaKeyTyped
+
+    private void jTFPesoInicialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesoInicialKeyTyped
+        // TODO add your handling code here:
+        String pesoInicial = jTFPesoInicial.getText();
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != '.' && !Character.isWhitespace(c)) {
+            evt.consume(); // Consumir caracteres no válidos
+        }
+        if (c == ' ' || (c == '.' && jTFPesoInicial.getText().contains("."))) {
+            evt.consume();
+        }
+        if ((!pesoInicial.contains(".") && pesoInicial.length() >= 3) || (pesoInicial.contains(".") && pesoInicial.length() >= 5)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFPesoInicialKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -282,27 +301,38 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void llenarCB() {
-
-        for (Paciente paciente : pacienteData.listarPaciente()) {
+        listaPacientes = pacienteData.listarPaciente();
+        for (Paciente paciente : listaPacientes) {
             jCBListaPaciente.addItem(paciente);
         }
     }
 
     private boolean comprobaciones() {
+        boolean todoCorrecto = true;
+
         try {
+            String nombreDieta = jTFNombreDieta.getText();
+            String pesoInicial = jTFPesoInicial.getText();
+            Date fechaInicio = jDCInicio.getDate();
+            Date fechaFinalizacion = jDCFinalizacion.getDate();
 
-            if (!jTFNombreDieta.getText().isEmpty() && !jTFPesoInicial.getText().isEmpty() && jDCFinalizacion.getDate() != null && jDCInicio.getDate() != null) {
-                todoCorrecto = true;
-                if (jDCInicio.getDate().after(jDCFinalizacion.getDate())) {
-                    JOptionPane.showMessageDialog(this, "Verifique los campos de fechas.", "Error", JOptionPane.ERROR_MESSAGE);
-                    todoCorrecto = false;
-                }
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Verifique los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            if (nombreDieta.isEmpty() || pesoInicial.isEmpty() || fechaInicio == null || fechaFinalizacion == null) {
+                throw new IllegalArgumentException("Verifique los campos.");
+            } else if (nombreDieta.length() > 50 || pesoInicial.length() > 5) {
+                throw new IllegalArgumentException("Valores fuera de limite.");
             }
-        } catch (HeadlessException e) {
 
+            if (fechaInicio.after(fechaFinalizacion)) {
+                throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha de finalización.");
+            }
+
+            if (pesoInicial.startsWith(".") || pesoInicial.startsWith("0")) {
+                throw new IllegalArgumentException("Verifique el campo peso inicial.");
+            }
+
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            todoCorrecto = false;
         }
 
         return todoCorrecto;
@@ -314,4 +344,12 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
         jDCFinalizacion.setDate(null);
         jDCInicio.setDate(null);
     }
+
+    private boolean esTextoValido(String nombreDieta, String pesoInicial) {
+        boolean esNombreDietaValido = nombreDieta.matches("[a-zA-Z0-9 ]+");
+        boolean esPesoInicialValido = pesoInicial.matches("[0-9]+(\\.[0-9]+)?");
+
+        return esNombreDietaValido && esPesoInicialValido;
+    }
+
 }
