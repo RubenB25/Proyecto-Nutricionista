@@ -142,11 +142,12 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDCFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCBListaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTFPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDCInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jDCFinalizacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                        .addComponent(jDCInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(0, 73, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
@@ -221,11 +222,13 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
             if (comprobaciones()) {
                 Paciente pacienteCB = (Paciente) jCBListaPaciente.getSelectedItem();
                 String nombre = jTFNombreDieta.getText();
+                jTFPesoInicial.setText(jTFPesoInicial.getText().replaceAll(" ", ""));
                 LocalDate fechaInicio = jDCInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate fechaFin = jDCFinalizacion.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 if (esTextoValido(nombre, jTFPesoInicial.getText())) {
                     double pesoInicial = Double.parseDouble(jTFPesoInicial.getText());
-
+                    nombre.trim();
+                    
                     Dieta nuevaDieta = new Dieta(nombre, pacienteCB, fechaInicio, fechaFin, pesoInicial, 0, true);
                     dieta.nuevaDieta(nuevaDieta);
                     limpiarCampos();
