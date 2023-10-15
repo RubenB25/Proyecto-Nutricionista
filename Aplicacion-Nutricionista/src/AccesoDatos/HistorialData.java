@@ -52,11 +52,11 @@ public class HistorialData {
     }
 //        
 
-    public void guardarHistorial(int idPaciente) {
+    public void guardarHistorial(Historial rs) {
         try {
-            String sql = "INSERT INTO Historial (idPaciente) VALUES (" + rs.getIdPaciente() + "," + rs.getAlumno().getIdAlumno() + "," + insc.getMateria().getIdMateria() + ")";
+            String sql = "INSERT INTO Historial (idPaciente) VALUES (" + rs.getIdPaciente() + "," + rs.getDouble().getCuello() + "," + insc.getMateria().getIdMateria() + ")";
             PreparedStatement ps = conex.prepareStatement(sql);
-            int filasAfectadas = ps.executeUpdate();
+            int filasAfectadas = ps.executeUpdate ();
 
             if (filasAfectadas > 0) {
                 JOptionPane.showMessageDialog(null, "Inscripción realizada con éxito.");
@@ -73,7 +73,7 @@ public class HistorialData {
         ArrayList<Paciente> listaPacientes = new ArrayList<>();
         try {
             String sql = "SELECT p.idpaciente, p.dni, p.apellido, p.nombre FROM paciente p INNER JOIN historial h ON p.idPaciente = h.idPaciente WHERE h.idPaciente = ?";
-            PreparedStatement psm = con.prepareStatement(sql);
+            PreparedStatement psm = conex.prepareStatement(sql);
             psm.setInt(1, idPaciente); // Establece el valor del parámetro
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
