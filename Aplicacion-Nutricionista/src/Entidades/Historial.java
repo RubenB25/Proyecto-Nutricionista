@@ -6,83 +6,47 @@ import java.time.LocalDate;
  * @author Gabriel
  */
 public class Historial {
-
     private int idHistorial;
-    private int dniPaciente;
     private int idPaciente;
+    private double cuello;
+    private double busto;
+    private double cintura;
+    private double brazo;
+    private double cadera;
+    private double pierna;
     private double estatura;
-    private double pesoInicial;
-    private double peso;
-    private double pesoDeseado;
     private int idDieta;
-    private LocalDate fechaFin;
+
     private LocalDate fechaRegistro;
 
     public Historial() {
     }
 
-    public Historial(int dniPaciente, double estatura, double pesoInicial, double peso, double pesoDeseado, int idDieta, LocalDate fechaFin, LocalDate fechaRegistro) {
-        this.dniPaciente = dniPaciente;
+    public Historial(int idHistorial, int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, LocalDate fechaRegistro) {
+        this.idHistorial = idHistorial;
+        this.idPaciente = idPaciente;
+        this.cuello = cuello;
+        this.busto = busto;
+        this.cintura = cintura;
+        this.brazo = brazo;
+        this.cadera = cadera;
+        this.pierna = pierna;
         this.estatura = estatura;
-        this.pesoInicial = pesoInicial;
-        this.peso = peso;
-        this.pesoDeseado = pesoDeseado;
         this.idDieta = idDieta;
-        this.fechaFin = fechaFin;
         this.fechaRegistro = fechaRegistro;
     }
 
-    @Override
-    public String toString() {
-        return "Historial{" + "idHistorial=" + idHistorial + ", dniPaciente=" + dniPaciente + ", idPaciente=" + idPaciente + ", estatura=" + estatura + ", pesoInicial=" + pesoInicial + ", peso=" + peso + ", pesoDeseado=" + pesoDeseado + ", idDieta=" + idDieta + ", fechaFin=" + fechaFin + ", fechaRegistro=" + fechaRegistro + '}';
-    }
-
-    public int getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(int idPaciente) {
+    public Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, LocalDate fechaRegistro) {
         this.idPaciente = idPaciente;
-    }
-
-    public double getEstatura() {
-        return estatura;
-    }
-
-    public void setEstatura(double estatura) {
+        this.cuello = cuello;
+        this.busto = busto;
+        this.cintura = cintura;
+        this.brazo = brazo;
+        this.cadera = cadera;
+        this.pierna = pierna;
         this.estatura = estatura;
-    }
-
-    public double getPesoInicial() {
-        return pesoInicial;
-    }
-
-    public void setPesoInicial(double pesoInicial) {
-        this.pesoInicial = pesoInicial;
-    }
-
-    public double getPesoDeseado() {
-        return pesoDeseado;
-    }
-
-    public void setPesoDeseado(double pesoDeseado) {
-        this.pesoDeseado = pesoDeseado;
-    }
-
-    public int getIdDieta() {
-        return idDieta;
-    }
-
-    public void setIdDieta(int idDieta) {
         this.idDieta = idDieta;
-    }
-
-    public LocalDate getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(LocalDate fechaFin) {
-        this.fechaFin = fechaFin;
+        this.fechaRegistro = fechaRegistro;
     }
 
     public int getIdHistorial() {
@@ -93,20 +57,76 @@ public class Historial {
         this.idHistorial = idHistorial;
     }
 
-    public int getDniPaciente() {
-        return dniPaciente;
+    public int getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setDniPaciente(int dniPaciente) {
-        this.dniPaciente = dniPaciente;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
-    public double getPeso() {
-        return peso;
+    public double getCuello() {
+        return cuello;
     }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
+    public void setCuello(double cuello) {
+        this.cuello = cuello;
+    }
+
+    public double getBusto() {
+        return busto;
+    }
+
+    public void setBusto(double busto) {
+        this.busto = busto;
+    }
+
+    public double getCintura() {
+        return cintura;
+    }
+
+    public void setCintura(double cintura) {
+        this.cintura = cintura;
+    }
+
+    public double getBrazo() {
+        return brazo;
+    }
+
+    public void setBrazo(double brazo) {
+        this.brazo = brazo;
+    }
+
+    public double getCadera() {
+        return cadera;
+    }
+
+    public void setCadera(double cadera) {
+        this.cadera = cadera;
+    }
+
+    public double getPierna() {
+        return pierna;
+    }
+
+    public void setPierna(double pierna) {
+        this.pierna = pierna;
+    }
+
+    public double getEstatura() {
+        return estatura;
+    }
+
+    public void setEstatura(double estatura) {
+        this.estatura = estatura;
+    }
+
+    public int getIdDieta() {
+        return idDieta;
+    }
+
+    public void setIdDieta(int idDieta) {
+        this.idDieta = idDieta;
     }
 
     public LocalDate getFechaRegistro() {

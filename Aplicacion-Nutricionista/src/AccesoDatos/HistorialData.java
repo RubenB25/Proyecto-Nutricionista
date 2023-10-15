@@ -1,38 +1,44 @@
 package AccesoDatos;
 
 import Entidades.Historial;
+import Entidades.Paciente;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
 
-/** @author Gabriel */
+/**
+ * @author Gabriel
+ */
 public class HistorialData {
- private Connection conex = null;
+
+    private Connection conex = null;
 
     public HistorialData() {
         conex = Conexion.getConex();
     }
-   
-   public void nuevoHistorial(Historial historial) {
-       
-   
-        String sql = "INSERT INTO historial (id_paciente, pesoInicial, peso, pesoDeseado, estatura, fechaFin, fechaConsulta)"
-                + "VALUES (?, ?, ?, ?,?;?,?)";
+
+    public void nuevoHistorial(Historial historial) {
+
+        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna, estatura,fechaConsulta)"
+                + "VALUES (?, ?, ?, ?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, historial.getIdPaciente());
-            ps.setDouble(2, historial.getPesoInicial());
-            ps.setDouble(3, historial.getPeso());
-            ps.setDouble(4, historial.getPesoDeseado());
-            ps.setDouble(5, historial.getEstatura());
-            ps.setDate(6, historial.getFechaFin());
-            ps.setDate(7, historial.getFechaConsulta());
-               
+            ps.setDouble(2, historial.getCuello());
+            ps.setDouble(3, historial.getBusto());
+            ps.setDouble(4, historial.getCintura());
+            ps.setDouble(5, historial.getBrazo());
+            ps.setDouble(6, historial.getCadera());
+            ps.setDouble(7, historial.getPierna());
+            ps.setDouble(8, historial.getEstatura());
+            ps.setDate(9, Date.valueOf(historial.getFechaRegistro()));
+
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
@@ -43,12 +49,13 @@ public class HistorialData {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Historial " + e.getMessage());
         }
-        
+    }
 //        
-       public void guardarHistorial( insc) {
+
+    public void guardarHistorial(int idPaciente) {
         try {
-            String sql = "INSERT INTO inscripcion (nota,idAlumno,idMateria) VALUES (" + insc.getNota() + "," + insc.getAlumno().getIdAlumno() + "," + insc.getMateria().getIdMateria() + ")";
-            PreparedStatement ps = con.prepareStatement(sql);
+            String sql = "INSERT INTO Historial (idPaciente) VALUES (" + rs.getIdPaciente() + "," + rs.getAlumno().getIdAlumno() + "," + insc.getMateria().getIdMateria() + ")";
+            PreparedStatement ps = conex.prepareStatement(sql);
             int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
@@ -61,5 +68,22 @@ public class HistorialData {
         }
 //
     }
-    }
 
+    public ArrayList<Paciente> obtenerPacientePorHistorial(int idPaciente) {
+        ArrayList<Paciente> listaPacientes = new ArrayList<>();
+        try {
+            String sql = "SELECT p.idpaciente, p.dni, p.apellido, p.nombre FROM paciente p INNER JOIN historial h ON p.idPaciente = h.idPaciente WHERE h.idPaciente = ?";
+            PreparedStatement psm = con.prepareStatement(sql);
+            psm.setInt(1, idPaciente); // Establece el valor del parámetro
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+                Paciente pacienteObtenido = new Paciente(rs.getInt("idPaciente"), rs.getInt("dni"), rs.getString("apellido"), rs.getString("nombre"));
+
+                listaPacientes.add(pacienteObtenido);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
+        }
+        return listaPacientes;
+    }
+}

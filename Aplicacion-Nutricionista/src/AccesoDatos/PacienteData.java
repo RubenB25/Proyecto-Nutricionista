@@ -2,6 +2,7 @@ package AccesoDatos;
 
 import Entidades.Paciente;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,19 +20,22 @@ public class PacienteData {
     public PacienteData() {
         conex = Conexion.getConex();
     }
-
-    public void guardarPaciente(Paciente paciente) {
-        String sql = "INSERT INTO `pacientes`( `nombre`, `apellido`, `dni`, "
-                + "`domicilio`, `celular`,estado) "
-                + "VALUES (?,?,?,?,?,?)";
+ public void guardarPaciente(Paciente paciente) {
+        String sql = "INSERT INTO pacientes (nombre, apellido, dni, "
+                + "domicilio, celular, fecha_nacimiento, edad, peso_actual, peso_deseado, estado) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,1)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, paciente.getNombre());
             ps.setString(2, paciente.getApellido());
-            ps.setInt(3, paciente.getDni());
+            ps.setString(3, paciente.getDni());
             ps.setString(4, paciente.getDomicilio());
-            ps.setInt(5, paciente.getCelular());
-            ps.setBoolean(6, paciente.isEstado());
+            ps.setString(5, paciente.getCelular());
+            ps.setDate(6, Date.valueOf(paciente.getFechaNac()));
+            ps.setInt(7, paciente.getEdad());
+            ps.setDouble(8, paciente.getPesoActual());
+            ps.setDouble(9, paciente.getPesoDeseado());
+            ps.setBoolean(10, paciente.isEstado());
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
@@ -46,7 +50,7 @@ public class PacienteData {
 
     public Paciente buscarPacientePorDni(int dni) {
         Paciente paciente = null;
-        String sql = "select estado,id_paciente, nombre, apellido ,dni,domicilio, celular "
+        String sql = "select estado,id_paciente, nombre, apellido ,dni, celular "
                 + "from pacientes where dni= ?";
         PreparedStatement ps = null;
         try {
@@ -58,11 +62,10 @@ public class PacienteData {
                 paciente = new Paciente();
 
                 paciente.setIdPaciente(resultado.getInt("id_paciente"));
-                paciente.setNombre(resultado.getString("nombre"));
+                paciente.setDni(resultado.getString("dni"));
                 paciente.setApellido(resultado.getString("apellido"));
-                paciente.setDni(resultado.getInt("dni"));
-                paciente.setDomicilio(resultado.getString("domicilio"));
-                paciente.setCelular(resultado.getInt("celular"));
+                paciente.setNombre(resultado.getString("nombre"));
+                paciente.setCelular(resultado.getString("celular"));
                 paciente.setEstado(resultado.getBoolean("estado"));
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el Paciente");
@@ -75,17 +78,16 @@ public class PacienteData {
     }
 
     public void modificarPaciente(Paciente paciente) {
-        String sql = "update pacientes set nombre = ?, apellido = ?, dni = ?,domicilio=?,celular = ?, estado = ? "
+        String sql = "update pacientes set nombre = ?, apellido = ?, dni = ?,celular = ?, estado = ? "
                 + "where id_paciente = ?";
         try {
             PreparedStatement ps = conex.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
             ps.setString(2, paciente.getApellido());
-            ps.setInt(3, paciente.getDni());
-            ps.setString(4, paciente.getDomicilio());
-            ps.setInt(5, paciente.getCelular());
-            ps.setBoolean(6, paciente.isEstado());
-            ps.setInt(7, paciente.getIdPaciente());
+            ps.setString(3, paciente.getDni());
+            ps.setString(4, paciente.getCelular());
+            ps.setBoolean(5, paciente.isEstado());
+            ps.setInt(6, paciente.getIdPaciente());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -127,9 +129,8 @@ public class PacienteData {
                 paciente.setIdPaciente(rs.getInt("id_paciente"));
                 paciente.setNombre(rs.getString("nombre"));
                 paciente.setApellido(rs.getString("apellido"));
-                paciente.setDni(rs.getInt("dni"));
-                paciente.setDomicilio(rs.getString("domicilio"));
-                paciente.setCelular(rs.getInt("celular"));
+                paciente.setDni(rs.getString("dni"));
+                paciente.setCelular(rs.getString("celular"));
                 paciente.setEstado(rs.getBoolean("estado"));
                 pacientes.add(paciente);
             }
@@ -140,20 +141,5 @@ public class PacienteData {
         }
         return pacientes;
     }
-
-    public String getApellido() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public boolean isEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getDomicilio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
+   
