@@ -36,64 +36,66 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="89" pref="89" max="-2" attributes="0"/>
-                          <Component id="jTnombre" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="89" pref="89" max="-2" attributes="0"/>
-                          <Component id="jTapellido" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="72" pref="72" max="-2" attributes="0"/>
-                          <Component id="jTdocumento" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="86" pref="86" max="-2" attributes="0"/>
-                          <Component id="jTdomicilio" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="93" pref="93" max="-2" attributes="0"/>
-                          <Component id="jTcelular" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
-                          <Component id="jDCfechaNacimiento" min="-2" pref="130" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="102" pref="102" max="-2" attributes="0"/>
-                          <Component id="jTFedad" min="-2" pref="60" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBguardar" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jBbuscar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                                  <Component id="jBsalir" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jTPesoDeseado" min="-2" pref="60" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="71" pref="71" max="-2" attributes="0"/>
                           <Component id="jTpesoActual" min="-2" pref="60" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jBhistorial" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="89" pref="89" max="-2" attributes="0"/>
+                                  <Component id="jTnombre" min="-2" pref="200" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="89" pref="89" max="-2" attributes="0"/>
+                                  <Component id="jTapellido" min="-2" pref="200" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="72" pref="72" max="-2" attributes="0"/>
+                                  <Component id="jTdocumento" min="-2" pref="200" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="86" pref="86" max="-2" attributes="0"/>
+                                  <Component id="jTdomicilio" min="-2" pref="200" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="93" pref="93" max="-2" attributes="0"/>
+                                  <Component id="jTcelular" min="-2" pref="200" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
+                                  <Component id="jDCfechaNacimiento" min="-2" pref="130" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="102" pref="102" max="-2" attributes="0"/>
+                                  <Component id="jTFedad" min="-2" pref="60" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jBguardar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+                                          <Component id="jBsalir" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jTPesoDeseado" min="-2" pref="60" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -141,8 +143,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <Component id="jTpesoActual" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBhistorial" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -153,19 +155,10 @@
                           <Component id="jTPesoDeseado" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jBguardar" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBsalir" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jBbuscar" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jBguardar" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBsalir" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -249,22 +242,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBsalirActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBbuscar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Buscar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBbuscarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBhistorial">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Historial"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBhistorialActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
