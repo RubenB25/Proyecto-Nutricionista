@@ -25,8 +25,8 @@ public class HistorialData {
 
     public void nuevoHistorial(Historial historial) {
 
-        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna, estatura,fechaConsulta)"
-                + "VALUES (?, ?, ?, ?,?,?,?,?,?)";
+        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna, estatura,fechaConsulta, pesoActual)"
+                + "VALUES (?, ?, ?, ?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, historial.getIdPaciente());
@@ -38,7 +38,7 @@ public class HistorialData {
             ps.setDouble(7, historial.getPierna());
             ps.setDouble(8, historial.getEstatura());
             ps.setDate(9, Date.valueOf(historial.getFechaRegistro()));
-
+              ps.setDouble(10, historial.getPesoActual());
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
@@ -54,12 +54,14 @@ public class HistorialData {
 
     public void guardarHistorial(Historial rs) {
         try {
-            String sql = "INSERT INTO Historial (idPaciente) VALUES (" + rs.getIdPaciente() + "," + rs.getDouble().getCuello() + "," + insc.getMateria().getIdMateria() + ")";
+            String sql = "INSERT INTO historial (id_Paciente) "
+    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(), rs.getPierna() rs.getEstatura(), rs.getIdDieta()";
             PreparedStatement ps = conex.prepareStatement(sql);
+           
             int filasAfectadas = ps.executeUpdate ();
 
             if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Inscripción realizada con éxito.");
+                JOptionPane.showMessageDialog(null, "Historial guardado con éxito.");
             } else {
                 System.out.println("No se pudo insertar ningún dato.");
             }
@@ -69,21 +71,21 @@ public class HistorialData {
 //
     }
 
-    public ArrayList<Paciente> obtenerPacientePorHistorial(int idPaciente) {
-        ArrayList<Paciente> listaPacientes = new ArrayList<>();
+    public ArrayList<Historial> obtenerPacientePorHistorial(int idPaciente) {
+        ArrayList<Historial> listaHistorial = new ArrayList<>();
         try {
-            String sql = "SELECT p.idpaciente, p.dni, p.apellido, p.nombre FROM paciente p INNER JOIN historial h ON p.idPaciente = h.idPaciente WHERE h.idPaciente = ?";
+            String sql = "SELECT h.idpaciente, h.cuello, h.busto, h.brazo, h.cintura, h.cadera, h.pierna, h.estatura, h.pesoActual FROM historial h INNER JOIN pacientes p ON h.idPaciente = p.idPaciente WHERE h.idPaciente = ?";
             PreparedStatement psm = conex.prepareStatement(sql);
             psm.setInt(1, idPaciente); // Establece el valor del parámetro
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
-                Paciente pacienteObtenido = new Paciente(rs.getInt("idPaciente"), rs.getInt("dni"), rs.getString("apellido"), rs.getString("nombre"));
+                Historial pacienteHistorial = new Historial(rs.getInt("id_Paciente"), rs.getDouble("cuello"), rs.getDouble("busto"), rs.getDouble("brazo"), rs.getDouble("cintura"), rs.getDouble("cadera"), rs.getDouble("pierna"), rs.getDouble("estatura"), rs.getInt("idDieta"), rs.getDouble("pesoActual"));
 
-                listaPacientes.add(pacienteObtenido);
+                listaHistorial.add(pacienteHistorial);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
         }
-        return listaPacientes;
+        return listaHistorial;
     }
 }

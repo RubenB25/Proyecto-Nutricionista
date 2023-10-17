@@ -16,13 +16,14 @@ public class Historial {
     private double pierna;
     private double estatura;
     private int idDieta;
+    private double pesoActual;
 
-    private LocalDate fechaRegistro;
+  private LocalDate fechaRegistro;
 
     public Historial() {
     }
 
-    public Historial(int idHistorial, int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, LocalDate fechaRegistro) {
+    public Historial(int idHistorial, int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, double pesoActual, LocalDate fechaRegistro) {
         this.idHistorial = idHistorial;
         this.idPaciente = idPaciente;
         this.cuello = cuello;
@@ -33,10 +34,11 @@ public class Historial {
         this.pierna = pierna;
         this.estatura = estatura;
         this.idDieta = idDieta;
+        this.pesoActual = pesoActual;
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, LocalDate fechaRegistro) {
+    public Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, double pesoActual, LocalDate fechaRegistro) {
         this.idPaciente = idPaciente;
         this.cuello = cuello;
         this.busto = busto;
@@ -46,9 +48,23 @@ public class Historial {
         this.pierna = pierna;
         this.estatura = estatura;
         this.idDieta = idDieta;
+        this.pesoActual = pesoActual;
         this.fechaRegistro = fechaRegistro;
     }
 
+    public Historial(int aInt, double aDouble, double aDouble0, double aDouble1, double aDouble2, double aDouble3, double aDouble4, double aDouble5, int aInt0, double aDouble6) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public double getPesoActual() {
+        return pesoActual;
+    }
+
+    public void setPesoActual(double pesoActual) {
+        this.pesoActual = pesoActual;
+    }
+
+   
     public int getIdHistorial() {
         return idHistorial;
     }

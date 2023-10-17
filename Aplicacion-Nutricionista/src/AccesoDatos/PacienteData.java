@@ -50,8 +50,8 @@ public class PacienteData {
 
     public Paciente buscarPacientePorDni(int dni) {
         Paciente paciente = null;
-        String sql = "select estado,id_paciente, nombre, apellido ,dni, celular "
-                + "from pacientes where dni= ?";
+        String sql = "select id_paciente,nombre, apellido, dni, "
+                + "domicilio, celular, fecha_nacimiento, edad, peso_actual, peso_deseado, estado from pacientes where dni= ?";
         PreparedStatement ps = null;
         try {
             ps = conex.prepareStatement(sql);
@@ -62,11 +62,16 @@ public class PacienteData {
                 paciente = new Paciente();
 
                 paciente.setIdPaciente(resultado.getInt("id_paciente"));
-                paciente.setDni(resultado.getString("dni"));
-                paciente.setApellido(resultado.getString("apellido"));
                 paciente.setNombre(resultado.getString("nombre"));
+                paciente.setApellido(resultado.getString("apellido"));
+                paciente.setDni(resultado.getString("dni"));
+                paciente.setDomicilio(resultado.getString("domicilio"));
                 paciente.setCelular(resultado.getString("celular"));
-                paciente.setEstado(resultado.getBoolean("estado"));
+               // paciente.setFechaNac(resultado.getDate("fechaNac"));
+                paciente.setEdad(resultado.getInt("edad"));
+                paciente.setPesoActual(resultado.getDouble("pesoActual"));
+                paciente.setPesoDeseado(resultado.getDouble("pesoDeseado"));
+               // paciente.setEstado(resultado.getBoolean("estado"));
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el Paciente");
                 ps.close();
@@ -78,7 +83,7 @@ public class PacienteData {
     }
 
     public void modificarPaciente(Paciente paciente) {
-        String sql = "update pacientes set nombre = ?, apellido = ?, dni = ?,celular = ?, estado = ? "
+        String sql = "update pacientes set nombre = ?, apellido = ?, dni = ?,celular = ? "
                 + "where id_paciente = ?";
         try {
             PreparedStatement ps = conex.prepareStatement(sql);
@@ -86,8 +91,8 @@ public class PacienteData {
             ps.setString(2, paciente.getApellido());
             ps.setString(3, paciente.getDni());
             ps.setString(4, paciente.getCelular());
-            ps.setBoolean(5, paciente.isEstado());
-            ps.setInt(6, paciente.getIdPaciente());
+       
+            ps.setInt(5, paciente.getIdPaciente());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {

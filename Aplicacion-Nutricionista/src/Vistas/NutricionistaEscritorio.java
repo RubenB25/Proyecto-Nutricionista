@@ -9,7 +9,7 @@ import javax.swing.JLabel;
  * @author Gabriel
  */
 public class NutricionistaEscritorio extends javax.swing.JFrame {
-public static PacienteABM JIPacienteABM = new PacienteABM();
+public static FormularioPaciente JIPacienteABM = new FormularioPaciente();
     public NutricionistaEscritorio() {
         initComponents();
         
@@ -84,6 +84,11 @@ public static PacienteABM JIPacienteABM = new PacienteABM();
         jMenu3.setText("Consulta");
 
         jMhistorialPaciente.setText("Historial de paciente");
+        jMhistorialPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMhistorialPacienteActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMhistorialPaciente);
 
         jMregistrarConsulta.setText("Registrar consulta");
@@ -127,7 +132,7 @@ public static PacienteABM JIPacienteABM = new PacienteABM();
     private void jMbuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMbuscarPacienteActionPerformed
         jDescritorio.removeAll();
         jDescritorio.repaint();
-        PacienteABM fp = new PacienteABM();
+        FormularioPaciente fp = new FormularioPaciente();
         fp.setVisible(true);
         jDescritorio.add(fp);
         Dimension desktopSize = jDescritorio.getSize();
@@ -139,7 +144,7 @@ public static PacienteABM JIPacienteABM = new PacienteABM();
     private void jMformularioPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMformularioPacienteActionPerformed
         jDescritorio.removeAll();
         jDescritorio.repaint();
-        PacienteABM fp = new PacienteABM();
+        FormularioPaciente fp = new FormularioPaciente();
         fp.setVisible(true);
         jDescritorio.add(fp);
         Dimension desktopSize = jDescritorio.getSize();
@@ -151,6 +156,19 @@ public static PacienteABM JIPacienteABM = new PacienteABM();
     private void jMregistrarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMregistrarConsultaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMregistrarConsultaActionPerformed
+
+    private void jMhistorialPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMhistorialPacienteActionPerformed
+        // TODO add your handling code here:
+        jDescritorio.removeAll();
+        jDescritorio.repaint();
+        HistorialDePaciente hp = new HistorialDePaciente();
+        hp.setVisible(true);
+        jDescritorio.add(hp);
+        Dimension desktopSize = jDescritorio.getSize();
+        Dimension frameSize = hp.getSize();
+        hp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        jDescritorio.moveToFront(hp); 
+    }//GEN-LAST:event_jMhistorialPacienteActionPerformed
 
     public static void main(String args[]) {
 
