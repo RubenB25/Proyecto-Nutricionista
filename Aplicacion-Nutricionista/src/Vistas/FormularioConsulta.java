@@ -13,7 +13,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
-public class HistorialDePaciente extends javax.swing.JInternalFrame {
+public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     public static String texto;
     public static String texto2;
@@ -23,7 +23,7 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
 
     private Historial Historial;
 
-    public HistorialDePaciente() {
+    public FormularioConsulta() {
         initComponents();
       
     }
@@ -158,27 +158,20 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
                                             .addComponent(jTpesoinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTrecibeapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
-                                        .addComponent(jBbuscar)
-                                        .addGap(51, 51, 51))
+                                        .addComponent(jBbuscar))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jDCfechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(45, 45, 45)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jBmedida)
                                             .addComponent(jBsalir)))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jBdieta)
-                                    .addComponent(jBimc))
-                                .addGap(359, 359, 359))))
+                            .addComponent(jBdieta)
+                            .addComponent(jBimc)))
+                    .addComponent(jBGuardar)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBGuardar)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(295, 295, 295)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +213,7 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
                     .addComponent(jBsalir))
                 .addGap(18, 18, 18)
                 .addComponent(jBdieta)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -331,7 +324,7 @@ public class HistorialDePaciente extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBbuscar;
     private javax.swing.JButton jBdieta;
-    private javax.swing.JButton jBimc;
+    public static javax.swing.JButton jBimc;
     private javax.swing.JButton jBmedida;
     private javax.swing.JButton jBsalir;
     private com.toedter.calendar.JDateChooser jDCfechaConsulta;

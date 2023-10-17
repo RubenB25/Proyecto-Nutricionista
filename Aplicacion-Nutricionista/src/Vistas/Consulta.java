@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Consulta extends javax.swing.JInternalFrame {
 
-    HistorialDePaciente envia = new HistorialDePaciente();
+    FormularioConsulta envia = new FormularioConsulta();
 
     public Consulta() {
         initComponents();
@@ -191,7 +191,7 @@ public class Consulta extends javax.swing.JInternalFrame {
         texto = jTnombrem.getText();
         texto2 = jTapellidom.getText();
         texto3 = jTdnim.getText();
-        HistorialDePaciente envia = new HistorialDePaciente();
+        FormularioConsulta envia = new FormularioConsulta();
         envia.setVisible(true);
         this.setVisible(false);
         NutricionistaEscritorio.jDescritorio.add(envia);

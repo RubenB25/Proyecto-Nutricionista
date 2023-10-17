@@ -155,13 +155,23 @@ public static FormularioPaciente JIPacienteABM = new FormularioPaciente();
 
     private void jMregistrarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMregistrarConsultaActionPerformed
         // TODO add your handling code here:
+        jDescritorio.removeAll();
+        jDescritorio.repaint();
+        HistorialConsulta hc = new HistorialConsulta();
+        hc.setVisible(true);
+        jDescritorio.add(hc);
+        Dimension desktopSize = jDescritorio.getSize();
+        Dimension frameSize = hc.getSize();
+        hc.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        jDescritorio.moveToFront(hc); 
+                     
     }//GEN-LAST:event_jMregistrarConsultaActionPerformed
 
     private void jMhistorialPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMhistorialPacienteActionPerformed
         // TODO add your handling code here:
         jDescritorio.removeAll();
         jDescritorio.repaint();
-        HistorialDePaciente hp = new HistorialDePaciente();
+        FormularioConsulta hp = new FormularioConsulta();
         hp.setVisible(true);
         jDescritorio.add(hp);
         Dimension desktopSize = jDescritorio.getSize();

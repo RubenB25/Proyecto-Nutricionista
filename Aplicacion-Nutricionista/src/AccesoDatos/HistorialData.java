@@ -72,6 +72,30 @@ public class HistorialData {
         }
 
     }
+
+    public ArrayList<Historial> obtenerHistorial() {
+        ArrayList<Historial> listaHistorial = new ArrayList<>();
+
+        try {
+            String sql = "Select * from historial";
+
+            PreparedStatement psm = conex.prepareStatement(sql);
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+                Historial historial = new Historial();
+                Paciente paciente = new Paciente();
+                paciente.setIdPaciente(rs.getInt("id_paciente"));
+                historial.setIdPaciente(paciente.getIdPaciente());
+                historial.setPesoActual(rs.getDouble("peso_actual"));
+                historial.setFechaRegistro(rs.getDate("fecha_registro").toLocalDate());
+                listaHistorial.add(historial);
+            }
+            psm.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+        return listaHistorial;
+    }
 //        
 
 //    public void guardarHistorial(Historial rs) {
