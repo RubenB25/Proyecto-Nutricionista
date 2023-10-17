@@ -1,5 +1,8 @@
 package Vistas;
 
+import java.awt.Dimension;
+import javax.swing.JInternalFrame;
+
 /**
  * @author Gabriel
  */
@@ -35,11 +38,11 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         jDPescritorio.setLayout(jDPescritorioLayout);
         jDPescritorioLayout.setHorizontalGroup(
             jDPescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 745, Short.MAX_VALUE)
         );
         jDPescritorioLayout.setVerticalGroup(
             jDPescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 566, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Pacientes");
@@ -65,9 +68,19 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         jMenu2.setText("Dietas");
 
         jMenuItem3.setText("Listar pacientes");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Registrar dieta");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Modificar dieta");
@@ -123,6 +136,62 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         fp.moveToFront();
         fp.setVisible(true);
     }//GEN-LAST:event_jMIformularioPacienteActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+         ListarPacientes vistaLP = new ListarPacientes();
+
+        // Verifica si el JInternalFrame ya está en el JDesktopPane
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == vistaLP.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+            jDPescritorio.add(vistaLP);
+            Dimension desktopSize = jDPescritorio.getSize();
+            Dimension frameSize = vistaLP.getSize();
+            vistaLP.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+
+            // Hace que el JInternalFrame sea visible
+            vistaLP.setVisible(true);
+        }         
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        RegistrarDieta vistaRD = new RegistrarDieta();
+        // Verifica si el JInternalFrame ya está en el JDesktopPane
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == vistaRD.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+            jDPescritorio.add(vistaRD);
+            Dimension desktopSize = jDPescritorio.getSize();
+            Dimension frameSize = vistaRD.getSize();
+            vistaRD.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+            vistaRD.setVisible(true);
+        }          
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     public static void main(String args[]) {
          try {
