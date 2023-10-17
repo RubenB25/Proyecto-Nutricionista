@@ -39,7 +39,7 @@ public class HistorialData {
             ps.setDouble(8, historial.getEstatura());
             ps.setDouble(9, historial.getPesoActual());
             ps.setDate(10, Date.valueOf(historial.getFechaRegistro()));
-              
+
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
@@ -51,27 +51,46 @@ public class HistorialData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Historial " + e.getMessage());
         }
     }
+
+    public void guardarHistorial(int id, LocalDate fecha, double peso) {
+        String sql = "Insert into historial (id_paciente, peso_actual, fecha_registro) values (?,?,?)";
+        try {
+            PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+
+            ps.setInt(1, id);
+            ps.setDouble(2, peso);
+            ps.setDate(3, Date.valueOf(fecha));
+            ps.executeUpdate();
+            ResultSet resultado = ps.getGeneratedKeys();
+
+            if (resultado.next()) {
+                JOptionPane.showMessageDialog(null, "Historial  agregado con exito");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Historial %%%%%%" + e.getMessage());
+        }
+
+    }
 //        
 
-    public void guardarHistorial(Historial rs) {
-        try {
-            String sql = "INSERT INTO historial (id_Paciente) "
-    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(), rs.getPierna() rs.getEstatura(), rs.getIdDieta()";
-            PreparedStatement ps = conex.prepareStatement(sql);
-           
-            int filasAfectadas = ps.executeUpdate ();
-
-            if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Historial guardado con éxito.");
-            } else {
-                System.out.println("No se pudo insertar ningún dato.");
-            }
-        } catch (SQLException e) {
+//    public void guardarHistorial(Historial rs) {
+//        try {
+//            String sql = "INSERT INTO historial (id_Paciente) "
+//    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(), rs.getPierna() rs.getEstatura(), rs.getIdDieta()";
+//            PreparedStatement ps = conex.prepareStatement(sql);
+//           
+//            int filasAfectadas = ps.executeUpdate ();
 //
-        }
+//            if (filasAfectadas > 0) {
+//                JOptionPane.showMessageDialog(null, "Historial guardado con éxito.");
+//            } else {
+//                System.out.println("No se pudo insertar ningún dato.");
+//            }
+//        } catch (SQLException e) {
 //
-    }
-
+//        }
+//    }
     public ArrayList<Historial> obtenerPacientePorHistorial(int idPaciente) {
         ArrayList<Historial> listaHistorial = new ArrayList<>();
         try {
@@ -81,11 +100,10 @@ public class HistorialData {
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
                 Historial pacienteHistorial = new Historial(rs.getInt("id_Paciente"), rs.getDouble("cuello"),
-                rs.getDouble("busto"), rs.getDouble("brazo"), rs.getDouble("cintura"), rs.getDouble("cadera"),
-                rs.getDouble("pierna"), rs.getDouble("estatura"), rs.getInt("idDieta"), rs.getDouble("pesoActual"));
+                        rs.getDouble("busto"), rs.getDouble("brazo"), rs.getDouble("cintura"), rs.getDouble("cadera"),
+                        rs.getDouble("pierna"), rs.getDouble("estatura"), rs.getInt("idDieta"), rs.getDouble("pesoActual"));
                 Date fechaRegistroSQL = rs.getDate("fechaRegistro");
-                 LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
-
+                LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
 
                 listaHistorial.add(pacienteHistorial);
             }
