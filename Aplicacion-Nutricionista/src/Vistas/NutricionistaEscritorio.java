@@ -125,7 +125,12 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+        BuscarPaciente bp = new BuscarPaciente();
+        jDPescritorio.removeAll();
+        jDPescritorio.repaint();
+        jDPescritorio.add(bp);
+        bp.moveToFront();
+        bp.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMIformularioPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIformularioPacienteActionPerformed
@@ -138,7 +143,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIformularioPacienteActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-         ListarPacientes vistaLP = new ListarPacientes();
+        ListarPacientes vistaLP = new ListarPacientes();
 
         // Verifica si el JInternalFrame ya está en el JDesktopPane
         JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -163,7 +168,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
 
             // Hace que el JInternalFrame sea visible
             vistaLP.setVisible(true);
-        }         
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -190,11 +195,11 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
             Dimension frameSize = vistaRD.getSize();
             vistaRD.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
             vistaRD.setVisible(true);
-        }          
+        }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     public static void main(String args[]) {
-         try {
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -210,7 +215,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NutricionistaEscritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NutricionistaEscritorio().setVisible(true);
