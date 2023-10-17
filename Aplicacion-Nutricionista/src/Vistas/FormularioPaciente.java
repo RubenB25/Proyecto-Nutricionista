@@ -2,6 +2,7 @@ package Vistas;
 
 import AccesoDatos.PacienteData;
 import Entidades.Paciente;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -12,6 +13,8 @@ import javax.swing.JOptionPane;
  * @author Gabriel
  */
 public class FormularioPaciente extends javax.swing.JInternalFrame {
+
+    private Paciente paciente;
 
     public FormularioPaciente() {
         initComponents();
@@ -42,24 +45,47 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         jDCfechaNacimiento = new com.toedter.calendar.JDateChooser();
         jBguardar = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
+        jBguardarCambios = new javax.swing.JButton();
+
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nombre:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jLabel2.setText("Apellido:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         jLabel3.setText("Documento:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         jLabel4.setText("Domicilio:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         jLabel5.setText("Celular:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        jPanel1.add(jTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 32, 200, -1));
+        jPanel1.add(jTapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 72, 200, -1));
+        jPanel1.add(jTdocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 112, 200, -1));
+        jPanel1.add(jTdomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 152, 200, -1));
+        jPanel1.add(jTcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 192, 200, -1));
 
         jLabel6.setText("Peso actual:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
 
         jLabel7.setText("Peso deseado:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        jPanel1.add(jTpesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 312, 60, -1));
+        jPanel1.add(jTPesoDeseado, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 352, 60, -1));
 
         jLabel8.setText("Fecha nacimiento:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
         jLabel9.setText("Edad:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+        jPanel1.add(jTFedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 272, 60, -1));
+        jPanel1.add(jDCfechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 232, 130, -1));
 
         jBguardar.setText("Guardar");
         jBguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -67,112 +93,25 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
                 jBguardarActionPerformed(evt);
             }
         });
+        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
 
         jBsalir.setText("Salir");
+        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 390, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(89, 89, 89)
-                        .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(89, 89, 89)
-                        .addComponent(jTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(72, 72, 72)
-                        .addComponent(jTdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(86, 86, 86)
-                        .addComponent(jTdomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(93, 93, 93)
-                        .addComponent(jTcelular, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(43, 43, 43)
-                        .addComponent(jDCfechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(102, 102, 102)
-                        .addComponent(jTFedad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(71, 71, 71)
-                        .addComponent(jTpesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(59, 59, 59)
-                        .addComponent(jTPesoDeseado, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jBguardar)
-                        .addGap(219, 219, 219)
-                        .addComponent(jBsalir))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jTdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jTdomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jTcelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jDCfechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jTFedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jTpesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jTPesoDeseado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBguardar)
-                    .addComponent(jBsalir)))
-        );
+        jBguardarCambios.setText("Guardar");
+        jBguardarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardarCambiosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBguardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -209,7 +148,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
     public static boolean validarCelular(String celular) {
         return Pattern.matches("^[0-9]+$", celular) && celular.length() <= 15;
     }
-//no es necesario se puede borrar
+
     public boolean validarFechNac(LocalDate fechaNac) {
         LocalDate fechaActual = LocalDate.now();
         return fechaNac.isBefore(fechaActual);
@@ -247,30 +186,109 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
         PacienteData pacienteData = new PacienteData();
-        String nombre = (jTnombre.getText().trim()).replaceAll("\\s+", " ");
-        String apellido = (jTapellido.getText().trim()).replaceAll("\\s+", " ");
-        String documento = (jTdocumento.getText().trim()).replaceAll("\\s+", " ");
-        String domicilio = (jTdomicilio.getText().trim()).replaceAll("\\s+", " ");
-        String celular = (jTcelular.getText().trim()).replaceAll("\\s+", " ");
-        int edad = Integer.parseInt(jTFedad.getText());
-        LocalDate fechaNac = jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        double pesoAct = Double.parseDouble(jTpesoActual.getText());
-        double pesoDes = Double.parseDouble(jTPesoDeseado.getText());
+        if (verificarCamposVacios()) {
+            String nombre = (jTnombre.getText().trim()).replaceAll("\\s+", " ");
+            String apellido = (jTapellido.getText().trim()).replaceAll("\\s+", " ");
+            String documento = (jTdocumento.getText().trim()).replaceAll("\\s+", " ");
+            String domicilio = (jTdomicilio.getText().trim()).replaceAll("\\s+", " ");
+            String celular = (jTcelular.getText().trim()).replaceAll("\\s+", " ");
+            int edad = Integer.parseInt(jTFedad.getText());
+            LocalDate fechaNac = jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            double pesoAct = Double.parseDouble(jTpesoActual.getText());
+            double pesoDes = Double.parseDouble(jTPesoDeseado.getText());
 
-        if (validarNombre(nombre) && validarApellido(apellido) && validarDocumento(documento)
-                && validarDomicilio(domicilio) && validarCelular(celular) && validarEdadYFecha(fechaNac, edad)
-                && validarEdad(edad) && validarPesoActual(pesoAct) && validarPesoDeseado(pesoDes)) {
-            Paciente paciente = new Paciente(nombre, apellido, documento, domicilio, celular,
-                    fechaNac, edad, pesoAct, pesoDes, true);
-            pacienteData.guardarPaciente(paciente);
+            if (validarNombre(nombre) && validarApellido(apellido) && validarDocumento(documento)
+                    && validarDomicilio(domicilio) && validarCelular(celular) && validarEdadYFecha(fechaNac, edad)
+                    && validarEdad(edad) && validarPesoActual(pesoAct) && validarPesoDeseado(pesoDes)) {
+                paciente = new Paciente(nombre, apellido, documento, domicilio, celular,
+                        fechaNac, edad, pesoAct, pesoDes, true);
+                pacienteData.guardarPaciente(paciente);
+                limpiarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Verifique los datos");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Verifique los datos");
+            JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
         }
     }//GEN-LAST:event_jBguardarActionPerformed
 
+    private void jBguardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarCambiosActionPerformed
+        PacienteData pacienteData = new PacienteData();
+        if (verificarCamposVacios()) {
+            String nombre = (jTnombre.getText().trim()).replaceAll("\\s+", " ");
+            String apellido = (jTapellido.getText().trim()).replaceAll("\\s+", " ");
+            String documento = (jTdocumento.getText().trim()).replaceAll("\\s+", " ");
+            String domicilio = (jTdomicilio.getText().trim()).replaceAll("\\s+", " ");
+            String celular = (jTcelular.getText().trim()).replaceAll("\\s+", " ");
+            int edad = Integer.parseInt(jTFedad.getText());
+            LocalDate fechaNac = jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            double pesoAct = Double.parseDouble(jTpesoActual.getText());
+            double pesoDes = Double.parseDouble(jTPesoDeseado.getText());
+
+            if (validarNombre(nombre) && validarApellido(apellido) && validarDocumento(documento)
+                    && validarDomicilio(domicilio) && validarCelular(celular) && validarEdadYFecha(fechaNac, edad)
+                    && validarEdad(edad) && validarPesoActual(pesoAct) && validarPesoDeseado(pesoDes)) {
+                paciente = new Paciente(nombre, apellido, documento, domicilio, celular,
+                        fechaNac, edad, pesoAct, pesoDes, true);
+                pacienteData.modificarPaciente(paciente);
+                limpiarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Verifique los datos");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
+        }
+    }//GEN-LAST:event_jBguardarCambiosActionPerformed
+
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBsalirActionPerformed
+
+    public boolean verificarCamposVacios() {
+        try {
+            return !(jTFedad.getText().isEmpty() || jTPesoDeseado.getText().isEmpty() || jTapellido.getText().isEmpty()
+                    || jTcelular.getText().isEmpty() || jTdocumento.getText().isEmpty() || jTdomicilio.getText().isEmpty()
+                    || jTnombre.getText().isEmpty() || jTapellido.getText().isEmpty() || jDCfechaNacimiento.getDate() == null);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese un dato valido");
+            return false;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese un documento valido");
+            return false;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return false;
+        }
+    }
+
+    public void limpiarCampos() {
+        jTFedad.setText("");
+        jTdocumento.setText("");
+        jTPesoDeseado.setText("");
+        jTdomicilio.setText("");
+        jTapellido.setText("");
+        jTnombre.setText("");
+        jTcelular.setText("");
+        jTpesoActual.setText("");
+        jDCfechaNacimiento.setDate(null);
+    }
+
+    public void llenarCampos(Paciente paciente) {
+        jTFedad.setText(String.valueOf(paciente.getEdad()));
+        jTdocumento.setText(paciente.getDni());
+        jTPesoDeseado.setText(String.valueOf(paciente.getPesoDeseado()));
+        jTdomicilio.setText(paciente.getDomicilio());
+        jTapellido.setText(paciente.getApellido());
+        jTnombre.setText(paciente.getNombre());
+        jTcelular.setText(paciente.getCelular());
+        jTpesoActual.setText(String.valueOf(paciente.getPesoActual()));
+        jDCfechaNacimiento.setDate(Date.valueOf(paciente.getFechaNac()));
+        jBguardar.setVisible(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBguardar;
+    private javax.swing.JButton jBguardarCambios;
     private javax.swing.JButton jBsalir;
     private com.toedter.calendar.JDateChooser jDCfechaNacimiento;
     private javax.swing.JLabel jLabel1;
@@ -292,5 +310,4 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTnombre;
     private javax.swing.JTextField jTpesoActual;
     // End of variables declaration//GEN-END:variables
-
 }
