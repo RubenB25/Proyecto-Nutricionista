@@ -142,4 +142,9 @@ public class Paciente {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return  nombre + " "+ apellido+" | DNI: "+ dni+"";
+    }
+    
 }
