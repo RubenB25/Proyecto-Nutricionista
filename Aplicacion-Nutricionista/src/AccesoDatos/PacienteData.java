@@ -50,8 +50,7 @@ public class PacienteData {
 
     public Paciente buscarPacientePorDni(int dni) {
         Paciente paciente = null;
-        String sql = "select id_paciente,nombre, apellido, dni, "
-                + "domicilio, celular, fecha_nacimiento, edad, peso_actual, peso_deseado, estado from pacientes where dni= ?";
+        String sql = "select * from pacientes where dni= ?";
         PreparedStatement ps = null;
         try {
             ps = conex.prepareStatement(sql);
@@ -69,8 +68,8 @@ public class PacienteData {
                 paciente.setCelular(resultado.getString("celular"));
                // paciente.setFechaNac(resultado.getDate("fechaNac"));
                 paciente.setEdad(resultado.getInt("edad"));
-                paciente.setPesoActual(resultado.getDouble("pesoActual"));
-                paciente.setPesoDeseado(resultado.getDouble("pesoDeseado"));
+                paciente.setPesoActual(resultado.getDouble("peso_actual"));
+                paciente.setPesoDeseado(resultado.getDouble("peso_deseado"));
                // paciente.setEstado(resultado.getBoolean("estado"));
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el Paciente");
