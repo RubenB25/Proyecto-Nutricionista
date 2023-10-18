@@ -114,7 +114,7 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
     private void llenarTable() {
         HistorialData hd = new HistorialData();
         for (Historial historial : hd.obtenerHistorial()) {
-            model.addRow(new Object[]{historial.getIdPaciente(), historial.getPesoActual(),historial.getFechaRegistro()});
+            model.addRow(new Object[]{historial.getIdPaciente(), historial.getPeso(),historial.getFechaRegistro()});
             
         }
     }

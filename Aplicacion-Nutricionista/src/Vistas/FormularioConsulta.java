@@ -7,9 +7,6 @@ import AccesoDatos.HistorialData;
 import AccesoDatos.PacienteData;
 import Entidades.Historial;
 import Entidades.Paciente;
-import static Vistas.FormularioPaciente.texto;
-import static Vistas.FormularioPaciente.texto2;
-import static Vistas.FormularioPaciente.texto3;
 import java.util.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -244,13 +241,13 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     private void jBmedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmedidaActionPerformed
 
-        texto = jTrecibenombre.getText();
-        texto2 = jTrecibeapellido.getText();
-        texto3 = jTrecibedni.getText();
-        HistorialConsulta envia = new HistorialConsulta();
-        envia.setVisible(true);
-        this.setVisible(false);
-        NutricionistaEscritorio.jDescritorio.add(envia);
+//        texto = jTrecibenombre.getText();
+//        texto2 = jTrecibeapellido.getText();
+//        texto3 = jTrecibedni.getText();
+//        HistorialConsulta envia = new HistorialConsulta();
+//        envia.setVisible(true);
+//        this.setVisible(false);
+//        NutricionistaEscritorio.jDescritorio.add(envia);
     }//GEN-LAST:event_jBmedidaActionPerformed
 
     private void jBimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBimcActionPerformed
@@ -300,7 +297,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         String[] datos = new String[2];
 
         try {
-            int dni = Integer.parseInt(jTrecibedni.getText());
+            String dni = jTrecibedni.getText();
             Paciente paciente = pacienteData.buscarPacientePorDni(dni);
             id = paciente.getIdPaciente();
             if (!"".equals(jTrecibedni.getText()) && paciente != null) {

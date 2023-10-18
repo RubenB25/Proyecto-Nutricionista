@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Historial {
 
     private int idHistorial;
-    private int dniPaciente;
+    private int idPaciente;
     private double peso;
     private LocalDate fechaRegistro;
 
@@ -23,12 +23,12 @@ public class Historial {
         this.idHistorial = idHistorial;
     }
 
-    public int getDniPaciente() {
-        return dniPaciente;
+    public int getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setDniPaciente(int dniPaciente) {
-        this.dniPaciente = dniPaciente;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public double getPeso() {
@@ -46,5 +46,7 @@ public class Historial {
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+
+   
 
 }

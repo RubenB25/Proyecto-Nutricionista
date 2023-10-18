@@ -84,6 +84,11 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Modificar dieta");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
@@ -91,9 +96,19 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         jMenu3.setText("Consulta");
 
         jMenuItem7.setText("Historial de paciente");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem7);
 
         jMenuItem8.setText("Registrar consulta");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem8);
 
         jMenuBar1.add(jMenu3);
@@ -197,6 +212,88 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
             vistaRD.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        HistorialConsulta hc = new HistorialConsulta();
+        // Verifica si el JInternalFrame ya está en el JDesktopPane
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == hc.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+            jDPescritorio.add(hc);
+            Dimension desktopSize = jDPescritorio.getSize();
+            Dimension frameSize = hc.getSize();
+            hc.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+            hc.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        FormularioConsulta fc = new FormularioConsulta();
+        // Verifica si el JInternalFrame ya está en el JDesktopPane
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == fc.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+            jDPescritorio.add(fc);
+            Dimension desktopSize = jDPescritorio.getSize();
+            Dimension frameSize = fc.getSize();
+            fc.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+            fc.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+         ModificarDieta md = new ModificarDieta();
+        // Verifica si el JInternalFrame ya está en el JDesktopPane
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == md.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+            jDPescritorio.add(md);
+            Dimension desktopSize = jDPescritorio.getSize();
+            Dimension frameSize = md.getSize();
+            md.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+            md.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     public static void main(String args[]) {
         try {
