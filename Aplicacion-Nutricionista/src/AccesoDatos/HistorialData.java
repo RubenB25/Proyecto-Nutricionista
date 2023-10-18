@@ -96,25 +96,7 @@ public class HistorialData {
         }
         return listaHistorial;
     }
-//        
 
-//    public void guardarHistorial(Historial rs) {
-//        try {
-//            String sql = "INSERT INTO historial (id_Paciente) "
-//    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(), rs.getPierna() rs.getEstatura(), rs.getIdDieta()";
-//            PreparedStatement ps = conex.prepareStatement(sql);
-//           
-//            int filasAfectadas = ps.executeUpdate ();
-//
-//            if (filasAfectadas > 0) {
-//                JOptionPane.showMessageDialog(null, "Historial guardado con éxito.");
-//            } else {
-//                System.out.println("No se pudo insertar ningún dato.");
-//            }
-//        } catch (SQLException e) {
-//
-//        }
-//    }
     public ArrayList<Historial> obtenerPacientePorHistorial(int idPaciente) {
         ArrayList<Historial> listaHistorial = new ArrayList<>();
         try {
