@@ -40,17 +40,15 @@ public class IngredienteComidaData {
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error al acceder a la table ingrediente"+e.getMessage());
         }
-    }
+    }   
     public void eliminarIngredienteComida(IngredienteComida ingredienteComida){
         try{
-            String sql = "Update ingredienteComida set nombre = ?, calorias_100gr = ? where id_ingrediente = ?";
+            String sql = "Delete from ingredienteComida where id_ingrediente_comida = ?";
             PreparedStatement ps = conex.prepareStatement(sql);
-            ps.setString(1, ingrediente.getNombre());
-            ps.setInt(2, ingrediente.getCaloriasPor100GR());
-            ps.setInt(3, ingrediente.getIdIngrediente());
+            ps.setInt(1, ingredienteComida.getIdIngredienteComida());
             int exito = ps.executeUpdate();
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Ingrediente modificado.");
+                JOptionPane.showMessageDialog(null, "Ingrediente eliminado correctamente.");
             }
             ps.close();
           
