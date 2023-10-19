@@ -1,10 +1,13 @@
 package Vistas;
 
 import AccesoDatos.HistorialData;
+import Entidades.Historial;
 import Entidades.Paciente;
 import static Vistas.FormularioPaciente.texto;
 import static Vistas.FormularioPaciente.texto2;
 import static Vistas.FormularioPaciente.texto3;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,27 +45,45 @@ public class Consulta extends javax.swing.JInternalFrame {
         jTdnim = new javax.swing.JTextField();
         jTapellidom = new javax.swing.JTextField();
         jTnombrem = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jBbuscar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jBnuevo = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBagregardatos = new javax.swing.JButton();
+        jDcalendario = new com.toedter.calendar.JDateChooser();
+        jLabel6 = new javax.swing.JLabel();
+        jTpesoactual = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jCbDIETA = new javax.swing.JComboBox<>();
 
         setTitle("Historial de Consulta");
 
         tablaMedidas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tablaMedidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Cuello", "Busto", "Brazo", "Cintura", "Cadera", "Pierna", "Estatura", "idDieta", "PesoActual"
+                "Cuello", "Busto", "Brazo", "Cintura", "Cadera", "Pierna", "Estatura"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaMedidas);
+        if (tablaMedidas.getColumnModel().getColumnCount() > 0) {
+            tablaMedidas.getColumnModel().getColumn(0).setResizable(false);
+            tablaMedidas.getColumnModel().getColumn(1).setResizable(false);
+            tablaMedidas.getColumnModel().getColumn(2).setResizable(false);
+            tablaMedidas.getColumnModel().getColumn(3).setResizable(false);
+            tablaMedidas.getColumnModel().getColumn(4).setResizable(false);
+            tablaMedidas.getColumnModel().getColumn(5).setResizable(false);
+            tablaMedidas.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Nombre:");
@@ -81,9 +102,6 @@ public class Consulta extends javax.swing.JInternalFrame {
 
         jTnombrem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Dieta");
-
         jBbuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBbuscar.setText("Buscar");
 
@@ -97,18 +115,31 @@ public class Consulta extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setText("AGREGAR DATOS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBagregardatos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jBagregardatos.setText("AGREGAR DATOS");
+        jBagregardatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBagregardatosActionPerformed(evt);
             }
         });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Peso Actual:");
+
+        jTpesoactual.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel7.setText("DIETA");
+
+        jCbDIETA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBagregardatos)
+                .addGap(151, 151, 151))
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,33 +147,38 @@ public class Consulta extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
                         .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTdnim, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBnuevo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTnombrem, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(75, 75, 75)
-                                .addComponent(jBbuscar))
-                            .addComponent(jTapellidom, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(jLabel4))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTapellidom, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTdnim, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(256, 256, 256)
+                                .addComponent(jDcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(151, 151, 151))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTnombrem, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(75, 75, 75)
+                                        .addComponent(jBbuscar))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jCbDIETA, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTpesoactual))
+                                        .addGap(75, 75, 75)
+                                        .addComponent(jBnuevo)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(103, 103, 103)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(117, 117, 117)
+                                        .addComponent(jLabel4)))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,33 +195,42 @@ public class Consulta extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel4)
                                 .addComponent(jTnombrem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)))
+                        .addGap(34, 34, 34)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTapellidom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jDcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTapellidom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTdnim, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTpesoactual, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBnuevo)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBnuevo)
+                            .addComponent(jLabel7)
+                            .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jTdnim, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
+                        .addGap(83, 83, 83)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBagregardatos)
                         .addGap(56, 56, 56))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/*
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
         // TODO add your handling code here:
         texto = jTnombrem.getText();
@@ -197,17 +242,73 @@ public class Consulta extends javax.swing.JInternalFrame {
         NutricionistaEscritorio.jDescritorio.add(envia);
 
     }//GEN-LAST:event_jBnuevoActionPerformed
+*/
+    private void jBagregardatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagregardatosActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
+        int id = pacienteSeleccionado.getIdPaciente();
+        int rowCount = model.getRowCount();
+        LocalDate fechaRegistro = null;
+        double cuello = 0, busto = 0, cintura = 0, brazo = 0, cadera = 0, pierna = 0, estatura = 0, idDieta = 0, pesoActual = 0;
+    int idDieta = 0;
+        Historial histor = new Historial(idPaciente, cuello, busto, cintura, brazo, cadera, pierna, estatura, idDieta, pesoActual, fechaRegistro);
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel modelo;
+        if (rowCount > 0) {
+            HistorialData historialPaciente = new HistorialData();
+            Paciente pacienteSeleccionado = new Paciente();
+            
+            idDieta = jCbDIETA.getSelectedIndex(); // Suponiendo que el JComboBox está relacionado con la dieta
 
-        //le coloco un titulo y un tamaño para que todos tengan el mismo tamaño
-        setSize(500, 477);
-        //instancio una tabla con el modelo de la vista 
+            fechaRegistro = jDcalendario.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            pesoActual = Double.parseDouble(jTpesoactual.getText());
+
+            // Recorre las filas de la tabla de medidas y guarda los datos en la tabla de historial
+            for (int i = 0; i < rowCount; i++) {
+                cuello = (double) model.getValueAt(i, 0);
+                busto = (double) model.getValueAt(i, 1);
+                cintura = (double) model.getValueAt(i, 2);
+                brazo = (double) model.getValueAt(i, 3);
+                cadera = (double) model.getValueAt(i, 4);
+                pierna = (double) model.getValueAt(i, 5);
+                estatura = (double) model.getValueAt(i, 6);
+
+                // Luego, guarda los datos en la tabla de historial
+                historialPaciente.nuevoHistorial(histor);
+            }
+
+            // Aquí puedes mostrar un mensaje de éxito o realizar otras acciones necesarias
+            JOptionPane.showMessageDialog(null, "Datos guardados con éxito");
+        } else {
+            JOptionPane.showMessageDialog(null, "La tabla de medidas está vacía.");
+        }
 
     }
 
+    /* int filaSeleccionada = tablaMedidas.getSelectedRow();
+        DefaultTableModel model=new DefaultTableModel();
+        int cuentacolumnas = model.getRowCount();
+        HistorialData historialPaciente = new HistorialData();
+        Paciente pacienteSeleccionado = new Paciente();
+        //Historial histo= new Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, double pesoActual, LocalDate fechaRegistro);
+        String dniPaciente = pacienteSeleccionado.getDni();
+        int id = pacienteSeleccionado.getIdPaciente();
+        int idd= jCbDIETA.getActionListeners();
+        LocalDate fechaConsulta = jDcalendario.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        double pesoActual = Double.parseDouble(jTpesoactual.getText());
+        for(int i=0; i<cuentacolumnas;i++){
+            double cuello=(double)model.getValueAt(i,0);
+            double busto=(double)model.getValueAt(i,1);
+            double cintura=(double)model.getValueAt(i,2);
+            double brazo=(double)model.getValueAt(i,3);
+            double cadera=(double)model.getValueAt(i,4);
+            double pierna=(double)model.getValueAt(i,5);
+            double estatura=(double)model.getValueAt(i,6);
+            
+        }
+        
+        historialPaciente.nuevoHistorial(id,cuello,busto,brazo,cintura,cadera,pierna,estatura,idd,pesoActal,fechaConsulta);
+       
+        hsd.obtenerPacientePorHistorial(id,cuello,busto,brazo,cintura,cadera,pierna,estatura,idd,pesoActal,fechaConsulta);
+    }*//*
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {
 
         int filaSeleccionada = tablaMedidas.getSelectedRow();
@@ -221,26 +322,30 @@ public class Consulta extends javax.swing.JInternalFrame {
         hsd.obtenerPacientePorHistorial(id);
 
     }
-
+     */
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBagregardatosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBagregardatos;
     private javax.swing.JButton jBbuscar;
     private javax.swing.JButton jBnuevo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jCbDIETA;
+    private com.toedter.calendar.JDateChooser jDcalendario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTapellidom;
     private javax.swing.JTextField jTdnim;
     private javax.swing.JTextField jTnombrem;
+    private javax.swing.JTextField jTpesoactual;
     private javax.swing.JTable tablaMedidas;
     // End of variables declaration//GEN-END:variables
 }

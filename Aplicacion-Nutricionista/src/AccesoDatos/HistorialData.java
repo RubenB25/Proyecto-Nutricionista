@@ -25,8 +25,8 @@ public class HistorialData {
 
     public void nuevoHistorial(Historial historial) {
 
-        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna, estatura, pesoActual, fechaRegistro)"
-                + "VALUES (?, ?, ?, ?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna, estatura, id_dieta, pesoActual, fechaRegistro)"
+                + "VALUES (?, ?, ?, ?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, historial.getIdPaciente());
@@ -37,8 +37,9 @@ public class HistorialData {
             ps.setDouble(6, historial.getCadera());
             ps.setDouble(7, historial.getPierna());
             ps.setDouble(8, historial.getEstatura());
-            ps.setDouble(9, historial.getPesoActual());
-            ps.setDate(10, Date.valueOf(historial.getFechaRegistro()));
+            ps.setDouble(9, historial.getIdDieta());
+            ps.setDouble(10, historial.getPesoActual());
+            ps.setDate(11, Date.valueOf(historial.getFechaRegistro()));
 
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
@@ -52,14 +53,22 @@ public class HistorialData {
         }
     }
 
-    public void guardarHistorial(int id, LocalDate fecha, double peso) {
-        String sql = "Insert into historial (id_paciente, peso_actual, fecha_registro) values (?,?,?)";
+    /* public void guardarHistorial(int id, LocalDate fecha, double peso) {
+        String sql = "Insert into historial (id_paciente, cuello, busto, brazo, cintura, cadera, pierna, estatura, id_dieta, pesoActual, fechaRegistro)  values (?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
 
             ps.setInt(1, id);
-            ps.setDouble(2, peso);
-            ps.setDate(3, Date.valueOf(fecha));
+            ps.setDouble(2, cuello);
+            ps.setDouble(3, cuello);
+            ps.setDouble(4, cuello);
+            ps.setDouble(5, cuello);
+            ps.setDouble(6, cuello);
+            ps.setDouble(7, cuello);
+            ps.setDouble(8, cuello);
+            ps.setDouble(9, cuello);
+            ps.setDouble(10,cuello);
+            ps.setDate(11, Date.valueOf(fecha));
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
 
@@ -71,8 +80,7 @@ public class HistorialData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Historial %%%%%%" + e.getMessage());
         }
 
-    }
-
+    }*/
     public ArrayList<Historial> obtenerHistorial() {
         ArrayList<Historial> listaHistorial = new ArrayList<>();
 
@@ -85,7 +93,15 @@ public class HistorialData {
                 Historial historial = new Historial();
                 Paciente paciente = new Paciente();
                 paciente.setIdPaciente(rs.getInt("id_paciente"));
-                historial.setIdPaciente(paciente.getIdPaciente());
+                historial.setPesoActual(rs.getDouble("peso_actual"));
+                historial.setCuello(rs.getDouble("cuello"));
+                historial.setBusto(rs.getDouble("busto"));
+                historial.setCintura(rs.getDouble("cintura"));
+                historial.setBrazo(rs.getDouble("brazo"));
+                historial.setCadera(rs.getDouble("cadera"));
+                historial.setPierna(rs.getDouble("pierna"));
+                historial.setEstatura(rs.getDouble("estatura"));
+                historial.setIdDieta(rs.getInt("id_dieta"));
                 historial.setPesoActual(rs.getDouble("peso_actual"));
                 historial.setFechaRegistro(rs.getDate("fecha_registro").toLocalDate());
                 listaHistorial.add(historial);

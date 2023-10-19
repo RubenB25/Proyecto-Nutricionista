@@ -14,7 +14,7 @@ public class Paciente {
     private String celular;
     private LocalDate fechaNac;
     private int edad;
-    private double pesoActual;
+    private double pesoInicio;
     private double pesoDeseado;
     private int idPaciente;
     private boolean estado;
@@ -22,7 +22,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, int idPaciente, boolean estado) {
+    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoInicio, double pesoDeseado, int idPaciente, boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -30,13 +30,13 @@ public class Paciente {
         this.celular = celular;
         this.fechaNac = fechaNac;
         this.edad = edad;
-        this.pesoActual = pesoActual;
+        this.pesoInicio = pesoInicio;
         this.pesoDeseado = pesoDeseado;
         this.idPaciente = idPaciente;
         this.estado = estado;
     }
 
-    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, boolean estado) {
+    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoInicio, double pesoDeseado, boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -44,7 +44,7 @@ public class Paciente {
         this.celular = celular;
         this.fechaNac = fechaNac;
         this.edad = edad;
-        this.pesoActual = pesoActual;
+        this.pesoInicio = pesoInicio;
         this.pesoDeseado = pesoDeseado;
         this.estado = estado;
     }
@@ -109,12 +109,12 @@ public class Paciente {
         this.edad = edad;
     }
 
-    public double getPesoActual() {
-        return pesoActual;
+    public double getPesoInicio() {
+        return pesoInicio;
     }
 
-    public void setPesoActual(double pesoActual) {
-        this.pesoActual = pesoActual;
+    public void setPesoActual(double pesoInicio) {
+        this.pesoInicio = pesoInicio;
     }
 
     public double getPesoDeseado() {

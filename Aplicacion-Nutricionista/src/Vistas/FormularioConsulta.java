@@ -25,7 +25,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     public FormularioConsulta() {
         initComponents();
-      
+
     }
 
     @SuppressWarnings("unchecked")
@@ -50,6 +50,9 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jBdieta = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
+        jTaltura = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLresultado1 = new javax.swing.JLabel();
 
         setTitle("Consulta");
 
@@ -132,6 +135,10 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setText("altura");
+
+        jLresultado1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,7 +155,10 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel11)
-                                    .addComponent(jLabel15))
+                                    .addComponent(jLabel15)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel2)))
                                 .addGap(38, 38, 38)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -164,13 +174,19 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                                         .addGap(45, 45, 45)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jBmedida)
-                                            .addComponent(jBsalir)))))
+                                            .addComponent(jBsalir)))
+                                    .addComponent(jTaltura, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jBdieta)
-                            .addComponent(jBimc)))
-                    .addComponent(jBGuardar)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jBimc)
+                                        .addGap(63, 63, 63))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addComponent(jLresultado1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jBGuardar))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -202,18 +218,26 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
                             .addComponent(jBmedida))
-                        .addGap(34, 34, 34)
-                        .addComponent(jBGuardar)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jBimc))
-                    .addComponent(jDCfechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jBsalir))
+                        .addComponent(jBGuardar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jDCfechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTaltura, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jBimc)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1))
+                    .addComponent(jLresultado1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBsalir)
                 .addGap(18, 18, 18)
                 .addComponent(jBdieta)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -251,44 +275,44 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBmedidaActionPerformed
 
     private void jBimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBimcActionPerformed
-        //        try {
-            //            double peso = Double.parseDouble(jTpesoinicio.getText());
-            //            double altura = Double.parseDouble(jTaltura.getText());
-            //            double imc = peso / altura;
-            //
-            //            if (imc < 18.9) {
-                //
-                //                //jLresultado.setText("Tiene Delgadez");
-                //                jLresultado1.setText("Delgadez");
-                //            } else if (imc > 18.9 && imc < 25) {
-                //
-                //                //jLresultado.setText("Tiene peso Normal");
-                //                jLresultado1.setText("Normal");
-                //            } else if (imc > 25 && imc < 29.99) {
-                //
-                //                // jLresultado.setText("Sobrepeso");
-                //                jLresultado1.setText("Sobrepeso");
-                //            } else if (imc > 30 && imc < 45) {
-                //
-                //                //jLresultado.setText("Tiene Obesidad morbida");
-                //                jLresultado1.setText("Obesidad");
-                //            }
-            //            if (imc > 45) {
-                //
-                //                // jLresultado.setText("Tiene Obesidad, se recomienda comenzar con dieta de descenso de peso inmediato para cuidar su salud");
-                //                jLresultado1.setText("Obesidad Morbida");
-                //            }
-            //        } catch (NumberFormatException e) {
-            //            JOptionPane.showMessageDialog(null, "tiene un error por no ingresar valor numerico en las opciones de altura y peso," + e);
-            //        }
+        try {
+            double peso = Double.parseDouble(jTpesoinicio.getText());
+            double altura = Double.parseDouble(jTaltura.getText());
+            double imc = peso / altura;
+
+            if (imc < 18.9) {
+
+                //jLresultado.setText("Tiene Delgadez");
+                jLresultado1.setText("Delgadez");
+            } else if (imc > 18.9 && imc < 25) {
+
+                //jLresultado.setText("Tiene peso Normal");
+                jLresultado1.setText("Normal");
+            } else if (imc > 25 && imc < 29.99) {
+
+                // jLresultado.setText("Sobrepeso");
+                jLresultado1.setText("Sobrepeso");
+            } else if (imc > 30 && imc < 45) {
+
+                //jLresultado.setText("Tiene Obesidad morbida");
+                jLresultado1.setText("Obesidad");
+            }
+            if (imc > 45) {
+
+                // jLresultado.setText("Tiene Obesidad, se recomienda comenzar con dieta de descenso de peso inmediato para cuidar su salud");
+                jLresultado1.setText("Obesidad Morbida");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "tiene un error por no ingresar valor numerico en las opciones de altura y peso," + e);
+        }
     }//GEN-LAST:event_jBimcActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         HistorialData historialPaciente = new HistorialData();
         double pesoActual = Double.parseDouble(jTpesoinicio.getText());
         LocalDate fechaConsulta = jDCfechaConsulta.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        
-        historialPaciente.guardarHistorial(id, fechaConsulta, pesoActual);
+
+        historialPaciente.nuevoHistorial(Historial);
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
@@ -300,12 +324,11 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             int dni = Integer.parseInt(jTrecibedni.getText());
             Paciente paciente = pacienteData.buscarPacientePorDni(dni);
             id = paciente.getIdPaciente();
+            double altura = Double.parseDouble(jTaltura.getText());
             if (!"".equals(jTrecibedni.getText()) && paciente != null) {
                 jTrecibeapellido.setText(paciente.getApellido());
                 jTrecibenombre.setText(paciente.getNombre());
-                //jTaltura.setText(historial.obtenerPacientePorHistorial(id));
-                //jTpesoinicio.setText(String.valueOf(paciente.getPesoActual()));
-                //jTpesodeseado.setText(String.valueOf(paciente.getPesoDeseado()));
+
                 datos[0] = paciente.getNombre();
                 datos[1] = paciente.getApellido();
 
@@ -333,8 +356,11 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLresultado1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTaltura;
     private javax.swing.JTextField jTpesoinicio;
     private javax.swing.JTextField jTrecibeapellido;
     private javax.swing.JTextField jTrecibedni;
