@@ -1,9 +1,11 @@
+package Vistas;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+
 
 import AccesoDatos.HistorialData;
 import Entidades.Historial;
@@ -112,7 +114,7 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
     private void llenarTable() {
         HistorialData hd = new HistorialData();
         for (Historial historial : hd.obtenerHistorial()) {
-            model.addRow(new Object[]{historial.getIdPaciente(), historial.getPesoActual(),historial.getFechaRegistro()});
+            model.addRow(new Object[]{historial.getIdPaciente(), historial.getPeso(),historial.getFechaRegistro()});
             
         }
     }

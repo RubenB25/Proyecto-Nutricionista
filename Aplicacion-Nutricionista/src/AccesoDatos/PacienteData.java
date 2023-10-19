@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -20,7 +22,8 @@ public class PacienteData {
     public PacienteData() {
         conex = Conexion.getConex();
     }
- public void guardarPaciente(Paciente paciente) {
+
+    public void guardarPaciente(Paciente paciente) {
         String sql = "INSERT INTO pacientes (nombre, apellido, dni, "
                 + "domicilio, celular, fecha_nacimiento, edad, peso_actual, peso_deseado, estado) "
                 + "VALUES (?,?,?,?,?,?,?,?,?,1)";
@@ -48,29 +51,29 @@ public class PacienteData {
         }
     }
 
-    public Paciente buscarPacientePorDni(int dni) {
+    public Paciente buscarPacientePorDni(String dni) {
         Paciente paciente = null;
-        String sql = "select * from pacientes where dni= ?";
+        String sql = "select id_paciente, nombre, apellido, dni, domicilio, celular, fecha_nacimiento, edad, peso_actual, peso_deseado, estado "
+                + "from pacientes where dni= ?";
         PreparedStatement ps = null;
         try {
             ps = conex.prepareStatement(sql);
-            ps.setInt(1, dni);
+            ps.setString(1, dni);
             ResultSet resultado = ps.executeQuery();
 
             if (resultado.next()) {
                 paciente = new Paciente();
-
                 paciente.setIdPaciente(resultado.getInt("id_paciente"));
                 paciente.setNombre(resultado.getString("nombre"));
                 paciente.setApellido(resultado.getString("apellido"));
                 paciente.setDni(resultado.getString("dni"));
                 paciente.setDomicilio(resultado.getString("domicilio"));
                 paciente.setCelular(resultado.getString("celular"));
-               // paciente.setFechaNac(resultado.getDate("fechaNac"));
+                paciente.setFechaNac(resultado.getDate("fecha_nacimiento").toLocalDate());
                 paciente.setEdad(resultado.getInt("edad"));
                 paciente.setPesoActual(resultado.getDouble("peso_actual"));
                 paciente.setPesoDeseado(resultado.getDouble("peso_deseado"));
-               // paciente.setEstado(resultado.getBoolean("estado"));
+                paciente.setEstado(resultado.getBoolean("estado"));
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el Paciente");
                 ps.close();
@@ -82,16 +85,21 @@ public class PacienteData {
     }
 
     public void modificarPaciente(Paciente paciente) {
-        String sql = "update pacientes set nombre = ?, apellido = ?, dni = ?,celular = ? "
-                + "where id_paciente = ?";
+        String sql = "update pacientes set nombre = ?, apellido = ?, dni = ?, celular = ?, domicilio = ?,"
+                + "fecha_nacimiento = ?, edad = ?, peso_actual = ?, peso_deseado = ?, estado = ? "
+                + "where dni = " + paciente.getDni();
         try {
             PreparedStatement ps = conex.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
             ps.setString(2, paciente.getApellido());
             ps.setString(3, paciente.getDni());
             ps.setString(4, paciente.getCelular());
-       
-            ps.setInt(5, paciente.getIdPaciente());
+            ps.setString(5, paciente.getDomicilio());
+            ps.setDate(6, Date.valueOf(paciente.getFechaNac()));
+            ps.setInt(7, paciente.getEdad());
+            ps.setDouble(8, paciente.getPesoActual());
+            ps.setDouble(9, paciente.getPesoDeseado());
+            ps.setBoolean(10, paciente.isEstado());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -120,11 +128,28 @@ public class PacienteData {
 
         }
     }
+    
+    public void darAltaPaciente(int id){
+        String sql = "update pacientes set estado = 1 where id_paciente = ?";
+        try {
+            PreparedStatement ps = conex.prepareStatement(sql);
+            ps.setInt(1, id);
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Paciente dado de alta correctamente.");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pacientes " + e.getMessage());
+
+        }
+    }
 
     public ArrayList<Paciente> listarPaciente() {
         ArrayList<Paciente> pacientes = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM pacientes WHERE estado = 1 ";
+            String sql = "SELECT * FROM pacientes";
             PreparedStatement psa = conex.prepareStatement(sql);
             ResultSet rs = psa.executeQuery();
             while (rs.next()) {
@@ -146,4 +171,3 @@ public class PacienteData {
         return pacientes;
     }
 }
-   
