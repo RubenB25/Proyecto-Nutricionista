@@ -110,7 +110,7 @@ public class DietaData {
                 paciente.setApellido(resultado.getString("p.apellido"));
                 paciente.setNombre(resultado.getString("p.nombre"));
                 paciente.setDni(resultado.getString("dni"));
-                paciente.setPesoDeseado(resultado.getInt("p.peso_deseado"));
+                paciente.setPesoDeseado(resultado.getDouble("p.peso_deseado"));
                Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente, resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("d.peso_inicial"), resultado.getDouble("peso_final"), resultado.getBoolean("d.estado"));
                 listaDietas.add(dieta);
             }

@@ -8,7 +8,7 @@ package Vistas;
 
 
 import AccesoDatos.HistorialData;
-import Entidades.Historial;
+import Entidades.Historialtest;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -113,7 +113,7 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
 
     private void llenarTable() {
         HistorialData hd = new HistorialData();
-        for (Historial historial : hd.obtenerHistorial()) {
+        for (Historialtest historial : hd.obtenerHistorial()) {
             model.addRow(new Object[]{historial.getIdPaciente(), historial.getPeso(),historial.getFechaRegistro()});
             
         }

@@ -5,7 +5,7 @@ package Vistas;
 
 import AccesoDatos.HistorialData;
 import AccesoDatos.PacienteData;
-import Entidades.Historial;
+import Entidades.Historialtest;
 import Entidades.Paciente;
 import java.util.Date;
 import java.time.LocalDate;
@@ -21,7 +21,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     private Object modelo;
     private int id;
 
-    private Historial Historial;
+    private Historialtest Historial;
 
     public FormularioConsulta() {
         initComponents();
@@ -251,36 +251,36 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBmedidaActionPerformed
 
     private void jBimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBimcActionPerformed
-        //        try {
-            //            double peso = Double.parseDouble(jTpesoinicio.getText());
-            //            double altura = Double.parseDouble(jTaltura.getText());
-            //            double imc = peso / altura;
-            //
-            //            if (imc < 18.9) {
-                //
-                //                //jLresultado.setText("Tiene Delgadez");
-                //                jLresultado1.setText("Delgadez");
-                //            } else if (imc > 18.9 && imc < 25) {
-                //
-                //                //jLresultado.setText("Tiene peso Normal");
-                //                jLresultado1.setText("Normal");
-                //            } else if (imc > 25 && imc < 29.99) {
-                //
-                //                // jLresultado.setText("Sobrepeso");
-                //                jLresultado1.setText("Sobrepeso");
-                //            } else if (imc > 30 && imc < 45) {
-                //
-                //                //jLresultado.setText("Tiene Obesidad morbida");
-                //                jLresultado1.setText("Obesidad");
-                //            }
-            //            if (imc > 45) {
-                //
-                //                // jLresultado.setText("Tiene Obesidad, se recomienda comenzar con dieta de descenso de peso inmediato para cuidar su salud");
-                //                jLresultado1.setText("Obesidad Morbida");
-                //            }
-            //        } catch (NumberFormatException e) {
-            //            JOptionPane.showMessageDialog(null, "tiene un error por no ingresar valor numerico en las opciones de altura y peso," + e);
-            //        }
+//                try {
+//                        double peso = Double.parseDouble(jTpesoinicio.getText());
+//                        double altura = Double.parseDouble(jTaltura.getText());
+//                        double imc = peso / altura;
+//            
+//                        if (imc < 18.9) {
+//                
+//                                //jLresultado.setText("Tiene Delgadez");
+//                                jLresultado1.setText("Delgadez");
+//                            } else if (imc > 18.9 && imc < 25) {
+//                
+//                                //jLresultado.setText("Tiene peso Normal");
+//                                jLresultado1.setText("Normal");
+//                            } else if (imc > 25 && imc < 29.99) {
+//                
+//                                // jLresultado.setText("Sobrepeso");
+//                                jLresultado1.setText("Sobrepeso");
+//                            } else if (imc > 30 && imc < 45) {
+//                
+//                                //jLresultado.setText("Tiene Obesidad morbida");
+//                                jLresultado1.setText("Obesidad");
+//                            }
+//                        if (imc > 45) {
+//                
+//                                // jLresultado.setText("Tiene Obesidad, se recomienda comenzar con dieta de descenso de peso inmediato para cuidar su salud");
+//                                jLresultado1.setText("Obesidad Morbida");
+//                            }
+//                    } catch (NumberFormatException e) {
+//                        JOptionPane.showMessageDialog(null, "tiene un error por no ingresar valor numerico en las opciones de altura y peso," + e);
+//                    }
     }//GEN-LAST:event_jBimcActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed

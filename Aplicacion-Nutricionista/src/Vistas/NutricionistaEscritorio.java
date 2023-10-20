@@ -27,7 +27,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        jMregistrarconsulta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -103,13 +103,13 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem7);
 
-        jMenuItem8.setText("Registrar consulta");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        jMregistrarconsulta.setText("Registrar consulta");
+        jMregistrarconsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                jMregistrarconsultaActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem8);
+        jMenu3.add(jMregistrarconsulta);
 
         jMenuBar1.add(jMenu3);
 
@@ -241,8 +241,8 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        FormularioConsulta fc = new FormularioConsulta();
+    private void jMregistrarconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMregistrarconsultaActionPerformed
+        Consulta fc = new Consulta();
         // Verifica si el JInternalFrame ya está en el JDesktopPane
         JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
         boolean estaAbierta = false;
@@ -266,7 +266,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
             fc.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
             fc.setVisible(true);
         }
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_jMregistrarconsultaActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
          ModificarDieta md = new ModificarDieta();
@@ -334,8 +334,8 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMregistrarconsulta;
     // End of variables declaration//GEN-END:variables
 
 }
