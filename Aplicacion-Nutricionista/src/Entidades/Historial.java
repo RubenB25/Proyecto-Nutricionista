@@ -24,6 +24,18 @@ public class Historial {
     public Historial() {
     }
 
+    public Historial(int idPaciente, double pesoActual, LocalDate fechaRegistro) {
+        this.idPaciente = idPaciente;
+        this.pesoActual = pesoActual;
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Historial(double pesoActual, LocalDate fechaRegistro) {
+ 
+        this.pesoActual = pesoActual;
+        this.fechaRegistro = fechaRegistro;
+    }
+
     public Historial(int idHistorial, int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, double pesoActual, LocalDate fechaRegistro) {
         this.idHistorial = idHistorial;
         this.idPaciente = idPaciente;

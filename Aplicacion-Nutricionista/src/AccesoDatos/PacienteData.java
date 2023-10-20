@@ -84,6 +84,34 @@ public class PacienteData {
         return paciente;
     }
 
+    public Paciente buscarPacientePorID(int id) {
+        Paciente paciente = null;
+        String sql = "select  nombre, apellido, peso_actual, peso_deseado, estado "
+                + "from pacientes where id_paciente= ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conex.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet resultado = ps.executeQuery();
+
+            if (resultado.next()) {
+                paciente = new Paciente();
+                paciente.setNombre(resultado.getString("nombre"));
+                paciente.setApellido(resultado.getString("apellido"));
+
+                paciente.setPesoActual(resultado.getDouble("peso_actual"));
+                paciente.setPesoDeseado(resultado.getDouble("peso_deseado"));
+                paciente.setEstado(resultado.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el Paciente");
+                ps.close();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pacientes " + e.getMessage());
+        }
+        return paciente;
+    }
+
     public void modificarPaciente(Paciente paciente) {
         String sql = "update pacientes set nombre = ?, apellido = ?, dni = ?, celular = ?, domicilio = ?,"
                 + "fecha_nacimiento = ?, edad = ?, peso_actual = ?, peso_deseado = ?, estado = ? "
@@ -128,8 +156,8 @@ public class PacienteData {
 
         }
     }
-    
-    public void darAltaPaciente(int id){
+
+    public void darAltaPaciente(int id) {
         String sql = "update pacientes set estado = 1 where id_paciente = ?";
         try {
             PreparedStatement ps = conex.prepareStatement(sql);

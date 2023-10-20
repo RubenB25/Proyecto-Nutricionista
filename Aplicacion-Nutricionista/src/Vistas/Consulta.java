@@ -294,13 +294,12 @@ public class Consulta extends javax.swing.JInternalFrame {
     }
 
     private void llenarTablamedidas() {
-        HistorialData medidasData = new HistorialData();
-        model = (DefaultTableModel) tablaMedidas.getModel();
-        ArrayList<Historial> medidas = new ArrayList<>();
-        medidas =(DefaultTableModel) medidasData.obtenerHistorial();
-        for (Historial medidaslista : medidas) {
-            model.addRow(new Object[]{medidaslista.getCuello(), medidaslista.getBusto(), medidaslista.getBrazo(), medidaslista.getCintura(), medidaslista.getCadera(), medidaslista.getPierna()});
+         HistorialData medidasData = new HistorialData();
+        DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
+ArrayList<Historial> medidas = medidasData.obtenerHistorial();
 
-        }
+for (Historial medidaslista : medidas) {
+    model.addRow(new Object[]{medidaslista.getCuello(), medidaslista.getBusto(), medidaslista.getBrazo(), medidaslista.getCintura(), medidaslista.getCadera(), medidaslista.getPierna()});
+}
     }
 }
