@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -24,12 +26,14 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
     private String estado;
     private final DietaData dietas = new DietaData();
     private int indice = 0;
-
+    private TableRowSorter<TableModel> TRS;
     public ListarPacientes() {
         initComponents();
         model = (DefaultTableModel) jTListarPacientes.getModel();
         jRBListarTodoActionPerformed(null);
         jRBListarTodo.setSelected(true);
+        TRS = new TableRowSorter<>(model);
+        jTListarPacientes.setRowSorter(TRS);
     }
 
     @SuppressWarnings("unchecked")
