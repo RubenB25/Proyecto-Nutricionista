@@ -3,21 +3,24 @@ package Vistas;
 
 
 
+import AccesoDatos.DietaData;
 import AccesoDatos.HistorialData;
 import AccesoDatos.PacienteData;
+import Entidades.Dieta;
 import Entidades.Historialtest;
 import Entidades.Paciente;
 import java.util.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class FormularioConsulta extends javax.swing.JInternalFrame {
-
-    public static String texto;
-    public static String texto2;
-    public static String texto3;
+//
+//    public static String texto;
+//    public static String texto2;
+//    public static String texto3;
     private Object modelo;
     private int id;
 
@@ -33,15 +36,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jTrecibedni = new javax.swing.JTextField();
         jBbuscar = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jTrecibenombre = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jTrecibeapellido = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jTpesoinicio = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jDCfechaConsulta = new com.toedter.calendar.JDateChooser();
         jBmedida = new javax.swing.JButton();
@@ -50,18 +45,10 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jBdieta = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
+        jCbpaciente = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setTitle("Consulta");
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel11.setText("D.N.I.:");
-
-        jTrecibedni.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTrecibedni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTrecibedniActionPerformed(evt);
-            }
-        });
 
         jBbuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBbuscar.setText("BUSCAR");
@@ -70,21 +57,6 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 jBbuscarActionPerformed(evt);
             }
         });
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setText("Nombre:");
-
-        jTrecibenombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setText("Apellido:");
-
-        jTrecibeapellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel12.setText("Peso actual:");
-
-        jTpesoinicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Fecha consulta:");
@@ -132,88 +104,71 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             }
         });
 
+        jCbpaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Paciente");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBGuardar)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(39, 39, 39)
+                                .addComponent(jDCfechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(343, 343, 343)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel15))
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTrecibedni, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTrecibenombre, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTpesoinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTrecibeapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jBbuscar))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jDCfechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(45, 45, 45)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jBmedida)
-                                            .addComponent(jBsalir)))))
+                                    .addComponent(jBmedida)
+                                    .addComponent(jBsalir)))
                             .addComponent(jBdieta)
                             .addComponent(jBimc)))
-                    .addComponent(jBGuardar)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
+                        .addGap(52, 52, 52)
+                        .addComponent(jCbpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBbuscar)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jCbpaciente, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTrecibedni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBbuscar))
-                        .addGap(18, 18, 18)
-                        .addComponent(jTrecibenombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTrecibeapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTpesoinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jBmedida))
-                        .addGap(34, 34, 34)
-                        .addComponent(jBGuardar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBimc))
-                    .addComponent(jDCfechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDCfechaConsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addComponent(jBmedida)
+                .addGap(34, 34, 34)
+                .addComponent(jBGuardar)
+                .addGap(18, 18, 18)
+                .addComponent(jBimc)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jBsalir))
                 .addGap(18, 18, 18)
                 .addComponent(jBdieta)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -284,40 +239,44 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBimcActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        HistorialData historialPaciente = new HistorialData();
-        double pesoActual = Double.parseDouble(jTpesoinicio.getText());
-        LocalDate fechaConsulta = jDCfechaConsulta.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        
-        historialPaciente.guardarHistorial(id, fechaConsulta, pesoActual);
+//        HistorialData historialPaciente = new HistorialData();
+//        //double pesoActual = Double.parseDouble(jTpesoinicio.getText());
+//        LocalDate fechaConsulta = jDCfechaConsulta.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//        
+//        historialPaciente.guardarHistorial(id, fechaConsulta, pesoActual);
     }//GEN-LAST:event_jBGuardarActionPerformed
-
-    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-        PacienteData pacienteData = new PacienteData();
-        HistorialData historial = new HistorialData();
-        String[] datos = new String[2];
-
-        try {
-            String dni = jTrecibedni.getText();
-            Paciente paciente = pacienteData.buscarPacientePorDni(dni);
-            id = paciente.getIdPaciente();
-            if (!"".equals(jTrecibedni.getText()) && paciente != null) {
-                jTrecibeapellido.setText(paciente.getApellido());
-                jTrecibenombre.setText(paciente.getNombre());
-                //jTaltura.setText(historial.obtenerPacientePorHistorial(id));
-                //jTpesoinicio.setText(String.valueOf(paciente.getPesoActual()));
-                //jTpesodeseado.setText(String.valueOf(paciente.getPesoDeseado()));
-                datos[0] = paciente.getNombre();
-                datos[1] = paciente.getApellido();
-
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Verifique los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+private void comboPaciente() {
+     PacienteData pd = new PacienteData();
+    ArrayList<Paciente> pacientes = pd.listarPaciente();
+    for (Paciente pacI : pacientes) {
+        jCbpaciente.addItem(pacI);
+    }
+     
+   
         }
+    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
+//        PacienteData pacienteData = new PacienteData();
+//        HistorialData historial = new HistorialData();
+//        String[] datos = new String[2];
+//
+//        try {
+//            String dni = jTrecibedni.getText();
+//            Paciente paciente = pacienteData.buscarPacientePorDni(dni);
+//            id = paciente.getIdPaciente();
+//            if (!"".equals(jTrecibedni.getText()) && paciente != null) {
+//                jTrecibeapellido.setText(paciente.getApellido());
+//                jTrecibenombre.setText(paciente.getNombre());
+//                //jTaltura.setText(historial.obtenerPacientePorHistorial(id));
+//                //jTpesoinicio.setText(String.valueOf(paciente.getPesoActual()));
+//                //jTpesodeseado.setText(String.valueOf(paciente.getPesoDeseado()));
+//                datos[0] = paciente.getNombre();
+//                datos[1] = paciente.getApellido();
+//
+//            }
+//        } catch (NumberFormatException e) {
+//            JOptionPane.showMessageDialog(this, "Verifique los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_jBbuscarActionPerformed
-
-    private void jTrecibedniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTrecibedniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTrecibedniActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -327,17 +286,11 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     public static javax.swing.JButton jBimc;
     private javax.swing.JButton jBmedida;
     private javax.swing.JButton jBsalir;
+    private javax.swing.JComboBox<String> jCbpaciente;
     private com.toedter.calendar.JDateChooser jDCfechaConsulta;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTpesoinicio;
-    private javax.swing.JTextField jTrecibeapellido;
-    private javax.swing.JTextField jTrecibedni;
-    private javax.swing.JTextField jTrecibenombre;
     // End of variables declaration//GEN-END:variables
 }

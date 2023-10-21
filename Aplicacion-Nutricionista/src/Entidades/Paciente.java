@@ -149,7 +149,7 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return  nombre + " "+ apellido+" | DNI: "+ dni+"";
+        return  idPaciente + " " +nombre + " "+ apellido+" | DNI: "+ dni+"";
     }
     
 }

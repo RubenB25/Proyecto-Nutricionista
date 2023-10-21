@@ -261,8 +261,8 @@ public class Consulta extends javax.swing.JInternalFrame {
 
     private void comboDieta() {
         DietaData dieta = new DietaData();
-        ArrayList<Dieta> dietas = new ArrayList<>();
-        dietas = dieta.listarDietas();
+    
+         ArrayList<Dieta>dietas = dieta.listarDietas();
         for (Dieta dietaIndice : dietas) {
             jCbDIETA.addItem(dietaIndice);
         }
@@ -377,7 +377,7 @@ public class Consulta extends javax.swing.JInternalFrame {
          Paciente pacienteSeleccionado = paci.buscarPacientePorDni(numero);
         int id= pacienteSeleccionado.getIdPaciente();
         ArrayList<Historial> historialSeleccionado = histo.obtenerHistorialdePaciente(id);
-        llenarTablaMedidas(id);
+        llenarTablaMedidas(historialSeleccionado);
         System.out.println("numero" + numero + "id " + id); // TODO add your handling code here:
     }//GEN-LAST:event_jTpacienteMouseClicked
 //private void jTpacienteValueChanged(ListSelectionEvent evt) {
@@ -430,11 +430,10 @@ public class Consulta extends javax.swing.JInternalFrame {
             model.addRow(new Object[]{pacientelista.getNombre(), pacientelista.getApellido(), pacientelista.getDni()});
         }
     }  
-    private void llenarTablaMedidas(int id){
+    private void llenarTablaMedidas(ArrayList<Historial> medidas){
          HistorialData historialData = new HistorialData();
         model = (DefaultTableModel) jTpaciente.getModel();
-        ArrayList<Historial> medidas = new ArrayList<>();
-        medidas = historialData.obtenerHistorialdePaciente(id);
+       
         for (Historial historialpaciente : medidas) {
             model.addRow(new Object[]{historialpaciente.getCuello(),historialpaciente.getBusto(),
                 historialpaciente.getBrazo(),historialpaciente.getCintura(),historialpaciente.getCadera(),historialpaciente.getPierna(),historialpaciente.getEstatura()});

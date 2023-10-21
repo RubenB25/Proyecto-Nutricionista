@@ -4,7 +4,7 @@ import Entidades.Historial;
 import Entidades.Historialtest;
 import Entidades.Paciente;
 import Entidades.historialConNombreyApellido;
-import com.oracle.webservices.internal.api.databinding.DatabindingModeFeature;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
