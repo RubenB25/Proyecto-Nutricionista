@@ -5,9 +5,7 @@ import AccesoDatos.HistorialData;
 import AccesoDatos.PacienteData;
 import Entidades.Dieta;
 import Entidades.Historial;
-import Entidades.Historialtest;
 import Entidades.Paciente;
-
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -66,6 +64,11 @@ public class Consulta extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaMedidas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMedidasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaMedidas);
         if (tablaMedidas.getColumnModel().getColumnCount() > 0) {
             tablaMedidas.getColumnModel().getColumn(0).setResizable(false);
@@ -111,6 +114,21 @@ public class Consulta extends javax.swing.JInternalFrame {
                 "Nombre", "apellido", "DNI"
             }
         ));
+        jTpaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTpacienteMouseClicked(evt);
+            }
+        });
+        jTpaciente.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTpacientePropertyChange(evt);
+            }
+        });
+        jTpaciente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTpacienteKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTpaciente);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -118,29 +136,26 @@ public class Consulta extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBnuevo)
+                .addGap(46, 46, 46)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBnuevo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(296, 296, 296))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jDcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(359, 359, 359)))))
+                    .addComponent(jLabel4)
+                    .addComponent(jDcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(359, 359, 359))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(227, 227, 227)
                         .addComponent(jBagregardatos))
@@ -154,16 +169,16 @@ public class Consulta extends javax.swing.JInternalFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(171, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
                         .addComponent(jDcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jTpesoactual, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -171,16 +186,16 @@ public class Consulta extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jBagregardatos)
-                        .addGap(75, 75, 75))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jBnuevo)
-                        .addGap(185, 185, 185))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jBnuevo)))
+                .addGap(48, 48, 48)
+                .addComponent(jBagregardatos)
+                .addGap(75, 75, 75))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -198,8 +213,9 @@ public class Consulta extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(11, 11, 11)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -253,18 +269,141 @@ public class Consulta extends javax.swing.JInternalFrame {
 
     }
 
+    private void jTBcustomersMouseClicked(java.awt.event.MouseEvent evt) {
+//        PacienteData paci= new PacienteData();
+//        HistorialData histo=new HistorialData();
+//        int fila = jTpaciente.getSelectedRow();
+//        String numero = jTpaciente.getValueAt(fila, 2).toString();
+//         Paciente pacienteSeleccionado = paci.buscarPacientePorDni(numero);
+//        int id= pacienteSeleccionado.getIdPaciente();
+//        ArrayList<Historial> historialSeleccionado = histo.obtenerHistorial(id);
+//        llenarTablaMedidas(id);
+//        System.out.println("numero" + numero);
+    }
+
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
     }//GEN-LAST:event_jBagregardatosActionPerformed
 
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
 
-        FormularioConsulta envia = new FormularioConsulta();
+        FormularioPaciente envia = new FormularioPaciente();
         envia.setVisible(true);
         this.setVisible(false);
         //NutricionistaEscritorio.jDescritorio.add(envia);
     }//GEN-LAST:event_jBnuevoActionPerformed
 
+    private void jTpacientePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTpacientePropertyChange
+//         // Verifica si el evento es el cambio de selección en la tabla de pacientes.
+//         HistorialData histo= new HistorialData();
+//    if (evt.getPropertyName().equals("tableCellEditor")) {
+//        int filaSeleccionada = tablaMedidas.getSelectedRow();
+//        if (filaSeleccionada != -1) {
+//            DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
+//            
+//            // Supongo que la primera columna de tu tabla contiene el ID del paciente.
+//            int idPaciente = (int) model.getValueAt(filaSeleccionada, 0);
+//          
+//            // Aquí debes usar el ID del paciente para recuperar las medidas correspondientes.
+//            // Puedes llamar a tu método para obtener las medidas con el ID del paciente.
+//            histo.obtenerHistorial(idPaciente);
+//            llenarTablaMedidas(idPaciente);
+//        }
+//    }
+
+    }//GEN-LAST:event_jTpacientePropertyChange
+
+    private void jTpacienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpacienteKeyPressed
+        HistorialData histo = new HistorialData();
+        if (!evt.equals(false)) { // Asegura que no se realicen eventos adicionales durante la selección.
+            int filaSeleccionada = jTpaciente.getSelectedRow();
+            if (filaSeleccionada != -1) {
+                DefaultTableModel historialModel = (DefaultTableModel) tablaMedidas.getModel();
+
+                // Supongo que la primera columna de tu tabla contiene el ID del paciente.
+                int idPacienteSeleccionado = (int) jTpaciente.getValueAt(filaSeleccionada, 0);
+
+                // Llama a un método que obtiene el historial del paciente por ID.
+                ArrayList<Historial> historialPaciente = histo.obtenerHistorialdePaciente(idPacienteSeleccionado);
+
+                // Borra el contenido existente en la tabla de historial.
+                historialModel.setRowCount(0);
+
+                // Agrega los datos del historial del paciente a la tabla de historial.
+                for (Historial historial : historialPaciente) {
+                    historialModel.addRow(new Object[]{
+                        historial.getCuello(), historial.getBusto(),
+                        historial.getBrazo(), historial.getCintura(), historial.getCadera(),
+                        historial.getPierna(), historial.getEstatura()});
+                }
+            }
+        }
+    }//GEN-LAST:event_jTpacienteKeyPressed
+
+    private void tablaMedidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedidasMouseClicked
+
+        int fila = jTpaciente.getSelectedRow();
+        String numero = jTpaciente.getValueAt(fila, 0).toString();
+
+//       HistorialData histo= new HistorialData();
+//    //if (!evt.ge) { // Asegura que no se realicen eventos adicionales durante la selección.
+//        int filaSeleccionada = jTpaciente.getSelectedRow();
+//        if (filaSeleccionada != -1) {
+//            DefaultTableModel historialModel = (DefaultTableModel) tablaMedidas.getModel();
+//            
+//            // Supongo que la primera columna de tu tabla contiene el ID del paciente.
+//            int idPacienteSeleccionado = (int) jTpaciente.getValueAt(filaSeleccionada, 0);
+//            
+//            // Llama a un método que obtiene el historial del paciente por ID.
+//            ArrayList<Historial> historialPaciente = histo.obtenerHistorial(idPacienteSeleccionado);
+//            
+//            // Borra el contenido existente en la tabla de historial.
+//            historialModel.setRowCount(0);
+//            
+//            // Agrega los datos del historial del paciente a la tabla de historial.
+//            for (Historial historial : historialPaciente) {
+//                historialModel.addRow(new Object[]{
+//                    historial.getCuello(), historial.getBusto(),
+//                    historial.getBrazo(),historial.getCintura(),historial.getCadera(),
+//historial.getPierna(),historial.getEstatura()                });
+//            }} // TODO add your handling code here:}
+    }//GEN-LAST:event_tablaMedidasMouseClicked
+
+    private void jTpacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTpacienteMouseClicked
+       PacienteData paci= new PacienteData();
+        HistorialData histo=new HistorialData();
+        int fila = jTpaciente.getSelectedRow();
+        String numero = jTpaciente.getValueAt(fila, 2).toString();
+         Paciente pacienteSeleccionado = paci.buscarPacientePorDni(numero);
+        int id= pacienteSeleccionado.getIdPaciente();
+        ArrayList<Historial> historialSeleccionado = histo.obtenerHistorialdePaciente(id);
+        llenarTablaMedidas(id);
+        System.out.println("numero" + numero + "id " + id); // TODO add your handling code here:
+    }//GEN-LAST:event_jTpacienteMouseClicked
+//private void jTpacienteValueChanged(ListSelectionEvent evt) {
+//    HistorialData histo= new HistorialData();
+//    if (!evt.getValueIsAdjusting()) { // Asegura que no se realicen eventos adicionales durante la selección.
+//        int filaSeleccionada = jTpaciente.getSelectedRow();
+//        if (filaSeleccionada != -1) {
+//            DefaultTableModel historialModel = (DefaultTableModel) tablaMedidas.getModel();
+//            
+//            // Supongo que la primera columna de tu tabla contiene el ID del paciente.
+//            int idPacienteSeleccionado = (int) jTpaciente.getValueAt(filaSeleccionada, 0);
+//            
+//            // Llama a un método que obtiene el historial del paciente por ID.
+//            ArrayList<Historial> historialPaciente = histo.obtenerHistorial(idPacienteSeleccionado);
+//            
+//            // Borra el contenido existente en la tabla de historial.
+//            historialModel.setRowCount(0);
+//            
+//            // Agrega los datos del historial del paciente a la tabla de historial.
+//            for (Historial historial : historialPaciente) {
+//                historialModel.addRow(new Object[]{
+//                    historial.getCuello(), historial.getBusto(),
+//                    historial.getBrazo(),historial.getCintura(),historial.getCadera(),
+//historial.getPierna(),historial.getEstatura()                });
+//            }
+//        }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBagregardatos;
     private javax.swing.JButton jBnuevo;
@@ -289,17 +428,16 @@ public class Consulta extends javax.swing.JInternalFrame {
         pacientes = pacienteData.listarPaciente();
         for (Paciente pacientelista : pacientes) {
             model.addRow(new Object[]{pacientelista.getNombre(), pacientelista.getApellido(), pacientelista.getDni()});
-
         }
-    }
-
-    private void llenarTablamedidas() {
-         HistorialData medidasData = new HistorialData();
-        DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
-ArrayList<Historial> medidas = medidasData.obtenerHistorial();
-
-for (Historial medidaslista : medidas) {
-    model.addRow(new Object[]{medidaslista.getCuello(), medidaslista.getBusto(), medidaslista.getBrazo(), medidaslista.getCintura(), medidaslista.getCadera(), medidaslista.getPierna()});
-}
+    }  
+    private void llenarTablaMedidas(int id){
+         HistorialData historialData = new HistorialData();
+        model = (DefaultTableModel) jTpaciente.getModel();
+        ArrayList<Historial> medidas = new ArrayList<>();
+        medidas = historialData.obtenerHistorialdePaciente(id);
+        for (Historial historialpaciente : medidas) {
+            model.addRow(new Object[]{historialpaciente.getCuello(),historialpaciente.getBusto(),
+                historialpaciente.getBrazo(),historialpaciente.getCintura(),historialpaciente.getCadera(),historialpaciente.getPierna(),historialpaciente.getEstatura()});
+        }
     }
 }
