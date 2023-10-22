@@ -10,7 +10,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
 
     public NutricionistaEscritorio() {
         initComponents();
-        int id=0;
+     
     }
 
     @SuppressWarnings("unchecked")

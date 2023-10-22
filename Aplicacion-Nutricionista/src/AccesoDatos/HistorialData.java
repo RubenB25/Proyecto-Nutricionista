@@ -152,25 +152,26 @@ public class HistorialData {
 //
 //        }
    public ArrayList<historialConNombreyApellido> obtenerHistorialesConNombreApellido() { 
-    ArrayList<historialConNombreyApellido> listaHistorial = new ArrayList<>();
+    ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
     try {
         String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro FROM historial AS h " +
-                     "INNER JOIN pacientes AS p ON h.id_paciente = p.id";
+                     "INNER JOIN pacientes AS p ON h.id_paciente = p.id_paciente";
         PreparedStatement psm = conex.prepareStatement(sql);
         ResultSet rs = psm.executeQuery();
         while (rs.next()) {
-            Date fechaRegistroSQL = rs.getDate("fechaRegistro");
-            LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
+           
             String nombre = rs.getString("nombre");
             String apellido = rs.getString("apellido");
             Double pesoActual=rs.getDouble("pesoActual");
+             Date fechaRegistroSQL = rs.getDate("fechaRegistro");
+            LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
             historialConNombreyApellido pacienteHistorial = new historialConNombreyApellido(nombre, apellido, rs.getDouble("pesoActual"), fechaRegistro);
-            listaHistorial.add(pacienteHistorial);
+            listaHistorialConNombreyApellidos.add(pacienteHistorial);
         }
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
     }
-    return listaHistorial;
+    return listaHistorialConNombreyApellidos;
 
     }
    

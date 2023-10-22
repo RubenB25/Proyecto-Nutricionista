@@ -3,6 +3,7 @@ package Vistas;
 
 import AccesoDatos.HistorialData;
 import Entidades.Historial;
+import Entidades.historialConNombreyApellido;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -39,11 +40,11 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Paciente", "Peso", "Fecha Registro"
+                "Nombre", "Apellido", "Peso ", "Fecha Registro"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -58,8 +59,12 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTHistorialConsulta);
         if (jTHistorialConsulta.getColumnModel().getColumnCount() > 0) {
             jTHistorialConsulta.getColumnModel().getColumn(0).setResizable(false);
+            jTHistorialConsulta.getColumnModel().getColumn(0).setHeaderValue("Nombre");
             jTHistorialConsulta.getColumnModel().getColumn(1).setResizable(false);
+            jTHistorialConsulta.getColumnModel().getColumn(1).setHeaderValue("Apellido");
             jTHistorialConsulta.getColumnModel().getColumn(2).setResizable(false);
+            jTHistorialConsulta.getColumnModel().getColumn(2).setHeaderValue("Peso ");
+            jTHistorialConsulta.getColumnModel().getColumn(3).setHeaderValue("Fecha Registro");
         }
 
         jLabel1.setText("Historial Consultas");
@@ -120,9 +125,8 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
     private void llenarTable() {
         HistorialData hd = new HistorialData();
        
-        for (Historial historial : hd.obtenerPacientePorHistorial()) {
-            model.addRow(new Object[]{historial.getIdPaciente(), historial.getPesoActual(), historial.getFechaRegistro()});
-
-        }
+        for (historialConNombreyApellido historial : hd.obtenerHistorialesConNombreApellido()){ 
+            model.addRow(new Object[]{historial.getNombre(), historial.getApellido(),
+                historial.getPesoActual(), historial.getFechaRegistro()});
     }
-}
+}}

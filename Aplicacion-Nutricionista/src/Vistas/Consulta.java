@@ -16,13 +16,13 @@ public class Consulta extends javax.swing.JInternalFrame {
 
     
     DefaultTableModel model;
+    private Object ch;
 
     public Consulta() {
         initComponents();
 //        Consulta con= new Consulta();
 //        FormularioConsulta envia=new FormularioConsulta();
-//        con.setVisible(true);
-//        envia.setVisible(false);
+
         comboDieta();
         String pesoActual=FormularioConsulta.pa;
         jTactualrecibe.setText(FormularioConsulta.pa);
@@ -44,6 +44,7 @@ public class Consulta extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jTactualrecibe = new javax.swing.JTextField();
 
+        setClosable(true);
         setTitle("Medidas de Paciente");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
