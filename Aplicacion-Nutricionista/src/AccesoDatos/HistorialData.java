@@ -97,12 +97,11 @@ public class HistorialData {
             historial.setBrazo(rs.getDouble("brazo"));
             historial.setCadera(rs.getDouble("cadera"));
             historial.setPierna(rs.getDouble("pierna"));
-//            historial.setPesoActual(rs.getDouble("peso_Actual"));
+            historial.setPesoActual(rs.getDouble("pesoActual"));
             historial.setEstatura(rs.getDouble("estatura"));
             historial.setIdDieta(rs.getInt("id_dieta"));
-//            historial.setFechaRegistro(rs.getDate("fecha_registro").toLocalDate());
-//            
-//            
+           historial.setFechaRegistro(rs.getDate("fechaRegistro").toLocalDate());
+           
             System.out.println(rs.getDouble("cuello"));
             System.out.println(rs.getDouble("busto"));
             
