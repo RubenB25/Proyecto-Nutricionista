@@ -15,17 +15,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class Consulta extends javax.swing.JInternalFrame {
  private int id ;
-    private int texto2;
+    private int pa;
     FormularioConsulta envia = new FormularioConsulta();
     DefaultTableModel model;
 
     public Consulta(int id,int texto2) {
          this.id = id;
-        this.texto2 = texto2;
+        this.pa = pa;
         initComponents();
         comboDieta();
         
-        jTactualrecibe.setText(texto2+"");
+        jTactualrecibe.setText(pa+"");
         llenarTablaMedidas(id);
         
         

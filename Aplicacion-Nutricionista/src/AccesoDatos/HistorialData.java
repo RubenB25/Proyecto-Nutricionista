@@ -84,9 +84,10 @@ public class HistorialData {
         String sql = "SELECT * FROM historial WHERE id_paciente = ?";
         PreparedStatement psm = conex.prepareStatement(sql);
         psm.setInt(1, id); // Establece el valor del parámetro ? con el ID del paciente.
-
+        System.out.println("Esta en el try");
         ResultSet rs = psm.executeQuery();
         while (rs.next()) {
+            System.out.println("Estoy en el while");
             Historial historial = new Historial();
             Paciente paciente = new Paciente();
             paciente.setIdPaciente(id); // Establece el ID del paciente
@@ -96,15 +97,22 @@ public class HistorialData {
             historial.setBrazo(rs.getDouble("brazo"));
             historial.setCadera(rs.getDouble("cadera"));
             historial.setPierna(rs.getDouble("pierna"));
-            historial.setPesoActual(rs.getDouble("peso_Actual"));
+//            historial.setPesoActual(rs.getDouble("peso_Actual"));
             historial.setEstatura(rs.getDouble("estatura"));
             historial.setIdDieta(rs.getInt("id_dieta"));
-            historial.setFechaRegistro(rs.getDate("fecha_registro").toLocalDate());
+//            historial.setFechaRegistro(rs.getDate("fecha_registro").toLocalDate());
+//            
+//            
+            System.out.println(rs.getDouble("cuello"));
+            System.out.println(rs.getDouble("busto"));
+            
             listaHistorial.add(historial);
         }
         psm.close();
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Error");
+        System.out.println("Esta en catch");
+        System.out.println(e.getCause());
     }
     return listaHistorial;
 }  

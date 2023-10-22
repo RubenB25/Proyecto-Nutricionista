@@ -203,9 +203,12 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBmedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmedidaActionPerformed
+HistorialData hd= new HistorialData();
+int id = 4;
+hd.obtenerHistorialdePaciente(id);
 //         idpf=id;
 //         
-//        Consulta envia = new Consulta(idpf);
+//        Consulta envia = new Consulta(idpf,);
 //        envia.setVisible(true);
 //        this.setVisible(false);
 //        jTpesoActual.getText()=String texto2;
