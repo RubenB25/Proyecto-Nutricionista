@@ -23,9 +23,9 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     public FormularioConsulta() {
         initComponents();
         ch=new Consulta();
-        comboPaciente();
-        
+        comboPaciente();    
     }
+    
     public static String pa;
     public static int idpf;
 
@@ -203,6 +203,14 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
      FormularioPaciente fp= new FormularioPaciente();
+     
+        jDPescritorio.removeAll();
+        jDPescritorio.repaint();
+        jDPescritorio.add(fp);
+        fp.moveToFront();
+        fp.setVisible(true);
+//     fp.setVisible(true);
+//     this.setVisible(false);
 
    
     }//GEN-LAST:event_jBNuevoActionPerformed
@@ -212,20 +220,25 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBmedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmedidaActionPerformed
-     try {
-//      Consulta ch = new Consulta();
+     HistorialData hd = new HistorialData();
+        Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
+        idpf = pacienteSeleccionado.getIdPaciente();
+        pa = jTpesoActual.getText();
+        try {
+  Consulta ch = new Consulta();
+   jDPescritorio.removeAll();
+        jDPescritorio.repaint();
+        jDPescritorio.add(ch);
+        ch.moveToFront();
+        ch.setVisible(true);
 //        jDPescritorio.removeAll();
 //        jDPescritorio.repaint();
 //        jDPescritorio.add(ch);
 //        ch.moveToFront();
 //        ch.setVisible(true);
-            ch.setVisible(true);
+//            ch.setVisible(true);
  
-        HistorialData hd = new HistorialData();
-        Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
-        idpf = pacienteSeleccionado.getIdPaciente();
-        pa = jTpesoActual.getText();
-         System.out.println(" entro al try "+ idpf + pa);
+       
    } catch (Exception e) {
         e.printStackTrace();
        JOptionPane.showMessageDialog(this, "Error al abrir la vista Consulta: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
