@@ -358,7 +358,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDPescritorio;
+    public static javax.swing.JDesktopPane jDPescritorio;
     private javax.swing.JMenuItem jHistorial;
     private javax.swing.JMenuItem jMIformularioPaciente;
     private javax.swing.JMenuItem jMedida;

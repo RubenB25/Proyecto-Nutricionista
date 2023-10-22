@@ -19,7 +19,10 @@ public class Consulta extends javax.swing.JInternalFrame {
 
     public Consulta() {
         initComponents();
-     
+//        Consulta con= new Consulta();
+//        FormularioConsulta envia=new FormularioConsulta();
+//        con.setVisible(true);
+//        envia.setVisible(false);
         comboDieta();
         String pesoActual=FormularioConsulta.pa;
         jTactualrecibe.setText(FormularioConsulta.pa);
@@ -163,7 +166,7 @@ public class Consulta extends javax.swing.JInternalFrame {
             Paciente pacienteSeleccionado = new Paciente();
             int idDieta = jCbDIETA.getSelectedIndex();
             int id = pacienteSeleccionado.getIdPaciente();
-            double pesoActual = Double.parseDouble(jTactualrecibe.getText());
+            double pesoActual = Double.parseDouble(FormularioConsulta.jTpesoActual.getText());
             LocalDate fechaRegistro = LocalDate.now(); // Asigna la fecha actual o la fecha que desees
 
             // Recorre las filas de la tabla de medidas y guarda los datos en la tabla de historial
