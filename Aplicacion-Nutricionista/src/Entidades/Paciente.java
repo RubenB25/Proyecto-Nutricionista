@@ -19,7 +19,7 @@ public class Paciente {
     private double pesoDeseado;
     private int idPaciente;
     private boolean estado;
-
+private double estatura;
     public Paciente() {
     }
 
@@ -28,9 +28,7 @@ public class Paciente {
         this.apellido = apellido;
     }
 
-    public Paciente(String nombre, String apellido, String dni, String domicilio,
-            String celular, LocalDate fechaNac, int edad, double pesoActual,
-            double pesoDeseado, boolean estado) {
+    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, boolean estado, double estatura) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -41,11 +39,10 @@ public class Paciente {
         this.pesoActual = pesoActual;
         this.pesoDeseado = pesoDeseado;
         this.estado = estado;
+        this.estatura = estatura;
     }
 
-    public Paciente(String nombre, String apellido, String dni, String domicilio,
-            String celular, LocalDate fechaNac, int edad, double pesoActual,
-            double pesoDeseado, int idPaciente, boolean estado) {
+    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, int idPaciente, boolean estado, double estatura) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -57,6 +54,7 @@ public class Paciente {
         this.pesoDeseado = pesoDeseado;
         this.idPaciente = idPaciente;
         this.estado = estado;
+        this.estatura = estatura;
     }
 
     public String getNombre() {
@@ -146,6 +144,15 @@ public class Paciente {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    public double getEstatura() {
+        return estatura;
+    }
+
+    public void setEstatura(double estatura) {
+        this.estatura = estatura;
+    }
+
 
     @Override
     public String toString() {

@@ -38,7 +38,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTpesoActual = new javax.swing.JTextField();
-        jTPesoDeseado = new javax.swing.JTextField();
+        jTestatura = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTFedad = new javax.swing.JTextField();
@@ -46,6 +46,8 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         jBguardar = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
         jBguardarCambios = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jTPesoDeseado1 = new javax.swing.JTextField();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -72,10 +74,10 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         jLabel6.setText("Peso actual:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
 
-        jLabel7.setText("Peso deseado:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        jLabel7.setText("Estatura:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, -1, -1));
         jPanel1.add(jTpesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 312, 60, -1));
-        jPanel1.add(jTPesoDeseado, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 352, 60, -1));
+        jPanel1.add(jTestatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 60, -1));
 
         jLabel8.setText("Fecha nacimiento:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
@@ -108,6 +110,10 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jBguardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
+
+        jLabel10.setText("Peso deseado:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        jPanel1.add(jTPesoDeseado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 352, 60, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,13 +212,13 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
             int edad = Integer.parseInt(jTFedad.getText());
             LocalDate fechaNac = jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             double pesoAct = Double.parseDouble(jTpesoActual.getText());
-            double pesoDes = Double.parseDouble(jTPesoDeseado.getText());
-
+            double pesoDes = Double.parseDouble(jTestatura.getText());
+            double estatura = Double.parseDouble(jTestatura.getText());
             if (validarNombre(nombre) && validarApellido(apellido) && validarDocumento(documento)
                     && validarDomicilio(domicilio) && validarCelular(celular) && validarEdadYFecha(fechaNac, edad)
                     && validarEdad(edad) && validarPesoActual(pesoAct) && validarPesoDeseado(pesoDes)) {
-                paciente = new Paciente(nombre, apellido, documento, domicilio, celular,
-                        fechaNac, edad, pesoAct, pesoDes, true);
+              //  paciente = new Paciente(nombre, apellido, documento, domicilio, celular,
+               //         fechaNac, edad, pesoAct, pesoDes, true, estatura);
                 pacienteData.guardarPaciente(paciente);
                 limpiarCampos();
             } else {
@@ -234,13 +240,13 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
             int edad = Integer.parseInt(jTFedad.getText());
             LocalDate fechaNac = jDCfechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             double pesoAct = Double.parseDouble(jTpesoActual.getText());
-            double pesoDes = Double.parseDouble(jTPesoDeseado.getText());
-
+            double pesoDes = Double.parseDouble(jTestatura.getText());
+double estatura = Double.parseDouble(jTestatura.getText());
             if (validarNombre(nombre) && validarApellido(apellido) && validarDocumento(documento)
                     && validarDomicilio(domicilio) && validarCelular(celular) && validarEdadYFecha(fechaNac, edad)
                     && validarEdad(edad) && validarPesoActual(pesoAct) && validarPesoDeseado(pesoDes)) {
-                paciente = new Paciente(nombre, apellido, documento, domicilio, celular,
-                        fechaNac, edad, pesoAct, pesoDes, true);
+            paciente = new Paciente(nombre, apellido, documento, domicilio, celular,
+                        fechaNac, edad, pesoAct, pesoDes, true,estatura);
                 pacienteData.modificarPaciente(paciente);
                 limpiarCampos();
             } else {
@@ -257,7 +263,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
 
     public boolean verificarCamposVacios() {
         try {
-            return !(jTFedad.getText().isEmpty() || jTPesoDeseado.getText().isEmpty() || jTapellido.getText().isEmpty()
+            return !(jTFedad.getText().isEmpty() || jTestatura.getText().isEmpty() || jTapellido.getText().isEmpty()
                     || jTcelular.getText().isEmpty() || jTdocumento.getText().isEmpty() || jTdomicilio.getText().isEmpty()
                     || jTnombre.getText().isEmpty() || jTapellido.getText().isEmpty() || jDCfechaNacimiento.getDate() == null);
         } catch (NullPointerException e) {
@@ -275,7 +281,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
     public void limpiarCampos() {
         jTFedad.setText("");
         jTdocumento.setText("");
-        jTPesoDeseado.setText("");
+        jTestatura.setText("");
         jTdomicilio.setText("");
         jTapellido.setText("");
         jTnombre.setText("");
@@ -287,7 +293,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
     public void llenarCampos(Paciente paciente) {
         jTFedad.setText(String.valueOf(paciente.getEdad()));
         jTdocumento.setText(paciente.getDni());
-        jTPesoDeseado.setText(String.valueOf(paciente.getPesoDeseado()));
+        jTestatura.setText(String.valueOf(paciente.getPesoDeseado()));
         jTdomicilio.setText(paciente.getDomicilio());
         jTapellido.setText(paciente.getApellido());
         jTnombre.setText(paciente.getNombre());
@@ -303,6 +309,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBsalir;
     private com.toedter.calendar.JDateChooser jDCfechaNacimiento;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -313,11 +320,12 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTFedad;
-    private javax.swing.JTextField jTPesoDeseado;
+    private javax.swing.JTextField jTPesoDeseado1;
     private javax.swing.JTextField jTapellido;
     private javax.swing.JTextField jTcelular;
     private javax.swing.JTextField jTdocumento;
     private javax.swing.JTextField jTdomicilio;
+    private javax.swing.JTextField jTestatura;
     private javax.swing.JTextField jTnombre;
     private javax.swing.JTextField jTpesoActual;
     // End of variables declaration//GEN-END:variables

@@ -56,26 +56,26 @@ public class HistorialData {
         }
     }
 
-    public void guardarHistorial(int id, LocalDate fecha, double peso) {
-        String sql = "Insert into historial (id_paciente, peso_actual, fecha_registro) values (?,?,?)";
-        try {
-            PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-
-            ps.setInt(1, id);
-            ps.setDouble(2, peso);
-            ps.setDate(3, Date.valueOf(fecha));
-            ps.executeUpdate();
-            ResultSet resultado = ps.getGeneratedKeys();
-
-            if (resultado.next()) {
-                JOptionPane.showMessageDialog(null, "Historial  agregado con exito");
-            }
-            ps.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Historial %%%%%%" + e.getMessage());
-        }
-
-    }
+//    public void guardarHistorial(int id, LocalDate fecha, double peso) {
+//        String sql = "Insert into historial (id_paciente, peso_actual, fecha_registro) values (?,?,?)";
+//        try {
+//            PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+//
+//            ps.setInt(1, id);
+//            ps.setDouble(2, peso);
+//            ps.setDate(3, Date.valueOf(fecha));
+//            ps.executeUpdate();
+//            ResultSet resultado = ps.getGeneratedKeys();
+//
+//            if (resultado.next()) {
+//                JOptionPane.showMessageDialog(null, "Historial  agregado con exito");
+//            }
+//            ps.close();
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Historial %%%%%%" + e.getMessage());
+//        }
+//
+//    }
 
     public ArrayList<Historial> obtenerHistorialdePaciente(int id) {
       
@@ -135,22 +135,22 @@ public class HistorialData {
 }     
 //        
 
-//    public void guardarHistorial(Historial rs) {
-//        try {
-//            String sql = "INSERT INTO historial (id_Paciente) "
-//    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(), rs.getPierna() rs.getEstatura(), rs.getIdDieta()";
-//            PreparedStatement ps = conex.prepareStatement(sql);
-//           
-//            int filasAfectadas = ps.executeUpdate ();
-//
-//            if (filasAfectadas > 0) {
-//                JOptionPane.showMessageDialog(null, "Historial guardado con éxito.");
-//            } else {
-//                System.out.println("No se pudo insertar ningún dato.");
-//            }
-//        } catch (SQLException e) {
-//
-//        }
+    public void guardarHistorial(Historial rs) {
+        try {
+            String sql = "INSERT INTO historial (id_Paciente) "
+    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(), rs.getPierna() rs.getEstatura(), rs.getIdDieta(), rs.getFechaRegistro";
+            PreparedStatement ps = conex.prepareStatement(sql);
+           
+            int filasAfectadas = ps.executeUpdate ();
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Historial guardado con éxito.");
+            } else {
+                System.out.println("No se pudo insertar ningún dato.");
+            }
+        } catch (SQLException e) {
+
+        }}
    public ArrayList<historialConNombreyApellido> obtenerHistorialesConNombreApellido() { 
     ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
     try {

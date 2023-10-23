@@ -25,8 +25,8 @@ public class PacienteData {
 
     public void guardarPaciente(Paciente paciente) {
         String sql = "INSERT INTO pacientes (nombre, apellido, dni, "
-                + "domicilio, celular, fecha_nacimiento, edad, peso_actual, peso_deseado, estado) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,1)";
+                + "domicilio, celular, fecha_nacimiento, edad, peso_actual, peso_deseado, estado, estatura) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,1,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, paciente.getNombre());
@@ -39,6 +39,7 @@ public class PacienteData {
             ps.setDouble(8, paciente.getPesoActual());
             ps.setDouble(9, paciente.getPesoDeseado());
             ps.setBoolean(10, paciente.isEstado());
+            ps.setDouble(11, paciente.getEstatura());
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
@@ -86,7 +87,7 @@ public class PacienteData {
 
     public Paciente buscarPacientePorID(int id) {
         Paciente paciente = null;
-        String sql = "select  nombre, apellido, peso_actual, peso_deseado, estado "
+        String sql = "select  nombre, apellido, peso_actual, peso_deseado, estado, estatura "
                 + "from pacientes where id_paciente= ?";
         PreparedStatement ps = null;
         try {
@@ -102,6 +103,7 @@ public class PacienteData {
                 paciente.setPesoActual(resultado.getDouble("peso_actual"));
                 paciente.setPesoDeseado(resultado.getDouble("peso_deseado"));
                 paciente.setEstado(resultado.getBoolean("estado"));
+                paciente.setEstatura(resultado.getDouble("estatura"));
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el Paciente");
                 ps.close();
@@ -189,6 +191,7 @@ public class PacienteData {
                 paciente.setDni(rs.getString("dni"));
                 paciente.setCelular(rs.getString("celular"));
                 paciente.setEstado(rs.getBoolean("estado"));
+                paciente.setEstatura(rs.getDouble("estatura"));
                 pacientes.add(paciente);
             }
             psa.close();

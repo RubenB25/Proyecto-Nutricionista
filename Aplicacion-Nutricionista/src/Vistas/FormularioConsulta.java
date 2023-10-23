@@ -28,7 +28,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     
     public static String pa;
     public static int idpf;
-
+public static String nya;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,10 +209,6 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         jDPescritorio.add(fp);
         fp.moveToFront();
         fp.setVisible(true);
-//     fp.setVisible(true);
-//     this.setVisible(false);
-
-   
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
@@ -220,31 +216,28 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBmedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmedidaActionPerformed
-     HistorialData hd = new HistorialData();
+        HistorialData hd = new HistorialData();
         Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
         idpf = pacienteSeleccionado.getIdPaciente();
         pa = jTpesoActual.getText();
+        nya=pacienteSeleccionado.getNombre() + " " + pacienteSeleccionado.getApellido();
+        if (pa.isEmpty() || jTestatura.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Debes cargar los datos en todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+    } else {
         try {
-  Consulta ch = new Consulta();
-   jDPescritorio.removeAll();
-        jDPescritorio.repaint();
-        jDPescritorio.add(ch);
-        ch.moveToFront();
-        ch.setVisible(true);
-//        jDPescritorio.removeAll();
-//        jDPescritorio.repaint();
-//        jDPescritorio.add(ch);
-//        ch.moveToFront();
-//        ch.setVisible(true);
-//            ch.setVisible(true);
- 
-       
-   } catch (Exception e) {
-        e.printStackTrace();
-       JOptionPane.showMessageDialog(this, "Error al abrir la vista Consulta: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
-    }//GEN-LAST:event_jBmedidaActionPerformed
+            Consulta ch = new Consulta();
+            jDPescritorio.removeAll();
+            jDPescritorio.repaint();
+            jDPescritorio.add(ch);
+            ch.moveToFront();
+            ch.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al abrir la vista Consulta: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+    }//GEN-LAST:event_jBmedidaActionPerformed
+    
     private void jBimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBimcActionPerformed
         try {
             double peso = Double.parseDouble(jTpesoActual.getText());
@@ -280,6 +273,8 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     private void comboPaciente() {
         PacienteData pd = new PacienteData();
         ArrayList<Paciente> pacientes = pd.listarPaciente();
+    Paciente seleccionarPaciente = new Paciente("-1","- Seleccione un Paciente -");
+    jCbpaciente.insertItemAt(seleccionarPaciente,0);
 
         for (Paciente pac : pacientes) {
             jCbpaciente.addItem(pac);
@@ -288,7 +283,9 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
         Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
      int    idps = pacienteSeleccionado.getIdPaciente();
-        System.out.println(" paciente seleccionado " + idps);
+   String dato= String.valueOf(pacienteSeleccionado.getEstatura());
+     jTestatura.setText(dato);
+        System.out.println(" paciente seleccionado " + idps + " y la estatura es  "+ dato);
     }//GEN-LAST:event_jCbpacienteActionPerformed
 
 

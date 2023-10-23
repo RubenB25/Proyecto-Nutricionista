@@ -6,30 +6,34 @@ import AccesoDatos.PacienteData;
 import Entidades.Dieta;
 import Entidades.Historial;
 import Entidades.Paciente;
+import static Vistas.NutricionistaEscritorio.jDPescritorio;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 public class Consulta extends javax.swing.JInternalFrame {
-
     
     DefaultTableModel model;
     private Object ch;
-
+    
     public Consulta() {
         initComponents();
 //        Consulta con= new Consulta();
 //        FormularioConsulta envia=new FormularioConsulta();
 
         comboDieta();
-        String pesoActual=FormularioConsulta.pa;
+        String pesoActual = FormularioConsulta.pa;
         jTactualrecibe.setText(FormularioConsulta.pa);
-
+        jLnombre.setText(FormularioConsulta.nya);
         llenarTablaMedidas(FormularioConsulta.idpf);
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,6 +47,8 @@ public class Consulta extends javax.swing.JInternalFrame {
         jCbDIETA = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jTactualrecibe = new javax.swing.JTextField();
+        jBInsertar = new javax.swing.JButton();
+        jLnombre = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Medidas de Paciente");
@@ -83,7 +89,7 @@ public class Consulta extends javax.swing.JInternalFrame {
         }
 
         jBagregardatos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBagregardatos.setText("AGREGAR DATOS");
+        jBagregardatos.setText("Guardar Datos");
         jBagregardatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBagregardatosActionPerformed(evt);
@@ -94,43 +100,59 @@ public class Consulta extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Peso Actual:");
 
+        jBInsertar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jBInsertar.setText("Insertar datos");
+        jBInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBInsertarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPConsultaLayout = new javax.swing.GroupLayout(jPConsulta);
         jPConsulta.setLayout(jPConsultaLayout);
         jPConsultaLayout.setHorizontalGroup(
             jPConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPConsultaLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jLabel7)
-                .addGap(28, 28, 28)
-                .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(62, 62, 62)
+                .addComponent(jTactualrecibe, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBagregardatos)
-                .addGap(116, 116, 116))
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
             .addGroup(jPConsultaLayout.createSequentialGroup()
                 .addGroup(jPConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPConsultaLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1)
-                        .addGap(62, 62, 62)
-                        .addComponent(jTactualrecibe, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(119, 119, 119)
+                        .addComponent(jBagregardatos)
+                        .addGap(144, 144, 144)
+                        .addComponent(jBInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPConsultaLayout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(jLnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         jPConsultaLayout.setVerticalGroup(
             jPConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPConsultaLayout.createSequentialGroup()
-                .addGap(107, 107, 107)
+                .addGap(23, 23, 23)
+                .addComponent(jLnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(jPConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTactualrecibe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(jTactualrecibe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGroup(jPConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBInsertar)
                     .addComponent(jBagregardatos))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,7 +182,7 @@ public class Consulta extends javax.swing.JInternalFrame {
     private void jBagregardatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagregardatosActionPerformed
         DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
 
-        //  int id = pacienteSeleccionado.getIdPaciente();
+        // int id = pacienteSeleccionado.getIdPaciente();
         int rowCount = model.getRowCount();
         if (rowCount > 0) {
             HistorialData historialPaciente = new HistorialData();
@@ -189,23 +211,23 @@ public class Consulta extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "La tabla de medidas está vacía.");
         }
-
+        
     }
-
+    
     private void comboDieta() {
         DietaData dieta = new DietaData();
-
+        
         ArrayList<Dieta> dietas = dieta.listarDietas();
         for (Dieta dietaIndice : dietas) {
             jCbDIETA.addItem(dietaIndice);
         }
-
+        
     }
-
+    
     private void jTBcustomersMouseClicked(java.awt.event.MouseEvent evt) {
-
+        
     }
-
+    
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
     }//GEN-LAST:event_jBagregardatosActionPerformed
@@ -214,16 +236,46 @@ public class Consulta extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_tablaMedidasMouseClicked
 
+    private void jBInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInsertarActionPerformed
+
+//        DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
+//        model.addRow(new Object[]{"", "", "", "", "", "", "", "", ""}); // Agregar fila en blanco
+//        for (int i = 0; i < model.getColumnCount(); i++) {
+//            TableColumn column = tablaMedidas.getColumnModel().getColumn(i);
+//            DefaultCellEditor editor = new DefaultCellEditor(new JTextField());
+//            column.setCellEditor(editor);
+//            column.getCellEditor();
+//            //tablaMedidas.enableInputMethods(true);
+         try {
+            Medidas mi = new Medidas();
+            jDPescritorio.removeAll();
+            jDPescritorio.repaint();
+            jDPescritorio.add(mi);
+            mi.moveToFront();
+            mi.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al abrir la vista Consulta: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {
+        // Guarda los datos en el historial
+        // Después de guardar, deshabilita la tabla
+    }//GEN-LAST:event_jBInsertarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBInsertar;
     private javax.swing.JButton jBagregardatos;
     private javax.swing.JComboBox<Dieta> jCbDIETA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLnombre;
     public static javax.swing.JPanel jPConsulta;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTactualrecibe;
-    private javax.swing.JTable tablaMedidas;
+    public static javax.swing.JTable tablaMedidas;
     // End of variables declaration//GEN-END:variables
 
     private void llenarTablaMedidas(int id) {
@@ -232,9 +284,9 @@ public class Consulta extends javax.swing.JInternalFrame {
 
         // Obtener el historial de medidas para el paciente con el ID proporcionado
         ArrayList<Historial> medidas = historialData.obtenerHistorialdePaciente(idPaciente);
-
+        
         model = (DefaultTableModel) tablaMedidas.getModel();
-
+        
         for (Historial paHistorial : medidas) {
             model.addRow(new Object[]{
                 paHistorial.getCuello(),
@@ -247,6 +299,6 @@ public class Consulta extends javax.swing.JInternalFrame {
                 paHistorial.getFechaRegistro()
             });
         }
-
+        
     }
 }
