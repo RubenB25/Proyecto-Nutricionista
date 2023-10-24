@@ -20,7 +20,7 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
     public HistorialConsulta() {
         initComponents();
         model = (DefaultTableModel) jTHistorialConsulta.getModel();
-        llenarTable();
+       
     }
 
 
@@ -111,7 +111,7 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
 
     private void jTHistorialConsultaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTHistorialConsultaPropertyChange
         // TODO add your handling code here:
-        llenarTable();
+        llenarTabla();
     }//GEN-LAST:event_jTHistorialConsultaPropertyChange
 
 
@@ -122,7 +122,7 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTHistorialConsulta;
     // End of variables declaration//GEN-END:variables
 
-    private void llenarTable() {
+    private void llenarTabla() {
         HistorialData hd = new HistorialData();
        
         for (historialConNombreyApellido historial : hd.obtenerHistorialesConNombreApellido()){ 

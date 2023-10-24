@@ -90,7 +90,7 @@ public class HistorialData {
         return listaHistorial;
     }
 
-    public ArrayList<Historial> obtenerHistorialPorID(int ID) {
+    public ArrayList<Historial> ListaHistorialobtenerHistorialPorID(int ID) {
         ArrayList<Historial> listaHistorial = new ArrayList<>();
         try {
             String sql = "SELECT h.id_paciente, h.pesoActual, h.fechaRegistro FROM historial AS h";

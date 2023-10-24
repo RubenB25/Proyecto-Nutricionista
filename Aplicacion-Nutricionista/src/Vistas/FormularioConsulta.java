@@ -113,6 +113,14 @@ private DefaultTableModel model;
         jLabel4.setText("Estatura:");
 
         tablaMedidas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tablaMedidas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cuello", "Busto", "Brazo", "Cintura", "Cadera", "Pierna", "Fecha Registro"
+            }
+        ));
         jScrollPane1.setViewportView(tablaMedidas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
