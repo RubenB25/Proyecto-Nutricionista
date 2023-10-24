@@ -279,57 +279,57 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMregistrarconsultaActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-         ModificarDieta md = new ModificarDieta();
-        // Verifica si el JInternalFrame ya está en el JDesktopPane
-        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
-        boolean estaAbierta = false;
-
-        for (JInternalFrame frame : frames) {
-            if (frame.getClass() == md.getClass()) {
-                estaAbierta = true;
-                try {
-                    frame.setSelected(true);
-                } catch (java.beans.PropertyVetoException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
-        }
-
-        if (!estaAbierta) {
-            jDPescritorio.add(md);
-            Dimension desktopSize = jDPescritorio.getSize();
-            Dimension frameSize = md.getSize();
-            md.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            md.setVisible(true);
-        }
+//         ModificarDieta md = new ModificarDieta();
+//        // Verifica si el JInternalFrame ya está en el JDesktopPane
+//        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+//        boolean estaAbierta = false;
+//
+//        for (JInternalFrame frame : frames) {
+//            if (frame.getClass() == md.getClass()) {
+//                estaAbierta = true;
+//                try {
+//                    frame.setSelected(true);
+//                } catch (java.beans.PropertyVetoException e) {
+//                    e.printStackTrace();
+//                }
+//                break;
+//            }
+//        }
+//
+//        if (!estaAbierta) {
+//            jDPescritorio.add(md);
+//            Dimension desktopSize = jDPescritorio.getSize();
+//            Dimension frameSize = md.getSize();
+//            md.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+//            md.setVisible(true);
+//        }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMedidaActionPerformed
-        Consulta ch = new Consulta();
-        // Verifica si el JInternalFrame ya está en el JDesktopPane
-        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
-        boolean estaAbierta = false;
-
-        for (JInternalFrame frame : frames) {
-            if (frame.getClass() == ch.getClass()) {
-                estaAbierta = true;
-                try {
-                    frame.setSelected(true);
-                } catch (java.beans.PropertyVetoException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
-        }
-
-        if (!estaAbierta) {
-            jDPescritorio.add(ch);
-            Dimension desktopSize = jDPescritorio.getSize();
-            Dimension frameSize = ch.getSize();
-            ch.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            ch.setVisible(true);
-        }
+//        Consulta ch = new Consulta();
+//        // Verifica si el JInternalFrame ya está en el JDesktopPane
+//        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+//        boolean estaAbierta = false;
+//
+//        for (JInternalFrame frame : frames) {
+//            if (frame.getClass() == ch.getClass()) {
+//                estaAbierta = true;
+//                try {
+//                    frame.setSelected(true);
+//                } catch (java.beans.PropertyVetoException e) {
+//                    e.printStackTrace();
+//                }
+//                break;
+////            }
+//        }
+//
+//        if (!estaAbierta) {
+//            jDPescritorio.add(ch);
+//            Dimension desktopSize = jDPescritorio.getSize();
+//            Dimension frameSize = ch.getSize();
+//            ch.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+//            ch.setVisible(true);
+//        }
     }//GEN-LAST:event_jMedidaActionPerformed
 
     public static void main(String args[]) {

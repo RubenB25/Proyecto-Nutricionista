@@ -71,15 +71,19 @@ public class HistorialData {
                 paciente.setIdPaciente(id); // Establece el ID del paciente
                 historial.setCuello(rs.getDouble("cuello"));
                 historial.setBusto(rs.getDouble("busto"));
+                   System.out.println("Estoy en el while1");
                 historial.setCintura(rs.getDouble("cintura"));
                 historial.setBrazo(rs.getDouble("brazo"));
                 historial.setCadera(rs.getDouble("cadera"));
                 historial.setPierna(rs.getDouble("pierna"));
+                   System.out.println("Estoy en el while2");
                 historial.setPesoActual(rs.getDouble("pesoActual"));
                 historial.setEstatura(rs.getDouble("estatura"));
                 historial.setIdDieta(rs.getInt("id_dieta"));
+                   System.out.println("Estoy en el whileeeeeeeeeeeeee");
                 historial.setFechaRegistro(rs.getDate("fechaRegistro").toLocalDate());
                 listaHistorial.add(historial);
+                   System.out.println("Estoy en el whileppppppppppp"); 
             }
             psm.close();
         } catch (Exception e) {
