@@ -27,7 +27,7 @@ public class HistorialData {
     }
 
     public void nuevoHistorial(Historial historial) {
-
+LocalDate fechaRegistro = LocalDate.now();
         String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna,estatura, id_dieta, pesoActual,fechaRegistro)"
                 + "VALUES (?, ?, ?, ?,?,?,?,?,?,?,?)";
         try {
@@ -42,7 +42,8 @@ public class HistorialData {
             ps.setDouble(8, historial.getEstatura());
             ps.setDouble(9, historial.getIdDieta());
             ps.setDouble(10, historial.getPesoActual());
-            ps.setDate(11, Date.valueOf(historial.getFechaRegistro()));
+            ps.setDate(11, Date.valueOf(fechaRegistro));
+           
 
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
@@ -147,6 +148,7 @@ public class HistorialData {
                 Double pesoActual = rs.getDouble("pesoActual");
                 Date fechaRegistroSQL = rs.getDate("fechaRegistro");
                 LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
+                System.out.println("sql   "+fechaRegistro);
                 historialConNombreyApellido pacienteHistorial = new historialConNombreyApellido(nombre, apellido, rs.getDouble("pesoActual"), fechaRegistro);
                 listaHistorialConNombreyApellidos.add(pacienteHistorial);
             }

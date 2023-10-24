@@ -23,13 +23,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class FormularioConsulta extends javax.swing.JInternalFrame {
 
-    Double cuellopS,bustopS,brazoS,cinturaS,caderaS,piernaS,estaturaS,PesoActual;
+    Double cuellopS, bustopS, brazoS, cinturaS, caderaS, piernaS, estaturaS, PesoActual;
     int idDieta;
+    LocalDate fechaActual;
     private DefaultTableModel model;
 
     public FormularioConsulta() {
         initComponents();
-      
+
         comboPaciente();
         comboDieta();
         SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd/MM/yyyy");
@@ -392,28 +393,28 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
         try {
-      
-HistorialData historialData = new HistorialData();
-       cuellopS=Double.parseDouble(jTCuello.getText());
-       bustopS=Double.parseDouble(jTBusto.getText());
-       brazoS=Double.parseDouble(jTBrazo.getText());
-       cinturaS=Double.parseDouble(jTCintura.getText());
-       caderaS=Double.parseDouble(jTCadera.getText());
-       piernaS=Double.parseDouble(jTPierna.getText());
-    
-       Historial historialguarda = new Historial(idpaciente,cuellopS,bustopS,cinturaS,brazoS,caderaS,piernaS, estatura,idDieta,pesoActual, fecha);
-        
-           historialData.nuevoHistorial(historialguarda); 
+
+            HistorialData historialData = new HistorialData();
+            cuellopS = Double.parseDouble(jTCuello.getText());
+            bustopS = Double.parseDouble(jTBusto.getText());
+            brazoS = Double.parseDouble(jTBrazo.getText());
+            cinturaS = Double.parseDouble(jTCintura.getText());
+            caderaS = Double.parseDouble(jTCadera.getText());
+            piernaS = Double.parseDouble(jTPierna.getText());
+           // fechaActual= LocalDate 
+            Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS, caderaS, piernaS, estatura, idDieta, pesoActual);
+            System.out.println("datos a guardar "+ idpaciente +" "+ cuellopS+ " "+ bustopS+ " "+ cinturaS +" " +  brazoS +" " + caderaS +" " + piernaS +" "+ estatura + " " +idDieta +" " +pesoActual + " "+ fecha );
+            historialData.nuevoHistorial(historialguarda);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al querer guardar el Historial: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-}
+        }
     }//GEN-LAST:event_jBguardarActionPerformed
 
     private void jCbDIETAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbDIETAActionPerformed
         // TODO add your handling code here:
-         Dieta dietaSeleccionada = (Dieta) jCbDIETA.getSelectedItem();
+        Dieta dietaSeleccionada = (Dieta) jCbDIETA.getSelectedItem();
         idDieta = dietaSeleccionada.getIdDieta();
-      
+
     }//GEN-LAST:event_jCbDIETAActionPerformed
     private void comboDieta() {
         DietaData dieta = new DietaData();
