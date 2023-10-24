@@ -28,7 +28,7 @@ public class HistorialData {
 
     public void nuevoHistorial(Historial historial) {
 
-        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna, estatura, id_dieta, pesoActual, fechaRegistro)"
+        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna,estatura, id_dieta, pesoActual,fechaRegistro)"
                 + "VALUES (?, ?, ?, ?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
@@ -56,92 +56,68 @@ public class HistorialData {
         }
     }
 
-//    public void guardarHistorial(int id, LocalDate fecha, double peso) {
-//        String sql = "Insert into historial (id_paciente, peso_actual, fecha_registro) values (?,?,?)";
-//        try {
-//            PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-//
-//            ps.setInt(1, id);
-//            ps.setDouble(2, peso);
-//            ps.setDate(3, Date.valueOf(fecha));
-//            ps.executeUpdate();
-//            ResultSet resultado = ps.getGeneratedKeys();
-//
-//            if (resultado.next()) {
-//                JOptionPane.showMessageDialog(null, "Historial  agregado con exito");
-//            }
-//            ps.close();
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Historial %%%%%%" + e.getMessage());
-//        }
-//
-//    }
-
     public ArrayList<Historial> obtenerHistorialdePaciente(int id) {
-      
-       ArrayList<Historial> listaHistorial = new ArrayList();
-    try {
-        String sql = "SELECT * FROM historial WHERE id_paciente = ?";
-        PreparedStatement psm = conex.prepareStatement(sql);
-        psm.setInt(1, id); // Establece el valor del parámetro ? con el ID del paciente.
-        System.out.println("Esta en el try");
-        ResultSet rs = psm.executeQuery();
-        while (rs.next()) {
-            System.out.println("Estoy en el while");
-            Historial historial = new Historial();
-            Paciente paciente = new Paciente();
-            paciente.setIdPaciente(id); // Establece el ID del paciente
-            historial.setCuello(rs.getDouble("cuello"));
-            historial.setBusto(rs.getDouble("busto"));
-            historial.setCintura(rs.getDouble("cintura"));
-            historial.setBrazo(rs.getDouble("brazo"));
-            historial.setCadera(rs.getDouble("cadera"));
-            historial.setPierna(rs.getDouble("pierna"));
-            historial.setPesoActual(rs.getDouble("pesoActual"));
-            historial.setEstatura(rs.getDouble("estatura"));
-            historial.setIdDieta(rs.getInt("id_dieta"));
-           historial.setFechaRegistro(rs.getDate("fechaRegistro").toLocalDate());
-           
-            System.out.println(rs.getDouble("cuello"));
-            System.out.println(rs.getDouble("busto"));
-            
-            listaHistorial.add(historial);
+
+        ArrayList<Historial> listaHistorial = new ArrayList();
+        try {
+            String sql = "SELECT * FROM historial WHERE id_paciente = ?";
+            PreparedStatement psm = conex.prepareStatement(sql);
+            psm.setInt(1, id); // Establece el valor del parámetro ? con el ID del paciente.
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+                System.out.println("Estoy en el while");
+                Historial historial = new Historial();
+                Paciente paciente = new Paciente();
+                paciente.setIdPaciente(id); // Establece el ID del paciente
+                historial.setCuello(rs.getDouble("cuello"));
+                historial.setBusto(rs.getDouble("busto"));
+                historial.setCintura(rs.getDouble("cintura"));
+                historial.setBrazo(rs.getDouble("brazo"));
+                historial.setCadera(rs.getDouble("cadera"));
+                historial.setPierna(rs.getDouble("pierna"));
+                historial.setPesoActual(rs.getDouble("pesoActual"));
+                historial.setEstatura(rs.getDouble("estatura"));
+                historial.setIdDieta(rs.getInt("id_dieta"));
+                historial.setFechaRegistro(rs.getDate("fechaRegistro").toLocalDate());
+                listaHistorial.add(historial);
+            }
+            psm.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+            System.out.println("Esta en catch");
+            System.out.println(e.getCause());
         }
-        psm.close();
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Error");
-        System.out.println("Esta en catch");
-        System.out.println(e.getCause());
+        return listaHistorial;
     }
-    return listaHistorial;
-}  
-    public ArrayList<Historial> obtenerPacientePorHistorialPorID(int ID) {
-    ArrayList<Historial> listaHistorial = new ArrayList<>();
-    try {
-        String sql = "SELECT h.id_paciente, h.pesoActual, h.fechaRegistro FROM historial AS h";
-        PreparedStatement psm = conex.prepareStatement(sql);
-        ResultSet rs = psm.executeQuery();
-        while (rs.next()) {
-            Date fechaRegistroSQL = rs.getDate("fechaRegistro");
-            LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
-            Historial pacienteHistorial = new Historial(rs.getInt("id_paciente"), 
-                    rs.getDouble("pesoActual"), fechaRegistro);
-            listaHistorial.add(pacienteHistorial);
+
+    public ArrayList<Historial> obtenerHistorialPorID(int ID) {
+        ArrayList<Historial> listaHistorial = new ArrayList<>();
+        try {
+            String sql = "SELECT h.id_paciente, h.pesoActual, h.fechaRegistro FROM historial AS h";
+            PreparedStatement psm = conex.prepareStatement(sql);
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+//            Date fechaRegistroSQL = (rs.getDate("fechaRegistro")).toLocalDate();
+//            LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
+
+                Historial pacienteHistorial = new Historial(rs.getInt("id_paciente"),
+                        rs.getDouble("pesoActual"), rs.getDate("fechaRegistro").toLocalDate());
+                listaHistorial.add(pacienteHistorial);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
+        return listaHistorial;
     }
-    return listaHistorial;
-}     
 //        
 
     public void guardarHistorial(Historial rs) {
         try {
             String sql = "INSERT INTO historial (id_Paciente) "
-    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(), rs.getPierna() rs.getEstatura(), rs.getIdDieta(), rs.getFechaRegistro";
+                    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(), rs.getPierna() rs.getEstatura(), rs.getIdDieta(), rs.getFechaRegistro";
             PreparedStatement ps = conex.prepareStatement(sql);
-           
-            int filasAfectadas = ps.executeUpdate ();
+
+            int filasAfectadas = ps.executeUpdate();
 
             if (filasAfectadas > 0) {
                 JOptionPane.showMessageDialog(null, "Historial guardado con éxito.");
@@ -150,48 +126,50 @@ public class HistorialData {
             }
         } catch (SQLException e) {
 
-        }}
-   public ArrayList<historialConNombreyApellido> obtenerHistorialesConNombreApellido() { 
-    ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
-    try {
-        String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro FROM historial AS h " +
-                     "INNER JOIN pacientes AS p ON h.id_paciente = p.id_paciente";
-        PreparedStatement psm = conex.prepareStatement(sql);
-        ResultSet rs = psm.executeQuery();
-        while (rs.next()) {
-           
-            String nombre = rs.getString("nombre");
-            String apellido = rs.getString("apellido");
-            Double pesoActual=rs.getDouble("pesoActual");
-             Date fechaRegistroSQL = rs.getDate("fechaRegistro");
-            LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
-            historialConNombreyApellido pacienteHistorial = new historialConNombreyApellido(nombre, apellido, rs.getDouble("pesoActual"), fechaRegistro);
-            listaHistorialConNombreyApellidos.add(pacienteHistorial);
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
     }
-    return listaHistorialConNombreyApellidos;
+
+    public ArrayList<historialConNombreyApellido> obtenerHistorialesConNombreApellido() {
+        ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
+        try {
+            String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro FROM historial AS h "
+                    + "INNER JOIN pacientes AS p ON h.id_paciente = p.id_paciente";
+            PreparedStatement psm = conex.prepareStatement(sql);
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+
+                String nombre = rs.getString("nombre");
+                String apellido = rs.getString("apellido");
+                Double pesoActual = rs.getDouble("pesoActual");
+                Date fechaRegistroSQL = rs.getDate("fechaRegistro");
+                LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
+                historialConNombreyApellido pacienteHistorial = new historialConNombreyApellido(nombre, apellido, rs.getDouble("pesoActual"), fechaRegistro);
+                listaHistorialConNombreyApellidos.add(pacienteHistorial);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
+        }
+        return listaHistorialConNombreyApellidos;
 
     }
-   
-   public ArrayList<Historial> obtenerPacientePorHistorial() {
-    ArrayList<Historial> listaHistorial = new ArrayList<>();
-    try {
-        String sql = "SELECT h.id_paciente, h.pesoActual, h.fechaRegistro FROM historial AS h";
-        PreparedStatement psm = conex.prepareStatement(sql);
-        ResultSet rs = psm.executeQuery();
-        while (rs.next()) {
-            Date fechaRegistroSQL = rs.getDate("fechaRegistro");
-            LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
-            Historial pacienteHistorial = new Historial(rs.getInt("id_paciente"), 
-                    rs.getDouble("pesoActual"), fechaRegistro);
-            listaHistorial.add(pacienteHistorial);
+
+    public ArrayList<Historial> obtenerPacientePorHistorial() {
+        ArrayList<Historial> listaHistorial = new ArrayList<>();
+        try {
+            String sql = "SELECT h.id_paciente, h.pesoActual, h.fechaRegistro FROM historial AS h";
+            PreparedStatement psm = conex.prepareStatement(sql);
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+                Date fechaRegistroSQL = rs.getDate("fechaRegistro");
+                LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
+                Historial pacienteHistorial = new Historial(rs.getInt("id_paciente"),
+                        rs.getDouble("pesoActual"), fechaRegistro);
+                listaHistorial.add(pacienteHistorial);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
+        return listaHistorial;
     }
-    return listaHistorial;
-}
-   
+
 }

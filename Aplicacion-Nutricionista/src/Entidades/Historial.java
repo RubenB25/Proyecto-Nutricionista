@@ -65,18 +65,6 @@ public class Historial {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Historial(int aInt, double aDouble, double aDouble0, double aDouble1, double aDouble2, double aDouble3, double aDouble4, double aDouble5, int aInt0, double aDouble6) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public double getPesoActual() {
-        return pesoActual;
-    }
-
-    public void setPesoActual(double pesoActual) {
-        this.pesoActual = pesoActual;
-    }
-
     public int getIdHistorial() {
         return idHistorial;
     }
@@ -155,6 +143,14 @@ public class Historial {
 
     public void setIdDieta(int idDieta) {
         this.idDieta = idDieta;
+    }
+
+    public double getPesoActual() {
+        return pesoActual;
+    }
+
+    public void setPesoActual(double pesoActual) {
+        this.pesoActual = pesoActual;
     }
 
     public LocalDate getFechaRegistro() {
