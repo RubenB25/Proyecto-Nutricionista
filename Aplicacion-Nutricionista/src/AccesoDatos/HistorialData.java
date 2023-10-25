@@ -28,8 +28,8 @@ public class HistorialData {
 
     public void nuevoHistorial(Historial historial) {
 LocalDate fechaRegistro = LocalDate.now();
-        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna,estatura, id_dieta, pesoActual,fechaRegistro)"
-                + "VALUES (?, ?, ?, ?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna,estatura, pesoActual,fechaRegistro)"
+                + "VALUES (?, ?, ?, ?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, historial.getIdPaciente());
@@ -40,9 +40,9 @@ LocalDate fechaRegistro = LocalDate.now();
             ps.setDouble(6, historial.getCadera());
             ps.setDouble(7, historial.getPierna());
             ps.setDouble(8, historial.getEstatura());
-            ps.setDouble(9, historial.getIdDieta());
-            ps.setDouble(10, historial.getPesoActual());
-            ps.setDate(11, Date.valueOf(fechaRegistro));
+           
+            ps.setDouble(9, historial.getPesoActual());
+            ps.setDate(10, Date.valueOf(fechaRegistro));
            
 
             ps.executeUpdate();
@@ -80,7 +80,7 @@ LocalDate fechaRegistro = LocalDate.now();
                    System.out.println("Estoy en el while2");
                 historial.setPesoActual(rs.getDouble("pesoActual"));
                 historial.setEstatura(rs.getDouble("estatura"));
-                historial.setIdDieta(rs.getInt("id_dieta"));
+          
                    System.out.println("Estoy en el whileeeeeeeeeeeeee");
                 historial.setFechaRegistro(rs.getDate("fechaRegistro").toLocalDate());
                 listaHistorial.add(historial);

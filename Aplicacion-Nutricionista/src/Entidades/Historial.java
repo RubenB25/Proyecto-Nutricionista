@@ -16,7 +16,7 @@ public class Historial {
     private double cadera;
     private double pierna;
     private double estatura;
-    private int idDieta;
+   
     private double pesoActual;
 
     private LocalDate fechaRegistro;
@@ -30,7 +30,7 @@ public class Historial {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, double pesoActual) {
+    public Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, double pesoActual) {
         this.idPaciente = idPaciente;
         this.cuello = cuello;
         this.busto = busto;
@@ -39,7 +39,7 @@ public class Historial {
         this.cadera = cadera;
         this.pierna = pierna;
         this.estatura = estatura;
-        this.idDieta = idDieta;
+        
         this.pesoActual = pesoActual;
     }
 
@@ -49,7 +49,7 @@ public class Historial {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Historial(int idHistorial, int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, double pesoActual, LocalDate fechaRegistro) {
+    public Historial(int idHistorial, int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, double pesoActual, LocalDate fechaRegistro) {
         this.idHistorial = idHistorial;
         this.idPaciente = idPaciente;
         this.cuello = cuello;
@@ -59,12 +59,12 @@ public class Historial {
         this.cadera = cadera;
         this.pierna = pierna;
         this.estatura = estatura;
-        this.idDieta = idDieta;
+       
         this.pesoActual = pesoActual;
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, int idDieta, double pesoActual, LocalDate fechaRegistro) {
+    public Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, double pesoActual, LocalDate fechaRegistro) {
         this.idPaciente = idPaciente;
         this.cuello = cuello;
         this.busto = busto;
@@ -73,7 +73,7 @@ public class Historial {
         this.cadera = cadera;
         this.pierna = pierna;
         this.estatura = estatura;
-        this.idDieta = idDieta;
+       
         this.pesoActual = pesoActual;
         this.fechaRegistro = fechaRegistro;
     }
@@ -150,13 +150,7 @@ public class Historial {
         this.estatura = estatura;
     }
 
-    public int getIdDieta() {
-        return idDieta;
-    }
-
-    public void setIdDieta(int idDieta) {
-        this.idDieta = idDieta;
-    }
+   
 
     public double getPesoActual() {
         return pesoActual;

@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -106,6 +107,11 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         });
 
         jCbpaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jCbpaciente.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCbpacienteItemStateChanged(evt);
+            }
+        });
         jCbpaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbpacienteActionPerformed(evt);
@@ -329,13 +335,11 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(jTfechaActual1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTCadera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTCuello, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTCadera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTCuello, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel9)))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -460,7 +464,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             caderaS = Double.parseDouble(jTCadera.getText());
             piernaS = Double.parseDouble(jTPierna.getText());
             // fechaActual= LocalDate
-            Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS, caderaS, piernaS, estatura, idDieta, pesoActual);
+            Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS, caderaS, piernaS, estatura, pesoActual);
             System.out.println("datos a guardar " + idpaciente + " " + cuellopS + " " + bustopS + " " + cinturaS + " " + brazoS + " " + caderaS + " " + piernaS + " " + estatura + " " + idDieta + " " + pesoActual + " " + fecha);
             historialData.nuevoHistorial(historialguarda);
         } catch (Exception e) {
@@ -507,10 +511,12 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     private void jCbpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbpacienteActionPerformed
         Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
         HistorialData paradieta= new HistorialData();
-
         idpaciente = pacienteSeleccionado.getIdPaciente();
         llenarTablaMedidas(idpaciente);
-
+//        int ultimafila = tablaMedidas.getRowCount()-1;
+//        String dato = tablaMedidas.getValueAt(ultimafila,0).toString();
+//        int id= Integer.parseInt(dato);
+//        
     }//GEN-LAST:event_jCbpacienteActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
@@ -547,6 +553,12 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBimcActionPerformed
 
+    private void jCbpacienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbpacienteItemStateChanged
+      Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem(); 
+       idpaciente = pacienteSeleccionado.getIdPaciente();
+comboDieta();// TODO add your handling code here:
+    }//GEN-LAST:event_jCbpacienteItemStateChanged
+
 
     private void comboPaciente() {
         PacienteData pd = new PacienteData();
@@ -561,7 +573,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     
     private void comboDieta() {
         DietaData dieta = new DietaData();
-        ArrayList<Dieta> dietas = dieta.listarDietas();
+        ArrayList<Dieta> dietas = dieta.listarDietaPaciente(idpaciente);
         for (Dieta dietaIndice : dietas) {
             jCbDIETA.addItem(dietaIndice);
         }
@@ -572,7 +584,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBNuevo;
     private javax.swing.JButton jBguardar;
-    private javax.swing.JButton jBimc;
+    public static javax.swing.JButton jBimc;
     private javax.swing.JComboBox<Dieta> jCbDIETA;
     private javax.swing.JComboBox<Paciente> jCbpaciente;
     private javax.swing.JLabel jLabel1;
@@ -598,8 +610,8 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTPierna;
     private javax.swing.JTextField jTestatura;
     private javax.swing.JTextField jTfechaActual1;
-    private javax.swing.JTextField jTpesoActual;
-    private javax.swing.JTable tablaMedidas;
+    public static javax.swing.JTextField jTpesoActual;
+    public static javax.swing.JTable tablaMedidas;
     // End of variables declaration//GEN-END:variables
 
     private void llenarTablaMedidas(int id) {
@@ -617,6 +629,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 paHistorial.getCadera(),
                 paHistorial.getPierna(),
                 paHistorial.getFechaRegistro(),
+            
              
             });
      
