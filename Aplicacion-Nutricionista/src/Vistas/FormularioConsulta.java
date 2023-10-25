@@ -30,7 +30,6 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     public FormularioConsulta() {
         initComponents();
-
         comboPaciente();
         comboDieta();
         SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd/MM/yyyy");
@@ -314,15 +313,13 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                         .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBimc)
-                            .addComponent(jLabel1))
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLresultado1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                            .addComponent(jLabel1)))
+                    .addComponent(jLresultado1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jBguardar)
-                .addGap(50, 50, 50))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -357,7 +354,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             double peso = Double.parseDouble(jTpesoActual.getText());
             double altura = Double.parseDouble(jTestatura.getText());
             double imc = peso / altura;
-
+            if(validarDatos(peso)!= false && validarDatos(altura)!= false){
             if (imc < 18.9) {
                 jLresultado1.setText("Delgadez");
             } else if (imc > 18.9 && imc < 25) {
@@ -368,6 +365,9 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 jLresultado1.setText("Obesidad");
             } else if (imc > 45) {
                 jLresultado1.setText("Obesidad Morbida");
+            }
+            }else{
+                JOptionPane.showMessageDialog(null,"Ingrese Valores Validos ya que esta fuera del limite para poder calcular el IMC");
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "tiene un error por no ingresar valor numerico en las opciones de altura y peso," + e);
@@ -478,4 +478,12 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         }
     }
 
+    public boolean validarDatos(double dato) {
+        try {
+            return dato >= 0 && dato <= 500;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return false;
+        }
+    }
 }

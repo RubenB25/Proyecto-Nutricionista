@@ -28,6 +28,19 @@ private double estatura;
         this.apellido = apellido;
     }
 
+    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, boolean estado) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.celular = celular;
+        this.fechaNac = fechaNac;
+        this.edad = edad;
+        this.pesoActual = pesoActual;
+        this.pesoDeseado = pesoDeseado;
+        this.estado = estado;
+    }
+
     public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, boolean estado, double estatura) {
         this.nombre = nombre;
         this.apellido = apellido;
