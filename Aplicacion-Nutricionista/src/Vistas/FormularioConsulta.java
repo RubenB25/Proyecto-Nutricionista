@@ -8,6 +8,7 @@ import Entidades.Historial;
 import Entidades.Historialtest;
 import Entidades.Paciente;
 import static Vistas.NutricionistaEscritorio.jDPescritorio;
+import java.awt.SystemColor;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.time.LocalDate;
@@ -118,13 +119,33 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         jLabel3.setText("Peso Actual:");
 
         jTpesoActual.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTpesoActual.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTpesoActualKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Estatura:");
 
         jTestatura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTestatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTestaturaActionPerformed(evt);
+            }
+        });
+        jTestatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTestaturaKeyTyped(evt);
+            }
+        });
 
         jTBusto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTBusto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTBustoKeyTyped(evt);
+            }
+        });
 
         tablaMedidas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tablaMedidas.setModel(new javax.swing.table.DefaultTableModel(
@@ -152,17 +173,43 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Dieta a Seguir:");
 
+        jTfechaActual1.setEditable(false);
         jTfechaActual1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jTBrazo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTBrazo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTBrazoKeyTyped(evt);
+            }
+        });
 
         jTCuello.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTCuello.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTCuelloKeyTyped(evt);
+            }
+        });
 
         jTCadera.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTCadera.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTCaderaKeyTyped(evt);
+            }
+        });
 
         jTPierna.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTPierna.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTPiernaKeyTyped(evt);
+            }
+        });
 
         jTCintura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTCintura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTCinturaKeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("Cuello:");
 
@@ -183,23 +230,28 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(279, 279, 279)
-                        .addComponent(jBguardar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(525, 525, 525)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel10))
-                                .addGap(116, 116, 116))))
+                                .addGap(116, 116, 116))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(269, 269, 269)
+                                        .addComponent(jBguardar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(525, 525, 525)
+                                            .addComponent(jLabel9))))
+                                .addGap(9, 9, 9))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(52, 52, 52)
@@ -264,19 +316,13 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jCbpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBNuevo))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCbpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBNuevo)))
+                .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
@@ -316,9 +362,12 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1)))
                     .addComponent(jLresultado1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jBguardar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBguardar)
+                    .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addContainerGap())
         );
 
@@ -339,6 +388,130 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTCinturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCinturaKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;// TODO add your handling code here:
+        if (!numero) {
+            evt.consume();
+        }
+        if (jTCintura.getText().trim().length() == 3) {
+            evt.consume();   // TODO add your handling code here:
+        }                                   // TODO add your handling code here:
+    }//GEN-LAST:event_jTCinturaKeyTyped
+
+    private void jTPiernaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPiernaKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;// TODO add your handling code here:
+        if (!numero) {
+            evt.consume();
+        }
+        if (jTPierna.getText().trim().length() == 3) {
+            evt.consume();   // TODO add your handling code here:
+        }                                    // TODO add your handling code here:
+    }//GEN-LAST:event_jTPiernaKeyTyped
+
+    private void jTCaderaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCaderaKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;// TODO add your handling code here:
+        if (!numero) {
+            evt.consume();
+        }
+        if (jTCadera.getText().trim().length() == 3) {
+            evt.consume();   // TODO add your handling code here:
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jTCaderaKeyTyped
+    }
+    private void jTCuelloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCuelloKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;// TODO add your handling code here:
+        if (!numero) {
+            evt.consume();
+        }
+        if (jTCuello.getText().trim().length() == 3) {
+            evt.consume();   // TODO add your handling code here:
+        }
+    }//GEN-LAST:event_jTCuelloKeyTyped
+
+    private void jTBrazoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBrazoKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;// TODO add your handling code here:
+        if (!numero) {
+            evt.consume();
+        }
+        if (jTBrazo.getText().trim().length() == 3) {
+            evt.consume();   // TODO add your handling code here:
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jTBrazoKeyTyped
+    }
+    private void jCbDIETAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbDIETAActionPerformed
+        // TODO add your handling code here:
+        Dieta dietaSeleccionada = (Dieta) jCbDIETA.getSelectedItem();
+        idDieta = dietaSeleccionada.getIdDieta();
+    }//GEN-LAST:event_jCbDIETAActionPerformed
+
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+        try {
+
+            HistorialData historialData = new HistorialData();
+            cuellopS = Double.parseDouble(jTCuello.getText());
+            bustopS = Double.parseDouble(jTBusto.getText());
+            brazoS = Double.parseDouble(jTBrazo.getText());
+            cinturaS = Double.parseDouble(jTCintura.getText());
+            caderaS = Double.parseDouble(jTCadera.getText());
+            piernaS = Double.parseDouble(jTPierna.getText());
+            // fechaActual= LocalDate
+            Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS, caderaS, piernaS, estatura, idDieta, pesoActual);
+            System.out.println("datos a guardar " + idpaciente + " " + cuellopS + " " + bustopS + " " + cinturaS + " " + brazoS + " " + caderaS + " " + piernaS + " " + estatura + " " + idDieta + " " + pesoActual + " " + fecha);
+            historialData.nuevoHistorial(historialguarda);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al querer guardar el Historial: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jBguardarActionPerformed
+
+    private void jTBustoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBustoKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;// TODO add your handling code here:
+        if (!numero) {
+            evt.consume();
+        }
+        if (jTBusto.getText().trim().length() == 3) {
+            evt.consume();   // TODO add your handling code here:
+    }//GEN-LAST:event_jTBustoKeyTyped
+    }
+    private void jTestaturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTestaturaKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;// TODO add your handling code here:
+        if (!numero) {
+            evt.consume();
+        }
+        if (jTestatura.getText().trim().length() == 3) {
+            evt.consume();   // TODO add your handling code here:
+    }//GEN-LAST:event_jTestaturaKeyTyped
+    }
+    private void jTestaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTestaturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTestaturaActionPerformed
+
+    private void jTpesoActualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesoActualKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;// TODO add your handling code here:
+        if (!numero) {
+            evt.consume();
+        }
+        if (jTpesoActual.getText().trim().length() == 3) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jTpesoActualKeyTyped
+
+    private void jCbpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbpacienteActionPerformed
+        Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
+        HistorialData paradieta= new HistorialData();
+
+        idpaciente = pacienteSeleccionado.getIdPaciente();
+        llenarTablaMedidas(idpaciente);
+
+    }//GEN-LAST:event_jCbpacienteActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
         FormularioPaciente fp = new FormularioPaciente();
@@ -354,7 +527,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             double peso = Double.parseDouble(jTpesoActual.getText());
             double altura = Double.parseDouble(jTestatura.getText());
             double imc = peso / altura;
-            if(validarDatos(peso)!= false && validarDatos(altura)!= false){
+
             if (imc < 18.9) {
                 jLresultado1.setText("Delgadez");
             } else if (imc > 18.9 && imc < 25) {
@@ -366,13 +539,14 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             } else if (imc > 45) {
                 jLresultado1.setText("Obesidad Morbida");
             }
-            }else{
-                JOptionPane.showMessageDialog(null,"Ingrese Valores Validos ya que esta fuera del limite para poder calcular el IMC");
+            else {
+                JOptionPane.showMessageDialog(null, "Ingrese Valores Validos ya que esta fuera del limite para poder calcular el IMC");
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "tiene un error por no ingresar valor numerico en las opciones de altura y peso," + e);
         }
     }//GEN-LAST:event_jBimcActionPerformed
+
 
     private void comboPaciente() {
         PacienteData pd = new PacienteData();
@@ -381,54 +555,24 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         jCbpaciente.insertItemAt(seleccionarPaciente, 0);
         for (Paciente pac : pacientes) {
             jCbpaciente.addItem(pac);
+            
         }
     }
-
-    private void jCbpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbpacienteActionPerformed
-        Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
-        idpaciente = pacienteSeleccionado.getIdPaciente();
-        llenarTablaMedidas(idpaciente);
-
-    }//GEN-LAST:event_jCbpacienteActionPerformed
-
-    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-        try {
-
-            HistorialData historialData = new HistorialData();
-            cuellopS = Double.parseDouble(jTCuello.getText());
-            bustopS = Double.parseDouble(jTBusto.getText());
-            brazoS = Double.parseDouble(jTBrazo.getText());
-            cinturaS = Double.parseDouble(jTCintura.getText());
-            caderaS = Double.parseDouble(jTCadera.getText());
-            piernaS = Double.parseDouble(jTPierna.getText());
-           // fechaActual= LocalDate 
-            Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS, caderaS, piernaS, estatura, idDieta, pesoActual);
-            System.out.println("datos a guardar "+ idpaciente +" "+ cuellopS+ " "+ bustopS+ " "+ cinturaS +" " +  brazoS +" " + caderaS +" " + piernaS +" "+ estatura + " " +idDieta +" " +pesoActual + " "+ fecha );
-            historialData.nuevoHistorial(historialguarda);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al querer guardar el Historial: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jBguardarActionPerformed
-
-    private void jCbDIETAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbDIETAActionPerformed
-        // TODO add your handling code here:
-        Dieta dietaSeleccionada = (Dieta) jCbDIETA.getSelectedItem();
-        idDieta = dietaSeleccionada.getIdDieta();
-
-    }//GEN-LAST:event_jCbDIETAActionPerformed
+    
     private void comboDieta() {
         DietaData dieta = new DietaData();
-
         ArrayList<Dieta> dietas = dieta.listarDietas();
         for (Dieta dietaIndice : dietas) {
             jCbDIETA.addItem(dietaIndice);
         }
 
     }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBNuevo;
     private javax.swing.JButton jBguardar;
-    public static javax.swing.JButton jBimc;
+    private javax.swing.JButton jBimc;
     private javax.swing.JComboBox<Dieta> jCbDIETA;
     private javax.swing.JComboBox<Paciente> jCbpaciente;
     private javax.swing.JLabel jLabel1;
@@ -454,8 +598,8 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTPierna;
     private javax.swing.JTextField jTestatura;
     private javax.swing.JTextField jTfechaActual1;
-    public static javax.swing.JTextField jTpesoActual;
-    public static javax.swing.JTable tablaMedidas;
+    private javax.swing.JTextField jTpesoActual;
+    private javax.swing.JTable tablaMedidas;
     // End of variables declaration//GEN-END:variables
 
     private void llenarTablaMedidas(int id) {
@@ -472,18 +616,12 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 paHistorial.getCintura(),
                 paHistorial.getCadera(),
                 paHistorial.getPierna(),
-                paHistorial.getFechaRegistro()
-
+                paHistorial.getFechaRegistro(),
+             
             });
-        }
-    }
-
-    public boolean validarDatos(double dato) {
-        try {
-            return dato >= 0 && dato <= 500;
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            return false;
-        }
+     
     }
 }
+  
+    }
+
