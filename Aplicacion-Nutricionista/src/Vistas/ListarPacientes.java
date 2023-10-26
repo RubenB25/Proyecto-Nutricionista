@@ -51,6 +51,7 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
         jBNoVigentes = new javax.swing.JButton();
         jRBInvisible = new javax.swing.JRadioButton();
         jRBInvisible.setVisible(false);
+        jButton1 = new javax.swing.JButton();
 
         jTListarPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,6 +111,13 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
 
         BGListarPacientes.add(jRBInvisible);
 
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -122,9 +130,11 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jBVigentes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBNoVigentes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jRBInvisible)
-                                .addGap(119, 119, 119)
-                                .addComponent(jBNoVigentes))
+                                .addGap(135, 135, 135)
+                                .addComponent(jButton1))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jRBListarTodo)
@@ -151,8 +161,9 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
                     .addComponent(jRBInvisible)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBVigentes)
-                        .addComponent(jBNoVigentes)))
-                .addGap(31, 31, 31))
+                        .addComponent(jBNoVigentes))
+                    .addComponent(jButton1))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,7 +174,9 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -219,10 +232,15 @@ public class ListarPacientes extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jBNoVigentesActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BGListarPacientes;
     private javax.swing.JButton jBNoVigentes;
     private javax.swing.JButton jBVigentes;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRBInvisible;
