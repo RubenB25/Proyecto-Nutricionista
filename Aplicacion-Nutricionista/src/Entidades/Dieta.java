@@ -19,6 +19,13 @@ public class Dieta {
     public Dieta() {
     }
 
+    public Dieta(String nombre, LocalDate fechaFinal, double pesoFinal, boolean estado) {
+        this.nombre = nombre;
+        this.fechaFinal = fechaFinal;
+        this.pesoFinal = pesoFinal;
+        this.estado = estado;
+    }
+
     public Dieta(int idDieta, Paciente paciente, LocalDate fechaFinal, boolean estado) {
         this.idDieta = idDieta;
         this.paciente = paciente;

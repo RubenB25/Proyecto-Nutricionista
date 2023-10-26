@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
@@ -135,26 +136,51 @@ public class DietaData {
         }
         return dietas;
     }
-    public ArrayList<Dieta> listarDietaPaciente(int id) {
-        ArrayList<Dieta> listaDietas = new ArrayList<>();
+    public ArrayList<Dieta> obtenerDietaDelPaciente(int id) {
+        ArrayList<Dieta> listaDieta = new ArrayList<>();
         try {
-            String sql = "Select  * from dietas d Inner join pacientes p on d.id_paciente = "+id;
-            PreparedStatement ps = conex.prepareStatement(sql);
-            ResultSet resultado = ps.executeQuery();
-            while (resultado.next()) {
-             
-                Paciente paciente = new Paciente();
-                paciente.setIdPaciente(resultado.getInt("id_paciente")); 
-                paciente.setApellido(resultado.getString("p.apellido"));
-                paciente.setNombre(resultado.getString("p.nombre"));
-                paciente.setDni(resultado.getString("dni"));
-                paciente.setPesoDeseado(resultado.getDouble("p.peso_deseado"));
-               Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente, resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("d.peso_inicial"), resultado.getDouble("peso_final"), resultado.getBoolean("d.estado"));
-                listaDietas.add(dieta);
+            String sql = "SELECT nombre, peso_final,fin_dieta,estado FROM Dietas where id_paciente = "+id;
+               
+            PreparedStatement psm = conex.prepareStatement(sql);
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+
+                String nombre = rs.getString("nombre");
+                Double pesoFinal = rs.getDouble("peso_final");
+                Date fechaRegistroSQL = rs.getDate("fin_dieta");
+                LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
+               Boolean estado=rs.getBoolean("estado");
+                Dieta dietaPaciente = new Dieta(nombre,fechaRegistro,pesoFinal,estado);
+                listaDieta.add(dietaPaciente);
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error de acceso tabla Dietas", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
         }
-        return listaDietas;
+        return listaDieta;
+
     }
+//    public ArrayList<Dieta> listarDietaPaciente(int id) {
+//        ArrayList<Dieta> listaDietas = new ArrayList<>();
+//        try {
+//            String sql = "Select  * from dietas where id_paciente = "+id;
+//            PreparedStatement ps = conex.prepareStatement(sql);
+//            ResultSet resultado = ps.executeQuery();
+//            while (resultado.next()) {
+//                Dieta paciente = new Dieta();
+//                paciente.setIdDieta(id);
+//                paciente.setFechaFinal(LocalDate.MIN);
+//                paciente.setNombre("nombre");
+////                paciente.setApellido(resultado.getString("p.apellido"));
+////                paciente.setNombre(resultado.getString("p.nombre"));
+////                paciente.setDni(resultado.getString("dni"));
+////                paciente.setPesoDeseado(resultado.getDouble("p.peso_deseado"));
+//           resultado.getInt("id_dieta"),
+//           resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("d.peso_inicial"), resultado.getDouble("peso_final"), resultado.getBoolean("d.estado"));
+//                listaDietas.add(dieta);
+//            }
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, "Error de acceso tabla Dietas", "ERROR", JOptionPane.ERROR_MESSAGE);
+//        }
+//        return listaDietas;
+//    }
 }

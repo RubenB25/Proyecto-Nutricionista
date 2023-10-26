@@ -27,13 +27,16 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     Double cuellopS, bustopS, brazoS, cinturaS, caderaS, piernaS, estaturaS, PesoActual;
     int idDieta;
-    LocalDate fechaActual;
+    LocalDate fechaActual, fechaObtenida;
+    boolean estado;
+    
     private DefaultTableModel model;
 
     public FormularioConsulta() {
         initComponents();
         comboPaciente();
         comboDieta();
+
         SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaActual = new Date();
         String fecha = fechaFormateada.format(fechaActual);
@@ -455,7 +458,6 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
         try {
-
             HistorialData historialData = new HistorialData();
             cuellopS = Double.parseDouble(jTCuello.getText());
             bustopS = Double.parseDouble(jTBusto.getText());
@@ -510,7 +512,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     private void jCbpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbpacienteActionPerformed
         Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
-        HistorialData paradieta= new HistorialData();
+        HistorialData paradieta = new HistorialData();
         idpaciente = pacienteSeleccionado.getIdPaciente();
         llenarTablaMedidas(idpaciente);
 //        int ultimafila = tablaMedidas.getRowCount()-1;
@@ -544,8 +546,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 jLresultado1.setText("Obesidad");
             } else if (imc > 45) {
                 jLresultado1.setText("Obesidad Morbida");
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Ingrese Valores Validos ya que esta fuera del limite para poder calcular el IMC");
             }
         } catch (NumberFormatException e) {
@@ -554,11 +555,13 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBimcActionPerformed
 
     private void jCbpacienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbpacienteItemStateChanged
-      Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem(); 
-       idpaciente = pacienteSeleccionado.getIdPaciente();
-comboDieta();// TODO add your handling code here:
+        Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
+        idpaciente = pacienteSeleccionado.getIdPaciente();
+        comboDieta();
+        if (fechaObtenida.isEqual(LocalDate.now())) {
+      JOptionPane.showMessageDialog(null,"llegaste al final de tu dieta , guarda los datos ");
     }//GEN-LAST:event_jCbpacienteItemStateChanged
-
+    }
 
     private void comboPaciente() {
         PacienteData pd = new PacienteData();
@@ -566,15 +569,18 @@ comboDieta();// TODO add your handling code here:
         Paciente seleccionarPaciente = new Paciente("-1", "- Seleccione un Paciente -");
         jCbpaciente.insertItemAt(seleccionarPaciente, 0);
         for (Paciente pac : pacientes) {
+
             jCbpaciente.addItem(pac);
-            
+
         }
     }
-    
+
     private void comboDieta() {
         DietaData dieta = new DietaData();
-        ArrayList<Dieta> dietas = dieta.listarDietaPaciente(idpaciente);
+        ArrayList<Dieta> dietas = dieta.obtenerDietaDelPaciente(idpaciente);
         for (Dieta dietaIndice : dietas) {
+            fechaObtenida = dietaIndice.getFechaFinal();
+            System.out.println(" esta es la fecha de la dieta de pepito"+ fechaObtenida);
             jCbDIETA.addItem(dietaIndice);
         }
 
@@ -628,13 +634,9 @@ comboDieta();// TODO add your handling code here:
                 paHistorial.getCintura(),
                 paHistorial.getCadera(),
                 paHistorial.getPierna(),
-                paHistorial.getFechaRegistro(),
-            
-             
-            });
-     
-    }
-}
-  
+                paHistorial.getFechaRegistro(),});
+
+        }
     }
 
+}
