@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -499,6 +501,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTestaturaActionPerformed
 
     private void jTpesoActualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesoActualKeyTyped
+        HistorialData  historialDP = new HistorialData();
         int key = evt.getKeyChar();
         boolean numero = key >= 48 && key <= 57;// TODO add your handling code here:
         if (!numero) {
@@ -508,6 +511,15 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             evt.consume();
 
         }
+      ArrayList<Historial> medidas = historialDP.obtenerHistorialdePaciente(idpaciente);
+Historial ultimoHistorial = obtenerUltimoHistorial(medidas);
+
+if (ultimoHistorial != null) {
+    double pesoActual = ultimoHistorial.getPesoActual();
+    JOptionPane.showMessageDialog(null," El peso actual en la última consulta es: " + pesoActual);
+} else {
+    JOptionPane.showMessageDialog(null,"No hay registros en el historial. Este es el primer registro");}
+
     }//GEN-LAST:event_jTpesoActualKeyTyped
 
     private void jCbpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbpacienteActionPerformed
@@ -580,7 +592,6 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         ArrayList<Dieta> dietas = dieta.obtenerDietaDelPaciente(idpaciente);
         for (Dieta dietaIndice : dietas) {
             fechaObtenida = dietaIndice.getFechaFinal();
-            System.out.println(" esta es la fecha de la dieta de pepito"+ fechaObtenida);
             jCbDIETA.addItem(dietaIndice);
         }
 
@@ -620,6 +631,23 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     public static javax.swing.JTable tablaMedidas;
     // End of variables declaration//GEN-END:variables
 
+   
+    private Historial obtenerUltimoHistorial(ArrayList<Historial> medidas) {
+    if (medidas.isEmpty()) {
+       
+        JOptionPane.showMessageDialog(null,"no tiene registros Anteriores");
+         return null;
+    }
+//opcion para ordenar 
+    Collections.sort(medidas, new Comparator<Historial>() {
+        @Override
+        public int compare(Historial h1, Historial h2) {
+            return h2.getFechaRegistro().compareTo(h1.getFechaRegistro());
+        }
+    });
+    // El primer elemento 
+    return medidas.get(0);
+    }
     private void llenarTablaMedidas(int id) {
         HistorialData historialData = new HistorialData();
         int idPaciente = id;
@@ -634,9 +662,9 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 paHistorial.getCintura(),
                 paHistorial.getCadera(),
                 paHistorial.getPierna(),
-                paHistorial.getFechaRegistro(),});
+                paHistorial.getFechaRegistro(),
+                });
 
-        }
-    }
+        }}}
 
-}
+
