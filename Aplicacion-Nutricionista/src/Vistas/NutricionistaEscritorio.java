@@ -114,11 +114,26 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Comidas");
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
 
         jMenuItem6.setText("Administrar comida");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
-        jMenuItem9.setText("Buscar comida");
+        jMenuItem9.setText("Ingredientes");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem9);
 
         jMenuBar1.add(jMenu4);
@@ -294,6 +309,28 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
             md.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        V_Table_AdminComidas ac = new V_Table_AdminComidas();
+        jDPescritorio.removeAll();
+        jDPescritorio.repaint();
+        jDPescritorio.add(ac);
+        ac.moveToFront();
+        ac.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        V_Table_Ingredientes vi = new V_Table_Ingredientes();
+        jDPescritorio.removeAll();
+        jDPescritorio.repaint();
+        jDPescritorio.add(vi);
+        vi.moveToFront();
+        vi.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     public static void main(String args[]) {
         try {

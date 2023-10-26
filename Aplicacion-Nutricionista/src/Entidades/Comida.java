@@ -1,40 +1,39 @@
 package Entidades;
 
-/**
- * @author User2021SD
- */
+
 public class Comida {
 
     private int idComida;
     private String nombre;
     private String detalle;
-    private int cantCaloriasCada100Gms;
-    private boolean estado;
+    private int cantCalorias;
 
     public Comida() {
     }
 
-    public Comida(String nombre, String detalle, int cantCalorias, boolean estado) {
-        this.nombre = nombre;
-        this.detalle = detalle;
-        this.cantCaloriasCada100Gms = cantCalorias;
-        this.estado = estado;
+    public Comida(int idComida) {
+        this.idComida = idComida;
     }
 
-    public Comida(int idComida, String nombre, String detalle, int cantCalorias, boolean estado) {
+    public Comida(int idComida, String nombre, String detalle, int cantCalorias) {
         this.idComida = idComida;
         this.nombre = nombre;
         this.detalle = detalle;
-        this.cantCaloriasCada100Gms = cantCalorias;
-        this.estado = estado;
+        this.cantCalorias = cantCalorias;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public Comida(String nombre, String detalle, int cantCalorias) {
+        this.nombre = nombre;
+        this.detalle = detalle;
+        this.cantCalorias = cantCalorias;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public int getIdComida() {
+        return idComida;
+    }
+
+    public void setIdComida(int idComida) {
+        this.idComida = idComida;
     }
 
     public String getNombre() {
@@ -54,19 +53,19 @@ public class Comida {
     }
 
     public int getCantCalorias() {
-        return cantCaloriasCada100Gms;
+        return cantCalorias;
     }
 
     public void setCantCalorias(int cantCalorias) {
-        this.cantCaloriasCada100Gms = cantCalorias;
+        this.cantCalorias = cantCalorias;
     }
 
-    public int getIdComida() {
-        return idComida;
+    @Override
+    public String toString() {
+        return "Comida{" + "idComida=" + idComida + ", nombre=" + nombre + ", detalle=" + detalle + ", cantCalorias=" + cantCalorias + '}';
     }
-
-    public void setIdComida(int idComida) {
-        this.idComida = idComida;
-    }
-
+    
+    
+    
+    
 }

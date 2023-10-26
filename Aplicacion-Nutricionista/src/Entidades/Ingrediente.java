@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Entidades;
 
 /**
@@ -15,6 +11,10 @@ public class Ingrediente {
     private int caloriasPor100GR;
 
     public Ingrediente() {
+    }
+    
+    public Ingrediente(int idIngrediente) {
+        this.idIngrediente = idIngrediente;
     }
     
     public Ingrediente(String nombre, int caloriasPor100GR) {
@@ -51,6 +51,11 @@ public class Ingrediente {
 
     public void setCaloriasPor100GR(int caloriasPor100GR) {
         this.caloriasPor100GR = caloriasPor100GR;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingrediente{" + "idIngrediente=" + idIngrediente + ", nombre=" + nombre + ", caloriasPor100GR=" + caloriasPor100GR + '}';
     }
     
      
