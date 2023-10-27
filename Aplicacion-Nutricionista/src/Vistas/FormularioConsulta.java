@@ -1,7 +1,4 @@
-
 package Vistas;
-
-
 
 import AccesoDatos.HistorialData;
 import AccesoDatos.PacienteData;
@@ -14,20 +11,20 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 public class FormularioConsulta extends javax.swing.JInternalFrame {
-
+    
     public static String texto;
     public static String texto2;
     public static String texto3;
     private Object modelo;
     private int id;
-
+    
     private Historial Historial;
-
+    
     public FormularioConsulta() {
         initComponents();
-      
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,59 +50,54 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
         setTitle("Consulta");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("Documento");
 
         jTrecibedni.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTrecibedni.setPreferredSize(new java.awt.Dimension(6, 20));
         jTrecibedni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTrecibedniActionPerformed(evt);
             }
         });
 
-        jBbuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBbuscar.setText("BUSCAR");
+        jBbuscar.setText("Buscar");
         jBbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBbuscarActionPerformed(evt);
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Nombre:");
 
         jTrecibenombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTrecibenombre.setPreferredSize(new java.awt.Dimension(6, 20));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Apellido:");
 
         jTrecibeapellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTrecibeapellido.setPreferredSize(new java.awt.Dimension(6, 20));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("Peso actual:");
 
         jTpesoinicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTpesoinicio.setPreferredSize(new java.awt.Dimension(6, 20));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Fecha consulta:");
 
-        jBmedida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBmedida.setText("MEDIDA");
+        jBmedida.setText("Medida");
         jBmedida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBmedidaActionPerformed(evt);
             }
         });
 
-        jBGuardar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBGuardar.setText("GUARDAR");
+        jBGuardar.setText("Guardar");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGuardarActionPerformed(evt);
             }
         });
 
-        jBimc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBimc.setText("IMC");
         jBimc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,19 +105,16 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Usted tiene ");
 
-        jBdieta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBdieta.setText("DIETA");
+        jBdieta.setText("Dieta");
         jBdieta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBdietaActionPerformed(evt);
             }
         });
 
-        jBsalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBsalir.setText("SALIR");
+        jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBsalirActionPerformed(evt);
@@ -137,43 +126,35 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jBGuardar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel15)
+                            .addComponent(jBdieta))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTpesoinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTrecibeapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel15))
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTpesoinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTrecibeapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTrecibedni, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTrecibenombre, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jBbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jBimc)
-                                        .addComponent(jDCfechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jBsalir))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jBdieta)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(jBmedida)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                    .addComponent(jTrecibedni, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTrecibenombre, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBbuscar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBmedida)
+                                .addGap(27, 27, 27)
+                                .addComponent(jBimc))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jBsalir)
+                                .addComponent(jDCfechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBGuardar)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,13 +162,13 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTrecibedni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTrecibenombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jTrecibenombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTrecibeapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
@@ -199,29 +180,31 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(jDCfechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBdieta)
                     .addComponent(jBmedida)
-                    .addComponent(jBimc))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
+                    .addComponent(jBimc, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBGuardar)
                     .addComponent(jBsalir))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -249,51 +232,56 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     private void jBimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBimcActionPerformed
         //        try {
-            //            double peso = Double.parseDouble(jTpesoinicio.getText());
-            //            double altura = Double.parseDouble(jTaltura.getText());
-            //            double imc = peso / altura;
-            //
-            //            if (imc < 18.9) {
-                //
-                //                //jLresultado.setText("Tiene Delgadez");
-                //                jLresultado1.setText("Delgadez");
-                //            } else if (imc > 18.9 && imc < 25) {
-                //
-                //                //jLresultado.setText("Tiene peso Normal");
-                //                jLresultado1.setText("Normal");
-                //            } else if (imc > 25 && imc < 29.99) {
-                //
-                //                // jLresultado.setText("Sobrepeso");
-                //                jLresultado1.setText("Sobrepeso");
-                //            } else if (imc > 30 && imc < 45) {
-                //
-                //                //jLresultado.setText("Tiene Obesidad morbida");
-                //                jLresultado1.setText("Obesidad");
-                //            }
-            //            if (imc > 45) {
-                //
-                //                // jLresultado.setText("Tiene Obesidad, se recomienda comenzar con dieta de descenso de peso inmediato para cuidar su salud");
-                //                jLresultado1.setText("Obesidad Morbida");
-                //            }
-            //        } catch (NumberFormatException e) {
-            //            JOptionPane.showMessageDialog(null, "tiene un error por no ingresar valor numerico en las opciones de altura y peso," + e);
-            //        }
+        //            double peso = Double.parseDouble(jTpesoinicio.getText());
+        //            double altura = Double.parseDouble(jTaltura.getText());
+        //            double imc = peso / altura;
+        //
+        //            if (imc < 18.9) {
+        //
+        //                //jLresultado.setText("Tiene Delgadez");
+        //                jLresultado1.setText("Delgadez");
+        //            } else if (imc > 18.9 && imc < 25) {
+        //
+        //                //jLresultado.setText("Tiene peso Normal");
+        //                jLresultado1.setText("Normal");
+        //            } else if (imc > 25 && imc < 29.99) {
+        //
+        //                // jLresultado.setText("Sobrepeso");
+        //                jLresultado1.setText("Sobrepeso");
+        //            } else if (imc > 30 && imc < 45) {
+        //
+        //                //jLresultado.setText("Tiene Obesidad morbida");
+        //                jLresultado1.setText("Obesidad");
+        //            }
+        //            if (imc > 45) {
+        //
+        //                // jLresultado.setText("Tiene Obesidad, se recomienda comenzar con dieta de descenso de peso inmediato para cuidar su salud");
+        //                jLresultado1.setText("Obesidad Morbida");
+        //            }
+        //        } catch (NumberFormatException e) {
+        //            JOptionPane.showMessageDialog(null, "tiene un error por no ingresar valor numerico en las opciones de altura y peso," + e);
+        //        }
     }//GEN-LAST:event_jBimcActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         HistorialData historialPaciente = new HistorialData();
-        double pesoActual = Double.parseDouble(jTpesoinicio.getText());
-        LocalDate fechaConsulta = jDCfechaConsulta.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        try {
+            double pesoActual = Double.parseDouble(jTpesoinicio.getText());
+            LocalDate fechaConsulta = jDCfechaConsulta.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); 
+            historialPaciente.guardarHistorial(id, fechaConsulta, pesoActual);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese un documento valido");
+        }
         
-        historialPaciente.guardarHistorial(id, fechaConsulta, pesoActual);
+
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         PacienteData pacienteData = new PacienteData();
         HistorialData historial = new HistorialData();
         String[] datos = new String[2];
-
-        try {
+        if (!jTrecibedni.getText().isEmpty()) {
+            try {
             String dni = jTrecibedni.getText();
             Paciente paciente = pacienteData.buscarPacientePorDni(dni);
             id = paciente.getIdPaciente();
@@ -305,11 +293,19 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 //jTpesodeseado.setText(String.valueOf(paciente.getPesoDeseado()));
                 datos[0] = paciente.getNombre();
                 datos[1] = paciente.getApellido();
-
+                
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Verifique los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un documento");
+        }
+        
+        
+        
     }//GEN-LAST:event_jBbuscarActionPerformed
 
     private void jTrecibedniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTrecibedniActionPerformed

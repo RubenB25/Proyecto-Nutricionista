@@ -53,9 +53,6 @@ public class V_Table_Ingredientes extends javax.swing.JInternalFrame {
         jBtnCargarTabla = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Administración de Ingredientes");
 
         jTableIngredientes.setModel(new javax.swing.table.DefaultTableModel(

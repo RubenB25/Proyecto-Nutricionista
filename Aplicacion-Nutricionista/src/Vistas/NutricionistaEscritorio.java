@@ -162,20 +162,55 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         BuscarPaciente bp = new BuscarPaciente();
-        jDPescritorio.removeAll();
-        jDPescritorio.repaint();
-        jDPescritorio.add(bp);
-        bp.moveToFront();
-        bp.setVisible(true);
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == bp.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+            jDPescritorio.removeAll();
+            jDPescritorio.repaint();
+            jDPescritorio.add(bp);
+            bp.moveToFront();
+            bp.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMIformularioPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIformularioPacienteActionPerformed
         FormularioPaciente fp = new FormularioPaciente();
-        jDPescritorio.removeAll();
-        jDPescritorio.repaint();
-        jDPescritorio.add(fp);
-        fp.moveToFront();
-        fp.setVisible(true);
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == fp.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+
+            jDPescritorio.removeAll();
+            jDPescritorio.repaint();
+            jDPescritorio.add(fp);
+            fp.moveToFront();
+            fp.setVisible(true);
+        }
     }//GEN-LAST:event_jMIformularioPacienteActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -259,7 +294,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
             hc.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
             hc.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -290,7 +325,7 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-         ModificarDieta md = new ModificarDieta();
+        ModificarDieta md = new ModificarDieta();
         // Verifica si el JInternalFrame ya está en el JDesktopPane
         JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
         boolean estaAbierta = false;
@@ -322,39 +357,73 @@ public class NutricionistaEscritorio extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         V_Table_AdminComidas ac = new V_Table_AdminComidas();
-        jDPescritorio.removeAll();
-        jDPescritorio.repaint();
-        jDPescritorio.add(ac);
-        ac.moveToFront();
-        ac.setVisible(true);
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == ac.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+            jDPescritorio.removeAll();
+            jDPescritorio.repaint();
+            jDPescritorio.add(ac);
+            ac.moveToFront();
+            ac.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         V_Table_Ingredientes vi = new V_Table_Ingredientes();
-        jDPescritorio.removeAll();
-        jDPescritorio.repaint();
-        jDPescritorio.add(vi);
-        vi.moveToFront();
-        vi.setVisible(true);
+        JInternalFrame[] frames = jDPescritorio.getAllFramesInLayer(javax.swing.JLayeredPane.DEFAULT_LAYER);
+        boolean estaAbierta = false;
+
+        for (JInternalFrame frame : frames) {
+            if (frame.getClass() == vi.getClass()) {
+                estaAbierta = true;
+                try {
+                    frame.setSelected(true);
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+
+        if (!estaAbierta) {
+            jDPescritorio.removeAll();
+            jDPescritorio.repaint();
+            jDPescritorio.add(vi);
+            vi.moveToFront();
+            vi.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NutricionistaEscritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NutricionistaEscritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NutricionistaEscritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NutricionistaEscritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(NutricionistaEscritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(NutricionistaEscritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(NutricionistaEscritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(NutricionistaEscritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

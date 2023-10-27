@@ -50,40 +50,40 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nombre:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         jLabel2.setText("Apellido:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
 
         jLabel3.setText("Documento:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 20));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 20));
 
         jLabel4.setText("Domicilio:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 20));
 
         jLabel5.setText("Celular:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, 20));
-        jPanel1.add(jTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 32, 200, -1));
-        jPanel1.add(jTapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 72, 200, -1));
-        jPanel1.add(jTdocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 112, 200, -1));
-        jPanel1.add(jTdomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 152, 200, -1));
-        jPanel1.add(jTcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 192, 200, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 20));
+        jPanel1.add(jTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 200, -1));
+        jPanel1.add(jTapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 200, -1));
+        jPanel1.add(jTdocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 200, -1));
+        jPanel1.add(jTdomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 200, -1));
+        jPanel1.add(jTcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 200, -1));
 
         jLabel6.setText("Peso actual:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, 20));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 20));
 
         jLabel7.setText("Peso deseado:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, 20));
-        jPanel1.add(jTpesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 312, 60, -1));
-        jPanel1.add(jTPesoDeseado, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 352, 60, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, 20));
+        jPanel1.add(jTpesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 60, -1));
+        jPanel1.add(jTPesoDeseado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 60, -1));
 
         jLabel8.setText("Fecha nacimiento:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, 20));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, 20));
 
         jLabel9.setText("Edad:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, 20));
-        jPanel1.add(jTFedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 272, 60, -1));
-        jPanel1.add(jDCfechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 232, 130, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, 20));
+        jPanel1.add(jTFedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 60, -1));
+        jPanel1.add(jDCfechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 130, -1));
 
         jBguardar.setText("Guardar");
         jBguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +91,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
                 jBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
+        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +99,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
                 jBsalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, -1, -1));
+        jPanel1.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
 
         jBguardarCambios.setText("Guardar");
         jBguardarCambios.addActionListener(new java.awt.event.ActionListener() {
@@ -107,19 +107,17 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
                 jBguardarCambiosActionPerformed(evt);
             }
         });
-        jPanel1.add(jBguardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
+        jPanel1.add(jBguardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
         );
 
         pack();

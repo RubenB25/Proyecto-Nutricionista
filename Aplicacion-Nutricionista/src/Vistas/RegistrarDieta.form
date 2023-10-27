@@ -24,10 +24,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -47,31 +44,24 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="233" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" pref="94" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLFechaInicio" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLNombreDieta" min="-2" pref="77" max="-2" attributes="0"/>
-                                      <Component id="jLFechaFinalizacion" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLPaciente" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                                      <Component id="jLPesoInicial" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jCBListaPaciente" max="32767" attributes="0"/>
-                                          <Component id="jTFNombreDieta" alignment="0" min="-2" pref="216" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jDCInicio" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jDCFinalizacion" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="jTFPesoInicial" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="jLFechaInicio" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLNombreDieta" min="-2" pref="77" max="-2" attributes="0"/>
+                              <Component id="jLFechaFinalizacion" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLPaciente" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                              <Component id="jLPesoInicial" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jCBListaPaciente" max="32767" attributes="0"/>
+                                  <Component id="jTFNombreDieta" alignment="0" min="-2" pref="216" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jDCInicio" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jDCFinalizacion" alignment="0" pref="139" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Component id="jTFPesoInicial" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -84,8 +74,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jCBListaPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLPaciente" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>

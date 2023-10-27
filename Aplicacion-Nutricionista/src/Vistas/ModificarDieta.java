@@ -45,6 +45,8 @@ public class ModificarDieta extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+
         jTDietaComida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
