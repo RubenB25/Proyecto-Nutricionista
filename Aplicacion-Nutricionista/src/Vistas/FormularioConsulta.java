@@ -416,7 +416,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         if (jTCintura.getText().trim().length() == 3) {
             evt.consume();
         }
-       
+
     }//GEN-LAST:event_jTCinturaKeyTyped
 
     private void jTPiernaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPiernaKeyTyped
@@ -428,7 +428,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         if (jTPierna.getText().trim().length() == 3) {
             evt.consume();   // TODO add your handling code here:
         }
-        
+
     }//GEN-LAST:event_jTPiernaKeyTyped
 
     private void jTCaderaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCaderaKeyTyped
@@ -441,7 +441,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             evt.consume();
 
     }//GEN-LAST:event_jTCaderaKeyTyped
-      
+
     }
     private void jTCuelloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCuelloKeyTyped
         int key = evt.getKeyChar();
@@ -452,7 +452,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         if (jTCuello.getText().trim().length() == 3) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jTCuelloKeyTyped
 
     private void jTBrazoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBrazoKeyTyped
@@ -465,7 +465,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             evt.consume();   // TODO add your handling code here:
             // TODO add your handling code here:
     }//GEN-LAST:event_jTBrazoKeyTyped
-      
+
     }
     private void jCbDIETAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbDIETAActionPerformed
         // TODO add your handling code here:
@@ -477,12 +477,43 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         try {
             HistorialData historialData = new HistorialData();
             cuellopS = Double.parseDouble(jTCuello.getText());
+            if (cuellopS < 20 || cuellopS > 70) {
+                JOptionPane.showMessageDialog(null, "El Cuello no puede medir eso deberias de corroborar el ingreso");
+                cuellopS = null;
+            }
             bustopS = Double.parseDouble(jTBusto.getText());
+            if (bustopS < 50 || bustopS > 150) {
+                JOptionPane.showMessageDialog(null, "El Busto no puede medir eso deberias de corroborar el ingreso");
+                bustopS = null;
+            }
             brazoS = Double.parseDouble(jTBrazo.getText());
+            if (brazoS < 30 || brazoS > 70) {
+                JOptionPane.showMessageDialog(null, "El Brazo no puede medir eso deberias de corroborar el ingreso");
+                brazoS = null;
+            }
             cinturaS = Double.parseDouble(jTCintura.getText());
+            if (cinturaS < 50 || cinturaS > 150) {
+                JOptionPane.showMessageDialog(null, "La Cintura no puede medir eso deberias de corroborar el ingreso");
+                cinturaS = null;
+            }
             caderaS = Double.parseDouble(jTCadera.getText());
+            if (caderaS < 50 || caderaS > 200) {
+                JOptionPane.showMessageDialog(null, "La Cadera no puede medir eso deberias de corroborar el ingreso");
+                caderaS = null;
+            }
             piernaS = Double.parseDouble(jTPierna.getText());
-            // fechaActual= LocalDate
+            if (piernaS < 50 || piernaS > 130) {
+                JOptionPane.showMessageDialog(null, "La Pierna no puede medir eso deberias de corroborar el ingreso");
+                piernaS = null;
+            }
+            if (estatura < 50 || estatura > 210) {
+                JOptionPane.showMessageDialog(null, "No puede tener esa estatura no puede medir eso deberias de corroborar el ingreso");
+                estatura = Double.parseDouble(null);
+            }
+            if (pesoActual < 50 || pesoActual > 150) {
+                JOptionPane.showMessageDialog(null, "No puede pesar eso deberias de corroborar el ingreso");
+                pesoActual =Double.parseDouble(null);
+            }
             Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS, caderaS, piernaS, estatura, pesoActual);
             System.out.println("datos a guardar " + idpaciente + " " + cuellopS + " " + bustopS + " " + cinturaS + " " + brazoS + " " + caderaS + " " + piernaS + " " + estatura + " " + idDieta + " " + pesoActual + " " + fecha);
             historialData.nuevoHistorial(historialguarda);
@@ -500,8 +531,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         if (jTBusto.getText().trim().length() == 3) {
             evt.consume();   // TODO add your handling code here:
     }//GEN-LAST:event_jTBustoKeyTyped
-        
-     
+
     }
     private void jTestaturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTestaturaKeyTyped
         int key = evt.getKeyChar();
@@ -510,7 +540,8 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             evt.consume();
         }
         if (jTestatura.getText().trim().length() == 3) {
-            evt.consume(); }  // solo puedo ingresar 3 en total}
+            evt.consume();
+        }  // solo puedo ingresar 3 en total}
     }//GEN-LAST:event_jTestaturaKeyTyped
 
     private void jTestaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTestaturaActionPerformed
@@ -611,9 +642,10 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "3 El peso ingresado es igual al último registro. No has variado el peso ");
             }
 
-        }else{
+        } else {
 
-        JOptionPane.showMessageDialog(null, "no hay valor en la tabla");}
+            JOptionPane.showMessageDialog(null, "no hay valor en la tabla");
+        }
     }//GEN-LAST:event_jTpesoActualFocusLost
 
     private void comboPaciente() {
