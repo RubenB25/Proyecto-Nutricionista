@@ -61,7 +61,7 @@ LocalDate fechaRegistro = LocalDate.now();
 
         ArrayList<Historial> listaHistorial = new ArrayList();
         try {
-            String sql = "SELECT * FROM historial WHERE id_paciente = ?";
+            String sql = "SELECT * FROM historial WHERE id_paciente = ? order by fechaRegistro desc";
             PreparedStatement psm = conex.prepareStatement(sql);
             psm.setInt(1, id); // Establece el valor del parámetro ? con el ID del paciente.
             ResultSet rs = psm.executeQuery();

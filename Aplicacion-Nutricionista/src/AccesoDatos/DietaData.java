@@ -159,28 +159,5 @@ public class DietaData {
         return listaDieta;
 
     }
-//    public ArrayList<Dieta> listarDietaPaciente(int id) {
-//        ArrayList<Dieta> listaDietas = new ArrayList<>();
-//        try {
-//            String sql = "Select  * from dietas where id_paciente = "+id;
-//            PreparedStatement ps = conex.prepareStatement(sql);
-//            ResultSet resultado = ps.executeQuery();
-//            while (resultado.next()) {
-//                Dieta paciente = new Dieta();
-//                paciente.setIdDieta(id);
-//                paciente.setFechaFinal(LocalDate.MIN);
-//                paciente.setNombre("nombre");
-////                paciente.setApellido(resultado.getString("p.apellido"));
-////                paciente.setNombre(resultado.getString("p.nombre"));
-////                paciente.setDni(resultado.getString("dni"));
-////                paciente.setPesoDeseado(resultado.getDouble("p.peso_deseado"));
-//           resultado.getInt("id_dieta"),
-//           resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("d.peso_inicial"), resultado.getDouble("peso_final"), resultado.getBoolean("d.estado"));
-//                listaDietas.add(dieta);
-//            }
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(null, "Error de acceso tabla Dietas", "ERROR", JOptionPane.ERROR_MESSAGE);
-//        }
-//        return listaDietas;
-//    }
+
 }
