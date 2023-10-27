@@ -245,13 +245,13 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
 
 
     private void jTFPesoInicialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPesoInicialKeyReleased
-        String stringPeso = jTFPesoInicial.getText();
-
-        char c = evt.getKeyChar();
-        if (c == KeyEvent.VK_DELETE) {
-            // Tecla de borrar detectada, restaura el contenido original
-            jTFPesoInicial.setText(stringPeso);
-        }
+//        String stringPeso = jTFPesoInicial.getText();
+//
+//        char c = evt.getKeyChar();
+//        if (c == KeyEvent.VK_DELETE) {
+//            // Tecla de borrar detectada, restaura el contenido original
+//            jTFPesoInicial.setText(stringPeso);
+//        }
 
 
     }//GEN-LAST:event_jTFPesoInicialKeyReleased
@@ -342,6 +342,7 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
     }
 
     private void limpiarCampos() {
+        KeyEvent evt;
         jTFNombreDieta.setText("");
         jTFPesoInicial.setText("");
         jDCFinalizacion.setDate(null);
