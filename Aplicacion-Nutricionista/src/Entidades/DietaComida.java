@@ -11,7 +11,6 @@ public class DietaComida {
     private Comida comida;
     private Dieta dieta;
     private int porcion;
-    private boolean estado;
     private HorarioComida horarioComida;
 
     public DietaComida() {
@@ -21,17 +20,7 @@ public class DietaComida {
         this.comida = comida;
         this.dieta = dieta;
         this.porcion = porcion;
-        this.estado = estado;
         this.horarioComida = horarioComida;
-    }
-
-    
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
     }
 
     public int getIdDietaComida() {
@@ -76,7 +65,7 @@ public class DietaComida {
 
     @Override
     public String toString() {
-        return "DietaComida{" + "comida=" + comida + ", dieta=" + dieta + ", porcion=" + porcion + ", estado=" + estado + ", horarioComida=" + horarioComida + '}';
+        return "DietaComida{" + "comida=" + comida + ", dieta=" + dieta + ", porcion=" + porcion + ", horarioComida=" + horarioComida + '}';
     }
     
     
