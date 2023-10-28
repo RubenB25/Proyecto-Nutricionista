@@ -11,6 +11,8 @@ import Entidades.Comida;
 import Entidades.Dieta;
 import Entidades.DietaComida;
 import Enums.HorarioComida;
+import static Vistas.ModificarDieta.jCBDietas;
+import java.awt.event.ItemEvent;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,12 +20,14 @@ import javax.swing.table.DefaultTableModel;
  * @author Ruben
  */
 public class FormularioDietaComida extends javax.swing.JInternalFrame {
+    private ModificarDieta md;
 
     /**
      * Creates new form FormularioDietaComida
      */
-    public FormularioDietaComida() {
+    public FormularioDietaComida(ModificarDieta md) {
         initComponents();
+        this.md= md;
         llenarCB();
         llenarTablaComida();
     }
@@ -69,11 +73,11 @@ public class FormularioDietaComida extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nombre", "Detalle", "Cantidad kcal"
+                "Código", "Nombre", "Detalle", "Cantidad kcal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -83,7 +87,9 @@ public class FormularioDietaComida extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTcomida);
         if (jTcomida.getColumnModel().getColumnCount() > 0) {
             jTcomida.getColumnModel().getColumn(0).setResizable(false);
+            jTcomida.getColumnModel().getColumn(1).setResizable(false);
             jTcomida.getColumnModel().getColumn(2).setResizable(false);
+            jTcomida.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jLabel4.setText("Seleccione la comida");
@@ -159,14 +165,19 @@ public class FormularioDietaComida extends javax.swing.JInternalFrame {
 
     private void jTFGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFGuardarActionPerformed
         DietaComidaData dcd = new DietaComidaData();
-        
-             int porcion = Integer.parseInt(jTFPorcion.getText());
-             HorarioComida horario = (HorarioComida)jCBHorario.getSelectedItem();
-             Comida com = new Comida();
-             com.setIdComida(1);
-             DietaComida dietaComida = new DietaComida(com, dietaId, porcion, true, horario);
-             System.out.println(dietaComida);
-             dcd.nuevaDieta(dietaComida);
+        Dieta dietaId = new Dieta();
+        int porcion = Integer.parseInt(jTFPorcion.getText());
+        HorarioComida horario = (HorarioComida) jCBHorario.getSelectedItem();
+        int filaSeleccionada = jTcomida.getSelectedRow();
+        int idComida = (Integer) jTcomida.getValueAt(filaSeleccionada, 0);
+        Comida com = new Comida();
+        com.setIdComida(idComida);
+        System.out.println(idComida);
+        dietaId.setIdDieta(ModificarDieta.idDieta);
+        DietaComida dietaComida = new DietaComida(com, dietaId, porcion, true, horario);
+        dcd.nuevaDieta(dietaComida);
+        md.actualizarLista();
+
     }//GEN-LAST:event_jTFGuardarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -196,15 +207,16 @@ public class FormularioDietaComida extends javax.swing.JInternalFrame {
     }
 
     private void llenarTablaComida() {
- 
+
         DefaultTableModel datos = (DefaultTableModel) jTcomida.getModel();
         datos.setNumRows(0);
         ComidaData cd = new ComidaData();
         cd.listarComidas().forEach((c) -> {
-            Object[] fila = new Object[3];
-            fila[0] = c.getNombre();
-            fila[1] = c.getDetalle();
-            fila[2] = c.getCantCalorias();
+            Object[] fila = new Object[4];
+            fila[0] = c.getIdComida();
+            fila[1] = c.getNombre();
+            fila[2] = c.getDetalle();
+            fila[3] = c.getCantCalorias();
             datos.addRow(fila);
         });
     }
