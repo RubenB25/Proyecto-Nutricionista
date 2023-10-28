@@ -164,7 +164,7 @@ public class HistorialData {
         ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
         try {
             String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro,h.variaciones FROM historial AS h "
-                    + "INNER JOIN pacientes AS p ON h.id_paciente = ? order by h.fechaRegistro desc";
+                    + "INNER JOIN pacientes AS p ON p.id_paciente = ? order by h.fechaRegistro desc";
             PreparedStatement psm = conex.prepareStatement(sql);
             psm.setInt(1, id);
             ResultSet rs = psm.executeQuery();

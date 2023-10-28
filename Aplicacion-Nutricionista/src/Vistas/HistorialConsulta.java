@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class HistorialConsulta extends javax.swing.JInternalFrame {
 
     private DefaultTableModel model;
-
+double cont=0,baja=0;
     /**
      * Creates new form HistorialConsulta
      */
@@ -46,11 +46,11 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Peso ", "Fecha Registro", "Variaciones"
+                "Nombre", "Apellido", "Peso ", "Fecha Registro"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -141,10 +141,12 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
     private void jTHistorialConsultaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTHistorialConsultaPropertyChange
         // TODO add your handling code here:
        // llenarTabla();
+       
     }//GEN-LAST:event_jTHistorialConsultaPropertyChange
 
     private void jCbpacienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbpacienteItemStateChanged
         try {
+            limpiar();
             Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
             int idpaciente = pacienteSeleccionado.getIdPaciente();
             System.out.println(" el id elegido es "+ idpaciente);
@@ -166,7 +168,7 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
     private void jCbpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbpacienteActionPerformed
         Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
         int idnuevo = pacienteSeleccionado.getIdPaciente();  
-        if(idnuevo!=0){
+        if(idnuevo==0){
             limpiar();
             llenarTabla();
         }
@@ -192,6 +194,12 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
             for (historialConNombreyApellido historial : hd.obtenerHistorialesConNombreApellido()) {
                 model.addRow(new Object[]{historial.getNombre(), historial.getApellido(),
                     historial.getPesoActual(), historial.getFechaRegistro(),historial.getDiferencias()});
+                if (historial.getDiferencias()>0){
+                    cont= cont + historial.getDiferencias();
+                    
+                }else{
+                    baja=baja+historial.getDiferencias();
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al cargar la tabla " + e);
@@ -201,6 +209,7 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
         try {
             int idelegido=id;
             HistorialData hd = new HistorialData(); 
+     
             
             for (historialConNombreyApellido historial : hd.obtenerHistorialesDePaciente(idelegido)) {
                 model.addRow(new Object[]{historial.getNombre(), historial.getApellido(),
@@ -215,10 +224,12 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
             model.removeRow(0);
         }
     }
+    
    private void comboPaciente() {
-      
+    PacienteData pd= new PacienteData();
              try {
-            PacienteData pd = new PacienteData();
+
+            
             ArrayList<Paciente> pacientes = pd.listarPaciente();
             Paciente seleccionarPaciente = new Paciente("-1" , "- Seleccione un Paciente -");
             jCbpaciente.insertItemAt(seleccionarPaciente, 0);
@@ -231,4 +242,8 @@ public class HistorialConsulta extends javax.swing.JInternalFrame {
 
         }
 
-   }}
+   }
+
+
+
+}

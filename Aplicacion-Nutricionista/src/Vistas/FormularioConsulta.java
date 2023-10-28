@@ -430,22 +430,23 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCbDIETAActionPerformed
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-//        try {
+       try {
         HistorialData historialData = new HistorialData();
         validaciones();
-
-        Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS, caderaS, piernaS, estaturaS, pesoActualS, variacionS);
-        System.out.println("datos a guardar " + idpaciente + " " + cuellopS + " " + bustopS + " " + cinturaS + " " + brazoS + " " + caderaS + " " + piernaS + " " + estatura + " " + idDieta + " " + pesoActual + " " + fecha + variacionS);
+        variacion();
+        Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS, 
+                caderaS, piernaS, estaturaS, pesoActualS);
+       
         historialData.nuevoHistorial(historialguarda);
-//    }
-//    catch (Exception e
+    }
+    catch (Exception e){
 //
 //    
 //        ) {
-//            JOptionPane.showMessageDialog(this, "Error al querer guardar el Historial: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al querer guardar el Historial: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
     }//GEN-LAST:event_jBguardarActionPerformed
-
+    }
     private void jTBustoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBustoKeyTyped
         validacionMedidas(evt, jTBusto.getText());
     }//GEN-LAST:event_jTBustoKeyTyped
@@ -457,7 +458,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTestaturaKeyTyped
 
     private void jTestaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTestaturaActionPerformed
-        // TODO add your handling code here:
+       // if (tablaMedidas.)
     }//GEN-LAST:event_jTestaturaActionPerformed
 
     private void jTpesoActualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesoActualKeyTyped
@@ -477,7 +478,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     private void jCbpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbpacienteActionPerformed
         Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
-    
+
         int idnuevo = pacienteSeleccionado.getIdPaciente();
         idpaciente = pacienteSeleccionado.getIdPaciente();
         limpiarTabla();
@@ -524,6 +525,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
             idpaciente = pacienteSeleccionado.getIdPaciente();
             comboDieta();
+            
             if (fechaObtenida.isEqual(LocalDate.now())) {
                 JOptionPane.showMessageDialog(null, "llegaste al final de tu dieta , guarda los datos ");
 
@@ -538,44 +540,44 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTpesoActualKeyReleased
 
     private void jTpesoActualFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTpesoActualFocusLost
-        DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
-        try {
-
-            Object dato = model.getValueAt(0, 7);
-            if (dato != null) {
-
-                double peso = Double.parseDouble(dato.toString());
-                double pesoActual = Double.parseDouble(jTpesoActual.getText());
-
-                if (peso < pesoActual) {
-                    variacionS = pesoActual - peso;
-                    System.out.println("variacion 1 " + variacionS);
-                    JOptionPane.showMessageDialog(null, "1 El peso ingresado es mayor que el último registro. Es decir que has aumentado " + variacionS + "kilos");
-
-                } else if (peso > pesoActual) {
-                    variacionS = peso - pesoActual;
-                    System.out.println("variacion 2 " + variacionS);
-                    JOptionPane.showMessageDialog(null, "2 El peso ingresado es menor que el último registro.Es decir que has adelgazado " + variacionS + "kilo");
-                } else {
-                    variacionS = peso - pesoActual;
-                    JOptionPane.showMessageDialog(null, "3 El peso ingresado es igual al último registro. No has variado el peso ");
-                    System.out.println("variacion 3 " + variacionS);
-                }
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "no hay valor en la tabla");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "no encuentro el valor para comparar tu peso " + e);
-        }
+//        DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
+//        try {
+//
+//            Object dato = model.getValueAt(0, 7);
+//            if (dato != null) {
+//
+//                double peso = Double.parseDouble(dato.toString());
+//                double pesoActual = Double.parseDouble(jTpesoActual.getText());
+//
+//                if (peso < pesoActual) {
+//                    variacionS = pesoActual - peso;
+//                    System.out.println("variacion 1 " + variacionS);
+//                    JOptionPane.showMessageDialog(null, "1 El peso ingresado es mayor que el último registro. Es decir que has aumentado " + variacionS + "kilos");
+//
+//                } else if (peso > pesoActual) {
+//                    variacionS = peso - pesoActual;
+//                    System.out.println("variacion 2 " + variacionS);
+//                    JOptionPane.showMessageDialog(null, "2 El peso ingresado es menor que el último registro.Es decir que has adelgazado " + variacionS + "kilo");
+//                } else {
+//                    variacionS = peso - pesoActual;
+//                    JOptionPane.showMessageDialog(null, "3 El peso ingresado es igual al último registro. No has variado el peso ");
+//                    System.out.println("variacion 3 " + variacionS);
+//                }
+//
+//            } else {
+//
+//                JOptionPane.showMessageDialog(null, "no hay valor en la tabla");
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "no encuentro el valor para comparar tu peso " + e);
+//        }
     }//GEN-LAST:event_jTpesoActualFocusLost
 
     private void comboPaciente() {
         try {
             PacienteData pd = new PacienteData();
             ArrayList<Paciente> pacientes = pd.listarPaciente();
-            Paciente seleccionarPaciente = new Paciente("-1" , "- Seleccione un Paciente -");
+            Paciente seleccionarPaciente = new Paciente("-1", "- Seleccione un Paciente -");
             jCbpaciente.insertItemAt(seleccionarPaciente, 0);
             for (Paciente pac : pacientes) {
 
@@ -717,22 +719,61 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                 piernaS = null;
             }
             estaturaS = Double.parseDouble(jTestatura.getText());
-            if (estaturaS < 50 || estaturaS > 210) {
-                JOptionPane.showMessageDialog(null, "No puede tener esa estatura no puede medir eso deberias de corroborar el ingreso");
-                jTestatura.setText("");
-                estaturaS = null;
-            }
-            pesoActualS = Double.parseDouble(jTpesoActual.getText());
-            if (pesoActualS < 3 || pesoActualS > 500) {
-                JOptionPane.showMessageDialog(null, "Valores fuera del rango, en el peso");
-                jTpesoActual.setText("");
-                pesoActualS = null;
-            }
             if (jTpesoActual.getText().startsWith(".") || jTpesoActual.getText().startsWith("0")) {
                 throw new IllegalArgumentException("Verifique el campo peso inicial.");
-            }
+            } else {
+                if (estaturaS < 50 || estaturaS > 210) {
+                    JOptionPane.showMessageDialog(null, "No puede tener esa estatura no puede medir eso deberias de corroborar el ingreso");
+                    jTestatura.setText("");
+                    estaturaS = null;
+                }
+                pesoActualS = Double.parseDouble(jTpesoActual.getText());
+                if (jTpesoActual.getText().startsWith(".") || jTpesoActual.getText().startsWith("0")) {
+                    throw new IllegalArgumentException("Verifique el campo peso inicial.");
+                } else {
+                    if (pesoActualS < 3 || pesoActualS > 500) {
+                        JOptionPane.showMessageDialog(null, "Valores fuera del rango, en el peso");
+                        jTpesoActual.setText("");
+                        pesoActualS = null;
+                    }
 
-        } catch (Exception e) {
+                }
+            }
+            }catch (Exception e) {
         }
-    }
-}
+        }
+    public double  variacion(){
+        DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
+        try {
+
+            Object dato = model.getValueAt(0, 7);
+            if (dato != null) {
+
+                double peso = Double.parseDouble(dato.toString());
+                double pesoActual = Double.parseDouble(jTpesoActual.getText());
+
+                if (peso < pesoActual) {
+                    variacionS = pesoActual - peso;
+                    System.out.println("variacion 1 " + variacionS);
+                    JOptionPane.showMessageDialog(null, "1 El peso ingresado es mayor que el último registro. Es decir que has aumentado " + variacionS + "kilos");
+
+                } else if (peso > pesoActual) {
+                    variacionS = pesoActual-peso;
+                    System.out.println("variacion 2 " + variacionS);
+                    JOptionPane.showMessageDialog(null, "2 El peso ingresado es menor que el último registro.Es decir que has adelgazado " + variacionS + "kilo");
+                } else {
+                    variacionS = pesoActual-peso;
+                    JOptionPane.showMessageDialog(null, "3 El peso ingresado es igual al último registro. No has variado el peso ");
+                    System.out.println("variacion 3 " + variacionS);
+                }
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "no hay valor en la tabla");
+            }
+          
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "no encuentro el valor para comparar tu peso " + e);
+        }
+      return variacionS;
+    }}
