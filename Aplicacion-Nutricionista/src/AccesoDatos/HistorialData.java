@@ -27,9 +27,9 @@ public class HistorialData {
     }
 
     public void nuevoHistorial(Historial historial) {
-LocalDate fechaRegistro = LocalDate.now();
-        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna,estatura, pesoActual,fechaRegistro)"
-                + "VALUES (?, ?, ?, ?,?,?,?,?,?,?)";
+        LocalDate fechaRegistro = LocalDate.now();
+        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna,estatura, pesoActual,fechaRegistro,variaciones)"
+                + "VALUES (?, ?, ?, ?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, historial.getIdPaciente());
@@ -40,11 +40,10 @@ LocalDate fechaRegistro = LocalDate.now();
             ps.setDouble(6, historial.getCadera());
             ps.setDouble(7, historial.getPierna());
             ps.setDouble(8, historial.getEstatura());
-           
+
             ps.setDouble(9, historial.getPesoActual());
             ps.setDate(10, Date.valueOf(fechaRegistro));
-           
-
+            ps.setDouble(11, historial.getVariacion());
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
@@ -72,19 +71,19 @@ LocalDate fechaRegistro = LocalDate.now();
                 paciente.setIdPaciente(id); // Establece el ID del paciente
                 historial.setCuello(rs.getDouble("cuello"));
                 historial.setBusto(rs.getDouble("busto"));
-                   System.out.println("Estoy en el while1");
+                System.out.println("Estoy en el while1");
                 historial.setCintura(rs.getDouble("cintura"));
                 historial.setBrazo(rs.getDouble("brazo"));
                 historial.setCadera(rs.getDouble("cadera"));
                 historial.setPierna(rs.getDouble("pierna"));
-                   System.out.println("Estoy en el while2");
+                System.out.println("Estoy en el while2");
                 historial.setPesoActual(rs.getDouble("pesoActual"));
                 historial.setEstatura(rs.getDouble("estatura"));
-          
-                   System.out.println("Estoy en el whileeeeeeeeeeeeee");
+                historial.setVariacion(rs.getDouble("variaciones"));
+                // System.out.println("Estoy en el whileeeeeeeeeeeeee");
                 historial.setFechaRegistro(rs.getDate("fechaRegistro").toLocalDate());
                 listaHistorial.add(historial);
-                   System.out.println("Estoy en el whileppppppppppp"); 
+                //System.out.println("Estoy en el whileppppppppppp");
             }
             psm.close();
         } catch (Exception e) {
@@ -119,7 +118,8 @@ LocalDate fechaRegistro = LocalDate.now();
     public void guardarHistorial(Historial rs) {
         try {
             String sql = "INSERT INTO historial (id_Paciente) "
-                    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(), rs.getPierna() rs.getEstatura(), rs.getIdDieta(), rs.getFechaRegistro";
+                    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(),"
+                    + " rs.getPierna() rs.getEstatura(), rs.getIdDieta(), rs.getFechaRegistro, rs.getVariaciones()";
             PreparedStatement ps = conex.prepareStatement(sql);
 
             int filasAfectadas = ps.executeUpdate();
@@ -137,8 +137,8 @@ LocalDate fechaRegistro = LocalDate.now();
     public ArrayList<historialConNombreyApellido> obtenerHistorialesConNombreApellido() {
         ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
         try {
-            String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro FROM historial AS h "
-                    + "INNER JOIN pacientes AS p ON h.id_paciente = p.id_paciente";
+            String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro,h.variaciones FROM historial AS h "
+                    + "INNER JOIN pacientes AS p ON h.id_paciente = p.id_paciente order by h.fechaRegistro desc";
             PreparedStatement psm = conex.prepareStatement(sql);
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
@@ -147,8 +147,9 @@ LocalDate fechaRegistro = LocalDate.now();
                 String apellido = rs.getString("apellido");
                 Double pesoActual = rs.getDouble("pesoActual");
                 Date fechaRegistroSQL = rs.getDate("fechaRegistro");
+                Double variacion=rs.getDouble("variaciones");
                 LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
-                System.out.println("sql   "+fechaRegistro);
+                System.out.println("sql   " + fechaRegistro);
                 historialConNombreyApellido pacienteHistorial = new historialConNombreyApellido(nombre, apellido, rs.getDouble("pesoActual"), fechaRegistro);
                 listaHistorialConNombreyApellidos.add(pacienteHistorial);
             }
@@ -159,23 +160,50 @@ LocalDate fechaRegistro = LocalDate.now();
 
     }
 
-    public ArrayList<Historial> obtenerPacientePorHistorial() {
-        ArrayList<Historial> listaHistorial = new ArrayList<>();
+    public ArrayList<historialConNombreyApellido> obtenerHistorialesDePaciente(int id) {
+        ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
         try {
-            String sql = "SELECT h.id_paciente, h.pesoActual, h.fechaRegistro FROM historial AS h";
+            String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro,h.variaciones FROM historial AS h "
+                    + "INNER JOIN pacientes AS p ON h.id_paciente = ? order by h.fechaRegistro desc";
             PreparedStatement psm = conex.prepareStatement(sql);
+            psm.setInt(1, id);
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
+                
+                String nombre = rs.getString("nombre");
+                String apellido = rs.getString("apellido");
+                Double pesoActual = rs.getDouble("pesoActual");
                 Date fechaRegistroSQL = rs.getDate("fechaRegistro");
                 LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
-                Historial pacienteHistorial = new Historial(rs.getInt("id_paciente"),
-                        rs.getDouble("pesoActual"), fechaRegistro);
-                listaHistorial.add(pacienteHistorial);
+                System.out.println("sql   " + fechaRegistro);
+                Double variaciones = rs.getDouble("variaciones");
+                historialConNombreyApellido pacienteHistorial = new historialConNombreyApellido(nombre, apellido, rs.getDouble("pesoActual"), fechaRegistro);
+                listaHistorialConNombreyApellidos.add(pacienteHistorial);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
         }
-        return listaHistorial;
+        return listaHistorialConNombreyApellidos;
+
     }
+
+//    public ArrayList<Historial> obtenerPacientePorHistorial() {
+//        ArrayList<Historial> listaHistorial = new ArrayList<>();
+//        try {
+//            String sql = "SELECT h.id_paciente, h.pesoActual, h.fechaRegistro FROM historial AS h";
+//            PreparedStatement psm = conex.prepareStatement(sql);
+//            ResultSet rs = psm.executeQuery();
+//            while (rs.next()) {
+//                Date fechaRegistroSQL = rs.getDate("fechaRegistro");
+//                LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
+//                Historial pacienteHistorial = new Historial(rs.getInt("id_paciente"),
+//                        rs.getDouble("pesoActual"), fechaRegistro);
+//                listaHistorial.add(pacienteHistorial);
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
+//        }
+//        return listaHistorial;
+//    }
 
 }

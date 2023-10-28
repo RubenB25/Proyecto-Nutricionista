@@ -16,7 +16,7 @@ public class Historial {
     private double cadera;
     private double pierna;
     private double estatura;
-   
+   private double variacion;
     private double pesoActual;
 
     private LocalDate fechaRegistro;
@@ -64,6 +64,33 @@ public class Historial {
         this.fechaRegistro = fechaRegistro;
     }
 
+    public Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, double variacion, double pesoActual) {
+        this.idPaciente = idPaciente;
+        this.cuello = cuello;
+        this.busto = busto;
+        this.cintura = cintura;
+        this.brazo = brazo;
+        this.cadera = cadera;
+        this.pierna = pierna;
+        this.estatura = estatura;
+        this.variacion = variacion;
+        this.pesoActual = pesoActual;
+    }
+
+    public Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, double variacion, double pesoActual, LocalDate fechaRegistro) {
+        this.idPaciente = idPaciente;
+        this.cuello = cuello;
+        this.busto = busto;
+        this.cintura = cintura;
+        this.brazo = brazo;
+        this.cadera = cadera;
+        this.pierna = pierna;
+        this.estatura = estatura;
+        this.variacion = variacion;
+        this.pesoActual = pesoActual;
+        this.fechaRegistro = fechaRegistro;
+    }
+
     public Historial(int idPaciente, double cuello, double busto, double cintura, double brazo, double cadera, double pierna, double estatura, double pesoActual, LocalDate fechaRegistro) {
         this.idPaciente = idPaciente;
         this.cuello = cuello;
@@ -76,6 +103,14 @@ public class Historial {
        
         this.pesoActual = pesoActual;
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public double getVariacion() {
+        return variacion;
+    }
+
+    public void setVariacion(double variacion) {
+        this.variacion = variacion;
     }
 
     public int getIdHistorial() {

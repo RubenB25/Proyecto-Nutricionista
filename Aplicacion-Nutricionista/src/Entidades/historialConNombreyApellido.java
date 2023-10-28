@@ -2,12 +2,24 @@ package Entidades;
 
 import java.time.LocalDate;
 
-/** @author User2021SD*/
+/**
+ * @author User2021SD
+ */
 public class historialConNombreyApellido {
-private String nombre;
-private String apellido;
-private double pesoActual;
-private LocalDate fechaRegistro;
+
+    private String nombre;
+    private String apellido;
+    private double pesoActual;
+    private LocalDate fechaRegistro;
+    private double diferencias;
+
+    public historialConNombreyApellido(String nombre, String apellido, double pesoActual, LocalDate fechaRegistro, double diferencias) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.pesoActual = pesoActual;
+        this.fechaRegistro = fechaRegistro;
+        this.diferencias = diferencias;
+    }
 
     public historialConNombreyApellido() {
     }
@@ -17,6 +29,14 @@ private LocalDate fechaRegistro;
         this.apellido = apellido;
         this.pesoActual = pesoActual;
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public double getDiferencias() {
+        return diferencias;
+    }
+
+    public void setDiferencias(double diferencias) {
+        this.diferencias = diferencias;
     }
 
     public String getNombre() {
