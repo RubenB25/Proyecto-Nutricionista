@@ -55,10 +55,8 @@
                               <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jCBListaPaciente" max="32767" attributes="0"/>
                                   <Component id="jTFNombreDieta" alignment="0" min="-2" pref="216" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jDCInicio" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jDCFinalizacion" alignment="0" pref="139" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="jDCInicio" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jDCFinalizacion" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jTFPesoInicial" min="-2" pref="53" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
@@ -174,6 +172,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jCBListaPacienteItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Paciente&gt;"/>
           </AuxValues>

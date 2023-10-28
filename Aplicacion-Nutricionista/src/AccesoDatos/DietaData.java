@@ -29,8 +29,8 @@ public class DietaData {
         try {
             PreparedStatement ps = conex.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getPaciente().getIdPaciente());
-            ps.setDate(2, Date.valueOf(dieta.getInicioDieta()));
-            ps.setDate(3, Date.valueOf(dieta.getFinDieta()));
+            ps.setDate(2, Date.valueOf(dieta.getFechaInicial()));
+            ps.setDate(3, Date.valueOf(dieta.getFechaFinal()));
             ps.setString(4, dieta.getNombre());
             ps.setDouble(5, dieta.getPesoInicial());
             ps.setDouble(6, dieta.getPesoFinal());
@@ -40,7 +40,7 @@ public class DietaData {
             ResultSet resultado = ps.getGeneratedKeys();
 
             if (resultado.next()) {
-                dieta.setIdComida(resultado.getInt(1));
+                dieta.setIdDieta(resultado.getInt(1));
                 JOptionPane.showMessageDialog(null, "Dieta ingresada correctamente");
             }
             ps.close();
@@ -80,6 +80,23 @@ public class DietaData {
 
     }
 
+    public int comprobacionDieta(int id) {
+        int dietaVigente = 0;
+        try {
+            String sql = "SELECT COUNT(*) FROM dietas WHERE estado = 1 and id_paciente= ?";
+            PreparedStatement psm = conex.prepareStatement(sql);
+            psm.setInt(1, id);
+            ResultSet resultado = psm.executeQuery();
+
+            if (resultado.next()) {
+                dietaVigente = resultado.getInt(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
+        }
+        return dietaVigente;
+    }
+
     public ArrayList<Dieta> buscarDieta(String nombre) {
         ArrayList<Dieta> listaDietas = new ArrayList<>();
         try {
@@ -98,6 +115,7 @@ public class DietaData {
         }
         return listaDietas;
     }
+
     public ArrayList<Dieta> listarDietas() {
         ArrayList<Dieta> listaDietas = new ArrayList<>();
         try {
@@ -106,12 +124,12 @@ public class DietaData {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
                 Paciente paciente = new Paciente();
-                paciente.setIdPaciente(resultado.getInt("id_paciente")); 
+                paciente.setIdPaciente(resultado.getInt("id_paciente"));
                 paciente.setApellido(resultado.getString("p.apellido"));
                 paciente.setNombre(resultado.getString("p.nombre"));
                 paciente.setDni(resultado.getString("dni"));
                 paciente.setPesoDeseado(resultado.getInt("p.peso_deseado"));
-               Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente, resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("d.peso_inicial"), resultado.getDouble("peso_final"), resultado.getBoolean("d.estado"));
+                Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente, resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("d.peso_inicial"), resultado.getDouble("peso_final"), resultado.getBoolean("d.estado"));
                 listaDietas.add(dieta);
             }
         } catch (SQLException e) {
@@ -120,7 +138,6 @@ public class DietaData {
         return listaDietas;
     }
 
-
     public ArrayList<String> listarDieta() {
         ArrayList<String> dietas = new ArrayList<>();
         try {
@@ -128,7 +145,7 @@ public class DietaData {
             PreparedStatement psm = conex.prepareStatement(sql);
             ResultSet resultado = psm.executeQuery();
             while (resultado.next()) {
-  
+
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla" + ex.getMessage());

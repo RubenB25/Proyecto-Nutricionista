@@ -31,7 +31,8 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
     private PacienteData pacienteData = new PacienteData();
     int contadorDePuntos = 0;
     char espacioAnterior = ' ';
-
+    private int idPaciente;
+    boolean todoCorrecto = true;
     /**
      * Creates new form RegistrarDieta
      */
@@ -104,6 +105,12 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
             }
         });
 
+        jCBListaPaciente.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCBListaPacienteItemStateChanged(evt);
+            }
+        });
+
         jLPaciente.setText("Paciente");
 
         jButton1.setText("Cancelar");
@@ -136,9 +143,8 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jCBListaPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTFNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jDCInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jDCFinalizacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
+                                .addComponent(jDCInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jDCFinalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jTFPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -195,6 +201,7 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
     private void jBAgregarDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarDietaActionPerformed
         try {
             if (comprobaciones()) {
+                DietaData dieta = new DietaData();
                 Paciente pacienteCB = (Paciente) jCBListaPaciente.getSelectedItem();
                 String nombre = jTFNombreDieta.getText();
                 jTFPesoInicial.setText(jTFPesoInicial.getText().replaceAll(" ", ""));
@@ -203,7 +210,7 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
                 if (esTextoValido(nombre, jTFPesoInicial.getText())) {
                     double pesoInicial = Double.parseDouble(jTFPesoInicial.getText());
                     nombre.trim();
-                    
+
                     Dieta nuevaDieta = new Dieta(nombre, pacienteCB, fechaInicio, fechaFin, pesoInicial, 0, true);
                     dieta.nuevaDieta(nuevaDieta);
                     limpiarCampos();
@@ -263,6 +270,12 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jCBListaPacienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBListaPacienteItemStateChanged
+        // TODO add your handling code here:
+        Paciente paciente = (Paciente)jCBListaPaciente.getSelectedItem();
+        idPaciente = paciente.getIdPaciente();
+    }//GEN-LAST:event_jCBListaPacienteItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregarDieta;
@@ -289,7 +302,12 @@ public class RegistrarDieta extends javax.swing.JInternalFrame {
     }
 
     private boolean comprobaciones() {
-        boolean todoCorrecto = true;
+        if (dieta.comprobacionDieta(idPaciente)>0) {
+           todoCorrecto = true;
+           throw new IllegalArgumentException("Este paciente registra una dieta vigente.");
+        }else{
+             todoCorrecto = true;
+        }
 
         try {
             String nombreDieta = jTFNombreDieta.getText();
