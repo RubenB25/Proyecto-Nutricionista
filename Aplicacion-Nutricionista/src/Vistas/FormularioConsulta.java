@@ -488,12 +488,12 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCbpacienteActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        FormularioPaciente fp = new FormularioPaciente();
-        jDPescritorio.removeAll();
-        jDPescritorio.repaint();
-        jDPescritorio.add(fp);
-        fp.moveToFront();
-        fp.setVisible(true);
+//        FormularioPaciente fp = new FormularioPaciente();
+//        jDPescritorio.removeAll();
+//        jDPescritorio.repaint();
+//        jDPescritorio.add(fp);
+//        fp.moveToFront();
+//        fp.setVisible(true);
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBimcActionPerformed
