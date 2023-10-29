@@ -6,7 +6,7 @@ import AccesoDatos.PacienteData;
 import Entidades.Dieta;
 import Entidades.Historial;
 import Entidades.Paciente;
-import static Vistas.NutricionistaEscritorio.jDPescritorio;
+
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;

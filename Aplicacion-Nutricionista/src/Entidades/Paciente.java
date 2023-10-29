@@ -23,6 +23,11 @@ public class Paciente {
     public Paciente() {
     }
 
+    public Paciente(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
     public Paciente(String nombre, String apellido, String dni, String domicilio,
             String celular, LocalDate fechaNac, int edad, double pesoActual,
             double pesoDeseado, boolean estado) {
