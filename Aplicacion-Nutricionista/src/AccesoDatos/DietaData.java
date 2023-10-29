@@ -148,7 +148,9 @@ public class DietaData {
 
                 Paciente paciente = new Paciente();
                 paciente.setIdPaciente(resultado.getInt("id_paciente"));
-                Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente, resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("peso_Inicial"), resultado.getDouble("peso_Final"), resultado.getBoolean("estado"));
+                Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente,
+                        resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(),
+                        resultado.getDouble("peso_Inicial"), resultado.getDouble("peso_Final"), resultado.getBoolean("estado"));
                 listaDieta.add(dieta);
             }
         } catch (SQLException ex) {

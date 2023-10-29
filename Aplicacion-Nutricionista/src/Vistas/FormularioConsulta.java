@@ -17,8 +17,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class FormularioConsulta extends javax.swing.JInternalFrame {
 
-    Double cuellopS, bustopS, brazoS, cinturaS, caderaS, piernaS, estaturaS, pesoActualS, variacionS;
-    int idDieta;
+    Double cuellopS, bustopS, brazoS, cinturaS, caderaS, piernaS, pesoActualS, variacionS;
+    int idDieta,estaturaS;
     LocalDate fechaActual, fechaObtenida;
     boolean estado;
 
@@ -160,7 +160,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Cuello", "Busto", "Brazo", "Cintura", "Cadera", "Pierna", "Fecha Registro", "Peso"
+                "Cuello", "Busto", "Brazo", "Cintura", "Cadera", "Pierna", "Fecha Registro", "Peso", "Estatura"
             }
         ));
         jScrollPane1.setViewportView(tablaMedidas);
@@ -433,23 +433,24 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 //       try {g
         DietaData dieta = new DietaData();
         Dieta dietaseleccionada = (Dieta) jCbDIETA.getSelectedItem();
+        
         int id = dietaseleccionada.getIdDieta();
+        System.out.println(" id dieta"+id);
 
-        System.out.println(dieta.obtenerDietaDelPaciente(idpaciente));
+       // System.out.println(dieta.obtenerDietaDelPaciente(idpaciente));
         HistorialData historialData = new HistorialData();
         fechaObtenida = dietaseleccionada.getFechaFinal();
         if (fechaObtenida.isEqual(LocalDate.now())) {
             dieta.modificarDietaPorID(id, pesoActualS);
             JOptionPane.showMessageDialog(null, "llegaste al final de tu dieta");
-
         }
 
         if (validaciones()) {
             Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS,
                     caderaS, piernaS, estaturaS, pesoActualS);
-            System.out.println(historialguarda.toString());
+            //System.out.println(historialguarda.toString());
             historialData.nuevoHistorial(historialguarda);
-        }
+        }llenarTablaMedidas(idpaciente);
     }//GEN-LAST:event_jBguardarActionPerformed
 
     private void jTBustoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBustoKeyTyped
@@ -482,8 +483,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTpesoActualKeyTyped
 
     private void jCbpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbpacienteActionPerformed
-        Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
-
+    
 
     }//GEN-LAST:event_jCbpacienteActionPerformed
 
@@ -525,7 +525,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
             Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
             idpaciente = pacienteSeleccionado.getIdPaciente();
-            limpiarCombo();
+//            limpiarCombo();
             comboDieta();
             limpiarTabla();
             llenarTablaMedidas(idpaciente);
@@ -544,37 +544,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTpesoActualKeyReleased
 
     private void jTpesoActualFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTpesoActualFocusLost
-//        DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
-//        try {
-//
-//            Object dato = model.getValueAt(0, 7);
-//            if (dato != null) {
-//
-//                double peso = Double.parseDouble(dato.toString());
-//                double pesoActual = Double.parseDouble(jTpesoActual.getText());
-//
-//                if (peso < pesoActual) {
-//                    variacionS = pesoActual - peso;
-//                    System.out.println("variacion 1 " + variacionS);
-//                    JOptionPane.showMessageDialog(null, "1 El peso ingresado es mayor que el último registro. Es decir que has aumentado " + variacionS + "kilos");
-//
-//                } else if (peso > pesoActual) {
-//                    variacionS = peso - pesoActual;
-//                    System.out.println("variacion 2 " + variacionS);
-//                    JOptionPane.showMessageDialog(null, "2 El peso ingresado es menor que el último registro.Es decir que has adelgazado " + variacionS + "kilo");
-//                } else {
-//                    variacionS = peso - pesoActual;
-//                    JOptionPane.showMessageDialog(null, "3 El peso ingresado es igual al último registro. No has variado el peso ");
-//                    System.out.println("variacion 3 " + variacionS);
-//                }
-//
-//            } else {
-//
-//                JOptionPane.showMessageDialog(null, "no hay valor en la tabla");
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "no encuentro el valor para comparar tu peso " + e);
-//        }
+
     }//GEN-LAST:event_jTpesoActualFocusLost
 
     private void comboPaciente() {
@@ -659,7 +629,8 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                     paHistorial.getCadera(),
                     paHistorial.getPierna(),
                     paHistorial.getFechaRegistro(),
-                    paHistorial.getPesoActual(),});
+                    paHistorial.getPesoActual(),
+                    paHistorial.getEstatura()});
 
             }
         } catch (Exception e) {
@@ -692,7 +663,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             cinturaS = Double.parseDouble(jTCintura.getText());
             caderaS = Double.parseDouble(jTCadera.getText());
             piernaS = Double.parseDouble(jTPierna.getText());
-            estaturaS = Double.parseDouble(jTestatura.getText());
+            estaturaS = Integer.parseInt(jTestatura.getText());
             pesoActualS = Double.parseDouble(jTpesoActual.getText());
             if (cuellopS < 20 || cuellopS > 70 || bustopS < 50 || bustopS > 150 || brazoS < 30 || brazoS > 70 || cinturaS < 50 || cinturaS > 150
                     || caderaS < 50 || caderaS > 200 || piernaS < 50 || piernaS > 130 || estaturaS < 50 || estaturaS > 210 || pesoActualS < 3 || pesoActualS > 500 || jTpesoActual.getText().startsWith(".") || jTpesoActual.getText().startsWith("0")) {

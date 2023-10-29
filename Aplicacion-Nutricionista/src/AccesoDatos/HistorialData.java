@@ -39,11 +39,11 @@ public class HistorialData {
             ps.setDouble(5, historial.getBrazo());
             ps.setDouble(6, historial.getCadera());
             ps.setDouble(7, historial.getPierna());
-            ps.setDouble(8, historial.getEstatura());
+            ps.setInt(8, historial.getEstatura());
 
             ps.setDouble(9, historial.getPesoActual());
             ps.setDate(10, Date.valueOf(fechaRegistro));
-    
+
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
@@ -65,31 +65,29 @@ public class HistorialData {
             psm.setInt(1, id); // Establece el valor del parámetro ? con el ID del paciente.
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
-                System.out.println("Estoy en el while");
+                // System.out.println("Estoy en el while");
                 Historial historial = new Historial();
                 Paciente paciente = new Paciente();
                 paciente.setIdPaciente(id); // Establece el ID del paciente
                 historial.setCuello(rs.getDouble("cuello"));
                 historial.setBusto(rs.getDouble("busto"));
-                System.out.println("Estoy en el while1");
+                //System.out.println("Estoy en el while1");
                 historial.setCintura(rs.getDouble("cintura"));
                 historial.setBrazo(rs.getDouble("brazo"));
                 historial.setCadera(rs.getDouble("cadera"));
                 historial.setPierna(rs.getDouble("pierna"));
-                System.out.println("Estoy en el while2");
+                //System.out.println("Estoy en el while2");
                 historial.setPesoActual(rs.getDouble("pesoActual"));
-                historial.setEstatura(rs.getDouble("estatura"));
-        
+                historial.setEstatura(rs.getInt("estatura"));
+                historial.setIdPaciente(rs.getInt("id_paciente"));
                 // System.out.println("Estoy en el whileeeeeeeeeeeeee");
                 historial.setFechaRegistro(rs.getDate("fechaRegistro").toLocalDate());
                 listaHistorial.add(historial);
                 //System.out.println("Estoy en el whileppppppppppp");
             }
             psm.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error");
-            System.out.println("Esta en catch");
-            System.out.println(e.getCause());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos HISTORIAL" + e.getMessage());
         }
         return listaHistorial;
     }
@@ -115,8 +113,6 @@ public class HistorialData {
     }
 //        
 
-   
-
     public ArrayList<historialConNombreyApellido> obtenerHistorialesConNombreApellido() {
         ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
         try {
@@ -130,9 +126,9 @@ public class HistorialData {
                 String apellido = rs.getString("apellido");
                 Double pesoActual = rs.getDouble("pesoActual");
                 Date fechaRegistroSQL = rs.getDate("fechaRegistro");
-         
+
                 LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
-                System.out.println("sql   " + fechaRegistro);
+                //System.out.println("sql   " + fechaRegistro);
                 historialConNombreyApellido pacienteHistorial = new historialConNombreyApellido(nombre, apellido, rs.getDouble("pesoActual"), fechaRegistro);
                 listaHistorialConNombreyApellidos.add(pacienteHistorial);
             }
@@ -152,14 +148,14 @@ public class HistorialData {
             psm.setInt(1, id);
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
-                
+
                 String nombre = rs.getString("nombre");
                 String apellido = rs.getString("apellido");
                 Double pesoActual = rs.getDouble("pesoActual");
                 Date fechaRegistroSQL = rs.getDate("fechaRegistro");
                 LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
-                System.out.println("sql   " + fechaRegistro);
-               
+                // System.out.println("sql   " + fechaRegistro);
+
                 historialConNombreyApellido pacienteHistorial = new historialConNombreyApellido(nombre, apellido, rs.getDouble("pesoActual"), fechaRegistro);
                 listaHistorialConNombreyApellidos.add(pacienteHistorial);
             }
@@ -188,5 +184,4 @@ public class HistorialData {
 //        }
 //        return listaHistorial;
 //    }
-
 }
