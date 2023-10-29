@@ -28,8 +28,8 @@ public class HistorialData {
 
     public void nuevoHistorial(Historial historial) {
         LocalDate fechaRegistro = LocalDate.now();
-        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna,estatura, pesoActual,fechaRegistro,variaciones)"
-                + "VALUES (?, ?, ?, ?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna,estatura, pesoActual,fechaRegistro)"
+                + "VALUES (?, ?, ?, ?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, historial.getIdPaciente());
@@ -43,11 +43,11 @@ public class HistorialData {
 
             ps.setDouble(9, historial.getPesoActual());
             ps.setDate(10, Date.valueOf(fechaRegistro));
-            ps.setDouble(11, historial.getVariacion());
+    
             ps.executeUpdate();
             ResultSet resultado = ps.getGeneratedKeys();
             if (resultado.next()) {
-                historial.setIdPaciente(resultado.getInt(1));
+                historial.setIdHistorial(resultado.getInt(1));
                 JOptionPane.showMessageDialog(null, "Historial  agregado con exito");
             }
             ps.close();
@@ -79,7 +79,7 @@ public class HistorialData {
                 System.out.println("Estoy en el while2");
                 historial.setPesoActual(rs.getDouble("pesoActual"));
                 historial.setEstatura(rs.getDouble("estatura"));
-                historial.setVariacion(rs.getDouble("variaciones"));
+        
                 // System.out.println("Estoy en el whileeeeeeeeeeeeee");
                 historial.setFechaRegistro(rs.getDate("fechaRegistro").toLocalDate());
                 listaHistorial.add(historial);
@@ -115,29 +115,12 @@ public class HistorialData {
     }
 //        
 
-    public void guardarHistorial(Historial rs) {
-        try {
-            String sql = "INSERT INTO historial (id_Paciente) "
-                    + "VALUES (rs.getIdPaciente(),rs.getCuello(),rs.getBusto(),rs.getBrazo(), rs.getCintura(), rs.getCadera(),"
-                    + " rs.getPierna() rs.getEstatura(), rs.getIdDieta(), rs.getFechaRegistro, rs.getVariaciones()";
-            PreparedStatement ps = conex.prepareStatement(sql);
-
-            int filasAfectadas = ps.executeUpdate();
-
-            if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Historial guardado con éxito.");
-            } else {
-                System.out.println("No se pudo insertar ningún dato.");
-            }
-        } catch (SQLException e) {
-
-        }
-    }
+   
 
     public ArrayList<historialConNombreyApellido> obtenerHistorialesConNombreApellido() {
         ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
         try {
-            String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro,h.variaciones FROM historial AS h "
+            String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro FROM historial AS h "
                     + "INNER JOIN pacientes AS p ON h.id_paciente = p.id_paciente order by h.fechaRegistro desc";
             PreparedStatement psm = conex.prepareStatement(sql);
             ResultSet rs = psm.executeQuery();
@@ -147,7 +130,7 @@ public class HistorialData {
                 String apellido = rs.getString("apellido");
                 Double pesoActual = rs.getDouble("pesoActual");
                 Date fechaRegistroSQL = rs.getDate("fechaRegistro");
-                Double variacion=rs.getDouble("variaciones");
+         
                 LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
                 System.out.println("sql   " + fechaRegistro);
                 historialConNombreyApellido pacienteHistorial = new historialConNombreyApellido(nombre, apellido, rs.getDouble("pesoActual"), fechaRegistro);
@@ -163,7 +146,7 @@ public class HistorialData {
     public ArrayList<historialConNombreyApellido> obtenerHistorialesDePaciente(int id) {
         ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
         try {
-            String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro,h.variaciones FROM historial AS h "
+            String sql = "SELECT p.nombre, p.apellido, h.pesoActual, h.fechaRegistro FROM historial AS h "
                     + "INNER JOIN pacientes AS p ON p.id_paciente = ? order by h.fechaRegistro desc";
             PreparedStatement psm = conex.prepareStatement(sql);
             psm.setInt(1, id);
@@ -176,7 +159,7 @@ public class HistorialData {
                 Date fechaRegistroSQL = rs.getDate("fechaRegistro");
                 LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
                 System.out.println("sql   " + fechaRegistro);
-                Double variaciones = rs.getDouble("variaciones");
+               
                 historialConNombreyApellido pacienteHistorial = new historialConNombreyApellido(nombre, apellido, rs.getDouble("pesoActual"), fechaRegistro);
                 listaHistorialConNombreyApellidos.add(pacienteHistorial);
             }

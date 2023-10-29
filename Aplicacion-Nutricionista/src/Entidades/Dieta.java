@@ -119,21 +119,21 @@ public class Dieta {
         this.pesoFinal = pesoFinal;
     }
 
-    public String getInicioDieta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getFinDieta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setIdComida(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public String getInicioDieta() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    public String getFinDieta() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    public void setIdComida(int aInt) {
+//        this.throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     @Override
     public String toString() {
-        return "Dieta:" + nombre + paciente;
+        return "Dieta:" + nombre;
     }
 
     

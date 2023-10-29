@@ -193,13 +193,8 @@ double cont=0,baja=0;
             
             for (historialConNombreyApellido historial : hd.obtenerHistorialesConNombreApellido()) {
                 model.addRow(new Object[]{historial.getNombre(), historial.getApellido(),
-                    historial.getPesoActual(), historial.getFechaRegistro(),historial.getDiferencias()});
-                if (historial.getDiferencias()>0){
-                    cont= cont + historial.getDiferencias();
-                    
-                }else{
-                    baja=baja+historial.getDiferencias();
-                }
+                    historial.getPesoActual(), historial.getFechaRegistro()});
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al cargar la tabla " + e);
@@ -213,7 +208,7 @@ double cont=0,baja=0;
             
             for (historialConNombreyApellido historial : hd.obtenerHistorialesDePaciente(idelegido)) {
                 model.addRow(new Object[]{historial.getNombre(), historial.getApellido(),
-                    historial.getPesoActual(), historial.getFechaRegistro(),historial.getDiferencias()});
+                    historial.getPesoActual(), historial.getFechaRegistro()});
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al cargar la tabla " + e);

@@ -41,7 +41,7 @@ public class DietaData {
             ResultSet resultado = ps.getGeneratedKeys();
 
             if (resultado.next()) {
-                dieta.setIdComida(resultado.getInt(1));
+                dieta.setIdDieta(resultado.getInt(1));
                 JOptionPane.showMessageDialog(null, "Dieta ingresada correctamente");
             }
             ps.close();
@@ -99,6 +99,7 @@ public class DietaData {
         }
         return listaDietas;
     }
+
     public ArrayList<Dieta> listarDietas() {
         ArrayList<Dieta> listaDietas = new ArrayList<>();
         try {
@@ -107,12 +108,12 @@ public class DietaData {
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
                 Paciente paciente = new Paciente();
-                paciente.setIdPaciente(resultado.getInt("id_paciente")); 
+                paciente.setIdPaciente(resultado.getInt("id_paciente"));
                 paciente.setApellido(resultado.getString("p.apellido"));
                 paciente.setNombre(resultado.getString("p.nombre"));
                 paciente.setDni(resultado.getString("dni"));
                 paciente.setPesoDeseado(resultado.getDouble("p.peso_deseado"));
-               Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente, resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("d.peso_inicial"), resultado.getDouble("peso_final"), resultado.getBoolean("d.estado"));
+                Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente, resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("d.peso_inicial"), resultado.getDouble("peso_final"), resultado.getBoolean("d.estado"));
                 listaDietas.add(dieta);
             }
         } catch (SQLException e) {
@@ -121,37 +122,34 @@ public class DietaData {
         return listaDietas;
     }
 
-
     public ArrayList<String> listarDieta() {
         ArrayList<String> dietas = new ArrayList<>();
         try {
-            String sql = "SELECT * From comidas WHERE estado = 1";
+            String sql = "SELECT * From comidas WHERE estado = 1 order by fecha_final desc";
             PreparedStatement psm = conex.prepareStatement(sql);
             ResultSet resultado = psm.executeQuery();
             while (resultado.next()) {
-  
+
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla" + ex.getMessage());
         }
         return dietas;
     }
+
     public ArrayList<Dieta> obtenerDietaDelPaciente(int id) {
         ArrayList<Dieta> listaDieta = new ArrayList<>();
         try {
-            String sql = "SELECT nombre, peso_final,fin_dieta,estado FROM Dietas where id_paciente = "+id;
-               
-            PreparedStatement psm = conex.prepareStatement(sql);
-            ResultSet rs = psm.executeQuery();
-            while (rs.next()) {
+            String sql = "SELECT * FROM Dietas where id_paciente = " + id;
 
-                String nombre = rs.getString("nombre");
-                Double pesoFinal = rs.getDouble("peso_final");
-                Date fechaRegistroSQL = rs.getDate("fin_dieta");
-                LocalDate fechaRegistro = fechaRegistroSQL.toLocalDate();
-               Boolean estado=rs.getBoolean("estado");
-                Dieta dietaPaciente = new Dieta(nombre,fechaRegistro,pesoFinal,estado);
-                listaDieta.add(dietaPaciente);
+            PreparedStatement psm = conex.prepareStatement(sql);
+            ResultSet resultado = psm.executeQuery();
+            while (resultado.next()) {
+
+                Paciente paciente = new Paciente();
+                paciente.setIdPaciente(resultado.getInt("id_paciente"));
+                Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente, resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(), resultado.getDouble("peso_Inicial"), resultado.getDouble("peso_Final"), resultado.getBoolean("estado"));
+                listaDieta.add(dieta);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
@@ -159,5 +157,49 @@ public class DietaData {
         return listaDieta;
 
     }
+//    public Dieta buscarDietaPorID(int id) {
+//       Dieta dieta=null;
+//       
+//            String sql = "SELECT * FROM dietas WHERE id_dieta = " + id;
+//            PreparedStatement ps=null;
+//            try {
+//             ps = conex.prepareStatement(sql);
+//            ps.setInt(1, id);
+//            ResultSet resultado = ps.executeQuery();
+//         if(resultado.next()){
+//            dieta.setIdDieta(id);
+//            dieta.setFechaInicial(LocalDate.MIN);
+//            dieta.setFechaFinal(LocalDate.MIN);
+//            dieta.setNombre("nombre");
+//            dieta.setEstado(resultado.getBoolean("estado"));
+//            
+//         }
+//             
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, "Error de acceso tabla Dietas", "ERROR", JOptionPane.ERROR_MESSAGE);
+//        }
+//      return dieta 
+//    }
+    public void modificarDietaPorID(int id,double pesoActual) {
 
+        try {
+            String sql = "UPDATE dietas SET peso_final=? where id_dieta="+id ;
+
+            PreparedStatement ps = conex.prepareStatement(sql);
+           
+            ps.setDouble(1,pesoActual);
+            ps.executeUpdate();
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas == 1) {
+                JOptionPane.showMessageDialog(null, "Dieta culminada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al modificar dieta", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Código de dieta duplicado", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

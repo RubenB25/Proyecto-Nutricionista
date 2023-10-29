@@ -430,23 +430,28 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCbDIETAActionPerformed
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-       try {
-        HistorialData historialData = new HistorialData();
-        validaciones();
-        variacion();
-        Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS, 
-                caderaS, piernaS, estaturaS, pesoActualS);
-       
-        historialData.nuevoHistorial(historialguarda);
-    }
-    catch (Exception e){
-//
-//    
-//        ) {
-            JOptionPane.showMessageDialog(this, "Error al querer guardar el Historial: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//       try {g
+        DietaData dieta = new DietaData();
+        Dieta dietaseleccionada = (Dieta) jCbDIETA.getSelectedItem();
+        int id = dietaseleccionada.getIdDieta();
 
+        System.out.println(dieta.obtenerDietaDelPaciente(idpaciente));
+        HistorialData historialData = new HistorialData();
+        fechaObtenida = dietaseleccionada.getFechaFinal();
+        if (fechaObtenida.isEqual(LocalDate.now())) {
+            dieta.modificarDietaPorID(id, pesoActualS);
+            JOptionPane.showMessageDialog(null, "llegaste al final de tu dieta");
+
+        }
+
+        if (validaciones()) {
+            Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS,
+                    caderaS, piernaS, estaturaS, pesoActualS);
+            System.out.println(historialguarda.toString());
+            historialData.nuevoHistorial(historialguarda);
+        }
     }//GEN-LAST:event_jBguardarActionPerformed
-    }
+
     private void jTBustoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBustoKeyTyped
         validacionMedidas(evt, jTBusto.getText());
     }//GEN-LAST:event_jTBustoKeyTyped
@@ -458,7 +463,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTestaturaKeyTyped
 
     private void jTestaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTestaturaActionPerformed
-       // if (tablaMedidas.)
+        // if (tablaMedidas.)
     }//GEN-LAST:event_jTestaturaActionPerformed
 
     private void jTpesoActualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesoActualKeyTyped
@@ -479,10 +484,6 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     private void jCbpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbpacienteActionPerformed
         Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
 
-        int idnuevo = pacienteSeleccionado.getIdPaciente();
-        idpaciente = pacienteSeleccionado.getIdPaciente();
-        limpiarTabla();
-        llenarTablaMedidas(idnuevo);
 
     }//GEN-LAST:event_jCbpacienteActionPerformed
 
@@ -524,12 +525,15 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
             Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
             idpaciente = pacienteSeleccionado.getIdPaciente();
+            limpiarCombo();
             comboDieta();
-            
-            if (fechaObtenida.isEqual(LocalDate.now())) {
-                JOptionPane.showMessageDialog(null, "llegaste al final de tu dieta , guarda los datos ");
+            limpiarTabla();
+            llenarTablaMedidas(idpaciente);
 
-            }
+//            if (fechaObtenida.isEqual(LocalDate.now())) {
+//                JOptionPane.showMessageDialog(null, "llegaste al final de tu dieta , guarda los datos ");
+//
+//            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "no puedo acceder al paciente seleccionado" + e);
         }
@@ -596,7 +600,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             DietaData dieta = new DietaData();
             ArrayList<Dieta> dietas = dieta.obtenerDietaDelPaciente(idpaciente);
             for (Dieta dietaIndice : dietas) {
-                fechaObtenida = dietaIndice.getFechaFinal();
+
                 jCbDIETA.addItem(dietaIndice);
             }
         } catch (Exception e) {
@@ -680,100 +684,31 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         }
     }
 
-    private void validaciones() {
+    private boolean validaciones() {
         try {
             cuellopS = Double.parseDouble(jTCuello.getText());
-            if (cuellopS < 20 || cuellopS > 70) {
-                JOptionPane.showMessageDialog(null, "El Cuello no puede medir eso deberias de corroborar el ingreso");
-                jTCuello.setText("");
-                cuellopS = null;
-            }
             bustopS = Double.parseDouble(jTBusto.getText());
-            if (bustopS < 50 || bustopS > 150) {
-                JOptionPane.showMessageDialog(null, "El Busto no puede medir eso deberias de corroborar el ingreso");
-                jTBusto.setText("");
-                bustopS = null;
-            }
             brazoS = Double.parseDouble(jTBrazo.getText());
-            if (brazoS < 30 || brazoS > 70) {
-                JOptionPane.showMessageDialog(null, "El Brazo no puede medir eso deberias de corroborar el ingreso");
-                jTBrazo.setText("");
-                brazoS = null;
-            }
             cinturaS = Double.parseDouble(jTCintura.getText());
-            if (cinturaS < 50 || cinturaS > 150) {
-                JOptionPane.showMessageDialog(null, "La Cintura no puede medir eso deberias de corroborar el ingreso");
-                jTCintura.setText("");
-                cinturaS = null;
-            }
             caderaS = Double.parseDouble(jTCadera.getText());
-            if (caderaS < 50 || caderaS > 200) {
-                JOptionPane.showMessageDialog(null, "La Cadera no puede medir eso deberias de corroborar el ingreso");
-                jTCadera.setText("");
-                caderaS = null;
-            }
             piernaS = Double.parseDouble(jTPierna.getText());
-            if (piernaS < 50 || piernaS > 130) {
-                JOptionPane.showMessageDialog(null, "La Pierna no puede medir eso deberias de corroborar el ingreso");
-                jTPierna.setText("");
-                piernaS = null;
-            }
             estaturaS = Double.parseDouble(jTestatura.getText());
-            if (jTpesoActual.getText().startsWith(".") || jTpesoActual.getText().startsWith("0")) {
-                throw new IllegalArgumentException("Verifique el campo peso inicial.");
-            } else {
-                if (estaturaS < 50 || estaturaS > 210) {
-                    JOptionPane.showMessageDialog(null, "No puede tener esa estatura no puede medir eso deberias de corroborar el ingreso");
-                    jTestatura.setText("");
-                    estaturaS = null;
-                }
-                pesoActualS = Double.parseDouble(jTpesoActual.getText());
-                if (jTpesoActual.getText().startsWith(".") || jTpesoActual.getText().startsWith("0")) {
-                    throw new IllegalArgumentException("Verifique el campo peso inicial.");
-                } else {
-                    if (pesoActualS < 3 || pesoActualS > 500) {
-                        JOptionPane.showMessageDialog(null, "Valores fuera del rango, en el peso");
-                        jTpesoActual.setText("");
-                        pesoActualS = null;
-                    }
+            pesoActualS = Double.parseDouble(jTpesoActual.getText());
+            if (cuellopS < 20 || cuellopS > 70 || bustopS < 50 || bustopS > 150 || brazoS < 30 || brazoS > 70 || cinturaS < 50 || cinturaS > 150
+                    || caderaS < 50 || caderaS > 200 || piernaS < 50 || piernaS > 130 || estaturaS < 50 || estaturaS > 210 || pesoActualS < 3 || pesoActualS > 500 || jTpesoActual.getText().startsWith(".") || jTpesoActual.getText().startsWith("0")) {
 
-                }
-            }
-            }catch (Exception e) {
-        }
-        }
-    public double  variacion(){
-        DefaultTableModel model = (DefaultTableModel) tablaMedidas.getModel();
-        try {
-
-            Object dato = model.getValueAt(0, 7);
-            if (dato != null) {
-
-                double peso = Double.parseDouble(dato.toString());
-                double pesoActual = Double.parseDouble(jTpesoActual.getText());
-
-                if (peso < pesoActual) {
-                    variacionS = pesoActual - peso;
-                    System.out.println("variacion 1 " + variacionS);
-                    JOptionPane.showMessageDialog(null, "1 El peso ingresado es mayor que el último registro. Es decir que has aumentado " + variacionS + "kilos");
-
-                } else if (peso > pesoActual) {
-                    variacionS = pesoActual-peso;
-                    System.out.println("variacion 2 " + variacionS);
-                    JOptionPane.showMessageDialog(null, "2 El peso ingresado es menor que el último registro.Es decir que has adelgazado " + variacionS + "kilo");
-                } else {
-                    variacionS = pesoActual-peso;
-                    JOptionPane.showMessageDialog(null, "3 El peso ingresado es igual al último registro. No has variado el peso ");
-                    System.out.println("variacion 3 " + variacionS);
-                }
-
+                JOptionPane.showMessageDialog(null, "tiene error en las medidas ingresadas Verifique");
+                return false;
             } else {
 
-                JOptionPane.showMessageDialog(null, "no hay valor en la tabla");
             }
-          
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "no encuentro el valor para comparar tu peso " + e);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "error de tipo numerico" + e);
         }
-      return variacionS;
-    }}
+        return true;
+    }
+
+    public void limpiarCombo() {
+        jCbDIETA.removeAll();
+    }
+}

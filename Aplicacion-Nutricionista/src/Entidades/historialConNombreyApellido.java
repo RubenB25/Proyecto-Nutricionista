@@ -11,17 +11,7 @@ public class historialConNombreyApellido {
     private String apellido;
     private double pesoActual;
     private LocalDate fechaRegistro;
-    private double variaciones;
-
-    public historialConNombreyApellido(String nombre, String apellido, double pesoActual, LocalDate fechaRegistro, double variaciones) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.pesoActual = pesoActual;
-        this.fechaRegistro = fechaRegistro;
-        this.variaciones = variaciones;
-    }
-
-    public historialConNombreyApellido() {
+     public historialConNombreyApellido() {
     }
 
     public historialConNombreyApellido(String nombre, String apellido, double pesoActual, LocalDate fechaRegistro) {
@@ -29,16 +19,11 @@ public class historialConNombreyApellido {
         this.apellido = apellido;
         this.pesoActual = pesoActual;
         this.fechaRegistro = fechaRegistro;
+        
+
     }
 
-    public double getDiferencias() {
-        return variaciones;
-    }
-
-    public void setDiferencias(double diferencias) {
-        this.variaciones = variaciones;
-    }
-
+   
     public String getNombre() {
         return nombre;
     }
