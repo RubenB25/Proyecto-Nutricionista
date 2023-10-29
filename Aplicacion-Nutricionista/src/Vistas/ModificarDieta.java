@@ -86,6 +86,11 @@ public class ModificarDieta extends javax.swing.JInternalFrame {
         });
 
         jBModifcar.setText("Modificar");
+        jBModifcar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModifcarActionPerformed(evt);
+            }
+        });
 
         jBEliminar.setText("Eliminar");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -212,6 +217,15 @@ public class ModificarDieta extends javax.swing.JInternalFrame {
         dcd.eliminarDietaComida(idDieta);
         jCBDietasItemStateChanged(null);
     }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBModifcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModifcarActionPerformed
+        FormularioDietaComida fdc = new FormularioDietaComida(this);
+        DietaComidaData dcd = new DietaComidaData();
+        jDesktopPane1.add(fdc);
+        fdc.setVisible(true);
+        fdc.moveToFront();
+        
+    }//GEN-LAST:event_jBModifcarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
