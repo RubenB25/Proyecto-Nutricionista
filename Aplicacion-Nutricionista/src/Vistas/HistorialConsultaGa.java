@@ -4,6 +4,7 @@ import AccesoDatos.HistorialData;
 import AccesoDatos.PacienteData;
 import Entidades.Historial;
 import Entidades.Paciente;
+import Entidades.historialConNombreyApellido;
 //import Entidades.historialConNombreyApellido;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
