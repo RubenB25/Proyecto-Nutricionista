@@ -89,5 +89,7 @@ public class DietaComidaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la table ingrediente" + e.getMessage());
         }
     }
+    
+    
 
 }
