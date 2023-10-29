@@ -19,7 +19,7 @@ public class Paciente {
     private double pesoDeseado;
     private int idPaciente;
     private boolean estado;
-private double estatura;
+
     public Paciente() {
     }
 
@@ -41,21 +41,21 @@ private double estatura;
         this.estado = estado;
     }
 
-    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, boolean estado, double estatura) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.domicilio = domicilio;
-        this.celular = celular;
-        this.fechaNac = fechaNac;
-        this.edad = edad;
-        this.pesoActual = pesoActual;
-        this.pesoDeseado = pesoDeseado;
-        this.estado = estado;
-        this.estatura = estatura;
-    }
+//    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, boolean estado) {
+//        this.nombre = nombre;
+//        this.apellido = apellido;
+//        this.dni = dni;
+//        this.domicilio = domicilio;
+//        this.celular = celular;
+//        this.fechaNac = fechaNac;
+//        this.edad = edad;
+//        this.pesoActual = pesoActual;
+//        this.pesoDeseado = pesoDeseado;
+//        this.estado = estado;
+//      
+//    }
 
-    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, int idPaciente, boolean estado, double estatura) {
+    public Paciente(String nombre, String apellido, String dni, String domicilio, String celular, LocalDate fechaNac, int edad, double pesoActual, double pesoDeseado, int idPaciente, boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -67,7 +67,7 @@ private double estatura;
         this.pesoDeseado = pesoDeseado;
         this.idPaciente = idPaciente;
         this.estado = estado;
-        this.estatura = estatura;
+      
     }
 
     public String getNombre() {
@@ -158,14 +158,7 @@ private double estatura;
         this.estado = estado;
     }
 
-    public double getEstatura() {
-        return estatura;
-    }
-
-    public void setEstatura(double estatura) {
-        this.estatura = estatura;
-    }
-
+    
 
     @Override
     public String toString() {
