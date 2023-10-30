@@ -7,6 +7,7 @@ import AccesoDatos.IngredienteComidaData;
 import AccesoDatos.IngredienteData;
 import Entidades.Ingrediente;
 import com.sun.glass.events.KeyEvent;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -170,8 +171,8 @@ public class V_Table_AdminComidas extends javax.swing.JInternalFrame {
                                 .addContainerGap()
                                 .addComponent(jLabel6))
                             .addGroup(jPbuscarComidaLayout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextBuscarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)
@@ -195,7 +196,7 @@ public class V_Table_AdminComidas extends javax.swing.JInternalFrame {
                     .addComponent(jBtnRefresca, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextBuscarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jBtnAgregaComidaIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -444,7 +445,7 @@ public class V_Table_AdminComidas extends javax.swing.JInternalFrame {
         V_Form_Comida vmc = new V_Form_Comida();
         vmc.setVisible(true);
         vmc.pack();
-        vmc.setLocationRelativeTo(null);
+        vmc.setLocation((680), (384));
         vmc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         vmc.setAccion("Agregar");
         vmc.setTitle("Agregando una Comida...");

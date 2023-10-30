@@ -28,7 +28,7 @@ public class HistorialData {
 
     public void nuevoHistorial(Historial historial) {
         LocalDate fechaRegistro = LocalDate.now();
-        String sql = "INSERT INTO historial (id_paciente, cuello, busto,cintura,brazo, cadera, pierna,estatura, peso_actual,fecha_registro)"
+        String sql = "INSERT INTO historial (id_dieta , cuello, busto,cintura,brazo, cadera, pierna,estatura, peso_actual,fecha_registro)"
                 + "VALUES (?, ?, ?, ?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
@@ -60,15 +60,13 @@ public class HistorialData {
 
         ArrayList<Historial> listaHistorial = new ArrayList();
         try {
-            String sql = "SELECT * FROM historial WHERE id_paciente = ? order by fecha_registro desc";
+            String sql = "SELECT * FROM historial where id_dieta = ? order by fecha_registro desc";
             PreparedStatement psm = conex.prepareStatement(sql);
             psm.setInt(1, id); // Establece el valor del parámetro ? con el ID del paciente.
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
-                
+                System.out.println("si");
                 Historial historial = new Historial();
-                Paciente paciente = new Paciente();
-                paciente.setIdPaciente(id); // Establece el ID del paciente
                 historial.setCuello(rs.getDouble("cuello"));
                 historial.setBusto(rs.getDouble("busto"));
                
@@ -79,7 +77,7 @@ public class HistorialData {
              
                 historial.setPesoActual(rs.getDouble("peso_actual"));
                 historial.setEstatura(rs.getInt("estatura"));
-                historial.setIdPaciente(rs.getInt("id_paciente"));
+                historial.setIdPaciente(rs.getInt("id_dieta"));
                
                 historial.setFechaRegistro(rs.getDate("fecha_registro").toLocalDate());
                 listaHistorial.add(historial);
@@ -95,12 +93,12 @@ public class HistorialData {
     public ArrayList<Historial> ListaHistorialobtenerHistorialPorID(int ID) {
         ArrayList<Historial> listaHistorial = new ArrayList<>();
         try {
-            String sql = "SELECT h.id_paciente, h.peso_actual, h.fecha_registro FROM historial AS h";
+            String sql = "SELECT h.id_dieta, h.peso_actual, h.fecha_registro FROM historial AS h";
             PreparedStatement psm = conex.prepareStatement(sql);
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
 
-                Historial pacienteHistorial = new Historial(rs.getInt("id_paciente"),
+                Historial pacienteHistorial = new Historial(rs.getInt("id_dieta"),
                         rs.getDouble("peso_actual"), rs.getDate("fecha_registro").toLocalDate());
                 listaHistorial.add(pacienteHistorial);
             }
@@ -115,7 +113,7 @@ public class HistorialData {
         ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
         try {
             String sql = "SELECT p.nombre, p.apellido, h.peso_actual, h.fecha_registro FROM historial AS h "
-                    + "INNER JOIN pacientes AS p ON h.id_paciente = p.id_paciente order by h.fecha_registro desc";
+                    + "INNER JOIN pacientes AS p ON h.id_dieta = p.id_dieta  order by h.fecha_registro desc";
             PreparedStatement psm = conex.prepareStatement(sql);
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
@@ -141,7 +139,7 @@ public class HistorialData {
         ArrayList<historialConNombreyApellido> listaHistorialConNombreyApellidos = new ArrayList<>();
         try {
             String sql = "SELECT p.nombre, p.apellido, h.peso_actual, h.fecha_registro FROM historial AS h "
-                    + "INNER JOIN pacientes AS p ON p.id_paciente = ? order by h.fechaRegistro desc";
+                    + "INNER JOIN pacientes AS p ON p.id_dieta  = ? order by h.fechaRegistro desc";
             PreparedStatement psm = conex.prepareStatement(sql);
             psm.setInt(1, id);
             ResultSet rs = psm.executeQuery();

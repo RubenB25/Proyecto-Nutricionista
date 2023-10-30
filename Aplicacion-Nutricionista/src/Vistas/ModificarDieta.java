@@ -4,7 +4,9 @@ import AccesoDatos.DietaComidaData;
 import AccesoDatos.DietaData;
 import Entidades.Dieta;
 import Entidades.DietaComida;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -132,8 +134,9 @@ public class ModificarDieta extends javax.swing.JInternalFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(jBGuardar)
                         .addGap(74, 74, 74)
@@ -142,13 +145,12 @@ public class ModificarDieta extends javax.swing.JInternalFrame {
                         .addComponent(jBEliminar)
                         .addGap(110, 110, 110)
                         .addComponent(jButton1))
-                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(206, 206, 206)
-                            .addComponent(jCBDietas, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(206, 206, 206)
+                        .addComponent(jCBDietas, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(15, 15, 15))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,6 +194,9 @@ public class ModificarDieta extends javax.swing.JInternalFrame {
             actualizarLista();
             FormularioDietaComida fdc = new FormularioDietaComida(this);
             jDesktopPane1.add(fdc);
+              Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = fdc.getSize();
+            fdc.setLocation((desktopSize.width- frameSize.width)/2, (desktopSize.height- frameSize.height)/2);
             fdc.setVisible(true);
             fdc.moveToFront();
         }
@@ -211,20 +216,36 @@ public class ModificarDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCBDietasItemStateChanged
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        
+         if(!(jTDietaComida.getSelectedRow()==-1)){
         DietaComidaData dcd = new DietaComidaData();
         int filaSeleccionada = jTDietaComida.getSelectedRow();
         idDieta = (Integer) jTDietaComida.getValueAt(filaSeleccionada, 0);
         dcd.eliminarDietaComida(idDieta);
         jCBDietasItemStateChanged(null);
+        }else{
+              JOptionPane.showMessageDialog(this, "Seleccione una comida","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBModifcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModifcarActionPerformed
-        FormularioDietaComida fdc = new FormularioDietaComida(this);
-        DietaComidaData dcd = new DietaComidaData();
-        jDesktopPane1.add(fdc);
-        fdc.setVisible(true);
-        fdc.moveToFront();
+
+        if(!(jTDietaComida.getSelectedRow()==-1)){
+            int filaSeleccionada = jTDietaComida.getSelectedRow();
+        int codigo = (Integer) jTDietaComida.getValueAt(filaSeleccionada, 0);
+        ModificarDietaComida mdc = new ModificarDietaComida(codigo);
+        jDesktopPane1.add(mdc);
+         Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = mdc.getSize();
+            mdc.setLocation((desktopSize.width- frameSize.width)/2, (desktopSize.height- frameSize.height)/2);
+        mdc.setVisible(true);
+        mdc.moveToFront();
+        }else{
+              JOptionPane.showMessageDialog(this, "Seleccione una comida","Error",JOptionPane.ERROR_MESSAGE);
+        }
         
+
     }//GEN-LAST:event_jBModifcarActionPerformed
 
 

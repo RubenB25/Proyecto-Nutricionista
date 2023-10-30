@@ -146,6 +146,24 @@ public class ComidaData {
         }
         return null;
     }
+    
+    public String buscarComidaDM(int id) {
+        
+        String sql = "SELECT c.nombre FROM comidas c inner join dieta_comida d on d.id_comida = c.id_comida WHERE d.id_dieta_comida = " + id;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet resultado = ps.executeQuery();
+            if (resultado.next()) {
+                String nombreComida = (resultado.getString("c.nombre"));
+                return nombreComida;
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe la Comida");
+            }
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error de acceso tabla Comidas", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
+    }
 
     public ArrayList<Comida> listarComidas() {
         ArrayList<Comida> comidas = new ArrayList<>();

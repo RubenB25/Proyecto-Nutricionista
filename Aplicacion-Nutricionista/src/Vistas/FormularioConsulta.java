@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     Double cuellopS, bustopS, brazoS, cinturaS, caderaS, piernaS, pesoActualS, variacionS;
-    int idDieta,estaturaS;
+    int idDieta, estaturaS;
     LocalDate fechaActual, fechaObtenida;
     boolean estado;
 
@@ -26,12 +26,16 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     public FormularioConsulta() {
         initComponents();
+        model = (DefaultTableModel) tablaMedidas.getModel();
         comboPaciente();
-        comboDieta();
+
         SimpleDateFormat fechaFormateada = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaActual = new Date();
         String fecha = fechaFormateada.format(fechaActual);
         jTfechaActual1.setText(fecha);
+        Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
+        idpaciente = pacienteSeleccionado.getIdPaciente();
+
     }
 
     public static double pesoActual, estatura;
@@ -45,16 +49,12 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jBimc = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jBNuevo = new javax.swing.JButton();
         jCbpaciente = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTpesoActual = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTestatura = new javax.swing.JTextField();
-        jLresultado1 = new javax.swing.JLabel();
         jTBusto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaMedidas = new javax.swing.JTable();
@@ -73,31 +73,12 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jBSalir = new javax.swing.JButton();
 
-        setClosable(true);
         setTitle("Formulario Consulta");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Fecha consulta:");
-
-        jBimc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBimc.setText("IMC");
-        jBimc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBimcActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Usted tiene ");
-
-        jBNuevo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBNuevo.setText("Nuevo");
-        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBNuevoActionPerformed(evt);
-            }
-        });
 
         jCbpaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCbpaciente.addItemListener(new java.awt.event.ItemListener() {
@@ -173,6 +154,11 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             }
         });
 
+        jCbDIETA.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCbDIETAItemStateChanged(evt);
+            }
+        });
         jCbDIETA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbDIETAActionPerformed(evt);
@@ -180,7 +166,7 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Dietas ya Realizadas");
+        jLabel5.setText("Dietas del paciente");
 
         jTfechaActual1.setEditable(false);
         jTfechaActual1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -238,102 +224,94 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("Cintura:");
 
+        jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jBimc)
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTfechaActual1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 11, Short.MAX_VALUE)
-                                .addComponent(jCbpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTCuello, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTBusto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBNuevo))
-                        .addGap(288, 288, 288))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(270, 270, 270)
-                                .addComponent(jTBrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTestatura, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                                        .addComponent(jTpesoActual))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLresultado1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(279, 279, 279)
-                        .addComponent(jBguardar)
-                        .addGap(121, 121, 121)
-                        .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(69, 69, 69)
-                                        .addComponent(jLabel15))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(85, 85, 85)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(373, 373, 373))
+                                .addComponent(jLabel15)
+                                .addGap(1, 1, 1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(383, 383, 383)))
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
+                            .addComponent(jTfechaActual1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTestatura, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                    .addComponent(jTpesoActual))
+                                .addGap(86, 86, 86)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTBrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(33, 33, 33)
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(jCbpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(74, 74, 74)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel10)))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTCintura, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTPierna, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTCadera, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel7)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jTBusto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jTCuello, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(44, 44, 44)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel11)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel10)))
+                                    .addGap(44, 44, 44)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTCintura, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTPierna, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTCadera, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(48, 48, 48))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jBguardar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCbpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBNuevo)
-                    .addComponent(jLabel2))
-                .addGap(31, 31, 31)
+                    .addComponent(jLabel2)
+                    .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jTfechaActual1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -357,32 +335,20 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
                     .addComponent(jLabel11)
                     .addComponent(jTCintura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBimc)
-                            .addComponent(jLabel1)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLresultado1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                .addGap(17, 17, 17)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBguardar)
-                    .addComponent(jCbDIETA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jBSalir))
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,37 +386,37 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
 
     private void jCbDIETAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbDIETAActionPerformed
-        try {
 
-            Dieta dietaSeleccionada = (Dieta) jCbDIETA.getSelectedItem();
-            idDieta = dietaSeleccionada.getIdDieta();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "no se puede obtener la seleccion de la dieta" + e);
-        }
     }//GEN-LAST:event_jCbDIETAActionPerformed
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
 //       try {g
         DietaData dieta = new DietaData();
         Dieta dietaseleccionada = (Dieta) jCbDIETA.getSelectedItem();
-        
-        int id = dietaseleccionada.getIdDieta();
-        System.out.println(" id dieta"+id);
+        if ((dietaseleccionada.isEstado() == true) && dietaseleccionada != null) {
+            int id = dietaseleccionada.getIdDieta();
+            System.out.println(" id dieta" + id);
 
-       // System.out.println(dieta.obtenerDietaDelPaciente(idpaciente));
-        HistorialData historialData = new HistorialData();
-        fechaObtenida = dietaseleccionada.getFechaFinal();
-        if (fechaObtenida.isEqual(LocalDate.now())) {
-            dieta.modificarDietaPorID(id, pesoActualS);
-            JOptionPane.showMessageDialog(null, "llegaste al final de tu dieta");
+            // System.out.println(dieta.obtenerDietaDelPaciente(idpaciente));
+            HistorialData historialData = new HistorialData();
+            if (validaciones()) {
+                Historial historialguarda = new Historial(id, cuellopS, bustopS, cinturaS, brazoS,
+                        caderaS, piernaS, estaturaS, pesoActualS);
+                //System.out.println(historialguarda.toString());
+                historialData.nuevoHistorial(historialguarda);
+                limpiarTabla();
+                llenarTablaMedidas(id);
+                limpiarTField();
+            }
+            if (fechaObtenida.isEqual(LocalDate.now()) && dietaseleccionada.isEstado()) {
+                dieta.modificarDietaPorID(idDieta, pesoActualS);
+                dieta.modificarEstadoDietaPorID(idDieta);
+                JOptionPane.showMessageDialog(null, "Culminó la dieta.");
+            }
+
         }
 
-        if (validaciones()) {
-            Historial historialguarda = new Historial(idpaciente, cuellopS, bustopS, cinturaS, brazoS,
-                    caderaS, piernaS, estaturaS, pesoActualS);
-            //System.out.println(historialguarda.toString());
-            historialData.nuevoHistorial(historialguarda);
-        }llenarTablaMedidas(idpaciente);
+
     }//GEN-LAST:event_jBguardarActionPerformed
 
     private void jTBustoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBustoKeyTyped
@@ -483,60 +449,25 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTpesoActualKeyTyped
 
     private void jCbpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbpacienteActionPerformed
-    
+
 
     }//GEN-LAST:event_jCbpacienteActionPerformed
 
-    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-//        FormularioPaciente fp = new FormularioPaciente();
-//        jDPescritorio.removeAll();
-//        jDPescritorio.repaint();
-//        jDPescritorio.add(fp);
-//        fp.moveToFront();
-//        fp.setVisible(true);
-    }//GEN-LAST:event_jBNuevoActionPerformed
-
-    private void jBimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBimcActionPerformed
-        try {
-            double peso = Double.parseDouble(jTpesoActual.getText());
-            double altura = Double.parseDouble(jTestatura.getText());
-            double imc = peso / altura;
-
-            if (imc < 18.9) {
-                jLresultado1.setText("Delgadez");
-            } else if (imc > 18.9 && imc < 25) {
-                jLresultado1.setText("Normal");
-            } else if (imc > 25 && imc < 29.99) {
-                jLresultado1.setText("Sobrepeso");
-            } else if (imc > 30 && imc < 45) {
-                jLresultado1.setText("Obesidad");
-            } else if (imc > 45) {
-                jLresultado1.setText("Obesidad Morbida");
-            } else {
-                JOptionPane.showMessageDialog(null, "Ingrese Valores Validos ya que esta fuera del limite para poder calcular el IMC");
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "tiene un error por no ingresar valor numerico en las opciones de altura y peso," + e);
-        }
-    }//GEN-LAST:event_jBimcActionPerformed
-
     private void jCbpacienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbpacienteItemStateChanged
-        try {
+        limpiarCombo();
 
-            Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
-            idpaciente = pacienteSeleccionado.getIdPaciente();
-//            limpiarCombo();
-            comboDieta();
-            limpiarTabla();
-            llenarTablaMedidas(idpaciente);
+        Paciente pacienteSeleccionado = (Paciente) jCbpaciente.getSelectedItem();
+        idpaciente = pacienteSeleccionado.getIdPaciente();
+
+        comboDieta();
+        limpiarTField();
+        limpiarTabla();
 
 //            if (fechaObtenida.isEqual(LocalDate.now())) {
 //                JOptionPane.showMessageDialog(null, "llegaste al final de tu dieta , guarda los datos ");
 //
 //            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "no puedo acceder al paciente seleccionado" + e);
-        }
+
     }//GEN-LAST:event_jCbpacienteItemStateChanged
 
     private void jTpesoActualKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTpesoActualKeyReleased
@@ -547,45 +478,65 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jTpesoActualFocusLost
 
-    private void comboPaciente() {
-        try {
-            PacienteData pd = new PacienteData();
-            ArrayList<Paciente> pacientes = pd.listarPaciente();
-            Paciente seleccionarPaciente = new Paciente("-1", "- Seleccione un Paciente -");
-            jCbpaciente.insertItemAt(seleccionarPaciente, 0);
-            for (Paciente pac : pacientes) {
+    private void jCbDIETAItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbDIETAItemStateChanged
 
-                jCbpaciente.addItem(pac);
+        System.out.println("1");
+        limpiarTField();
+        if ((jCbDIETA.getSelectedIndex() > 0)) {
+            DietaData dietaData = new DietaData();
+            Dieta dieta = (Dieta) jCbDIETA.getSelectedItem();
+            int idDieta = dieta.getIdDieta();
+            limpiarTabla();
+            llenarTablaMedidas(idDieta);
+//                System.out.println(id);
+            fechaObtenida = dieta.getFechaFinal();
+            if (fechaObtenida.isBefore(LocalDate.now()) || (dieta.isEstado() == false)) {
+                dietaData.modificarEstadoDietaPorID(idDieta);
+                boolean valor = false;
+                editable(valor);
+            } else {
+                boolean valor = true;
+                editable(valor);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "no se puede cargar el combo Box" + e);
+        } else {
+            limpiarTabla();
+        }
+    }//GEN-LAST:event_jCbDIETAItemStateChanged
 
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void comboPaciente() {
+
+        PacienteData pd = new PacienteData();
+        ArrayList<Paciente> pacientes = pd.listarPaciente();
+        for (Paciente pac : pacientes) {
+
+            jCbpaciente.addItem(pac);
         }
 
     }
 
     private void comboDieta() {
-        try {
 
-            DietaData dieta = new DietaData();
-            ArrayList<Dieta> dietas = dieta.obtenerDietaDelPaciente(idpaciente);
-            for (Dieta dietaIndice : dietas) {
+        DietaData dieta = new DietaData();
+        ArrayList<Dieta> dietas = dieta.obtenerDietaDelPaciente(idpaciente);
+        jCbDIETA.addItem(new Dieta("Seleccione una dieta"));
+        for (Dieta dietaIndice : dietas) {
 
-                jCbDIETA.addItem(dietaIndice);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se puede cargar el combo box de dieta" + e);
+            jCbDIETA.addItem(dietaIndice);
         }
+
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBNuevo;
+    private javax.swing.JButton jBSalir;
     private javax.swing.JButton jBguardar;
-    public static javax.swing.JButton jBimc;
     private javax.swing.JComboBox<Dieta> jCbDIETA;
     private javax.swing.JComboBox<Paciente> jCbpaciente;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
@@ -597,7 +548,6 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLresultado1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTBrazo;
@@ -613,34 +563,29 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void llenarTablaMedidas(int id) {
-        try {
+        HistorialData historialData = new HistorialData();
+        ArrayList<Historial> medidas = historialData.obtenerHistorialdePaciente(id);
+        for (Historial paHistorial : medidas) {
+            model.addRow(new Object[]{
+                paHistorial.getCuello(),
+                paHistorial.getBusto(),
+                paHistorial.getBrazo(),
+                paHistorial.getCintura(),
+                paHistorial.getCadera(),
+                paHistorial.getPierna(),
+                paHistorial.getFechaRegistro(),
+                paHistorial.getPesoActual(),
+                paHistorial.getEstatura()});
 
-            HistorialData historialData = new HistorialData();
-            int idPaciente = id;
-            model = (DefaultTableModel) tablaMedidas.getModel();
-
-            ArrayList<Historial> medidas = historialData.obtenerHistorialdePaciente(id);
-            for (Historial paHistorial : medidas) {
-                model.addRow(new Object[]{
-                    paHistorial.getCuello(),
-                    paHistorial.getBusto(),
-                    paHistorial.getBrazo(),
-                    paHistorial.getCintura(),
-                    paHistorial.getCadera(),
-                    paHistorial.getPierna(),
-                    paHistorial.getFechaRegistro(),
-                    paHistorial.getPesoActual(),
-                    paHistorial.getEstatura()});
-
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al cargar los datos en la tabla" + e);
         }
-    }
 
-    private void limpiarTabla() {
-        model = (DefaultTableModel) tablaMedidas.getModel();
-        model.setRowCount(0);
+    }
+//
+
+    public void limpiarTabla() {
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
     }
 
     private void validacionMedidas(KeyEvent evt, String medida) {
@@ -667,19 +612,44 @@ public class FormularioConsulta extends javax.swing.JInternalFrame {
             pesoActualS = Double.parseDouble(jTpesoActual.getText());
             if (cuellopS < 20 || cuellopS > 70 || bustopS < 50 || bustopS > 150 || brazoS < 30 || brazoS > 70 || cinturaS < 50 || cinturaS > 150
                     || caderaS < 50 || caderaS > 200 || piernaS < 50 || piernaS > 130 || estaturaS < 50 || estaturaS > 210 || pesoActualS < 3 || pesoActualS > 500 || jTpesoActual.getText().startsWith(".") || jTpesoActual.getText().startsWith("0")) {
+                JOptionPane.showMessageDialog(null, "Valores fuera de rango", "Error", JOptionPane.ERROR_MESSAGE);
 
-                JOptionPane.showMessageDialog(null, "tiene error en las medidas ingresadas Verifique");
                 return false;
             } else {
 
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "error de tipo numerico" + e);
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
         return true;
     }
 
     public void limpiarCombo() {
-        jCbDIETA.removeAll();
+        jCbDIETA.removeAllItems();
+
+    }
+
+    private void editable(boolean valor) {
+        jTBrazo.setEditable(valor);
+        jTBusto.setEditable(valor);
+        jTCadera.setEditable(valor);
+        jTCintura.setEditable(valor);
+        jTCuello.setEditable(valor);
+        jTPierna.setEditable(valor);
+        jTestatura.setEditable(valor);
+        jTpesoActual.setEditable(valor);
+    }
+    
+    public void limpiarTField(){
+           jTBrazo.setText("");
+        jTBusto.setText("");
+        jTCadera.setText("");
+        jTCintura.setText("");
+        jTCuello.setText("");
+        jTPierna.setText("");
+        jTestatura.setText("");
+        jTpesoActual.setText("");
+        
     }
 }

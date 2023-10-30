@@ -4,6 +4,7 @@ import Entidades.Comida;
 import Entidades.DietaComida;
 import Enums.HorarioComida;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,6 +43,25 @@ public class DietaComidaData {
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Dieta existente", "Atencion", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void modificarDietaComida(int id, int porcion,HorarioComida horario){
+          try {
+            String sql = "UPDATE dieta_comida SET porcion=?, horario=? where id_dieta_comida ="+id ;
+
+            PreparedStatement ps = conex.prepareStatement(sql);
+            ps.setInt(1, porcion);
+            ps.setString(2, String.valueOf(horario));
+            ps.executeUpdate();
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas == 1) {
+                JOptionPane.showMessageDialog(null, "Dieta modificada correctamente");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al modificar dieta", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 

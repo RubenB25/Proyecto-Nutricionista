@@ -29,6 +29,11 @@ public class Dieta {
         this.estado = estado;
     }
 
+    public Dieta(String nombre) {
+        this.nombre = nombre;
+    }
+    
+
     public Dieta(int idDieta, String nombre, Paciente paciente, LocalDate fechaInicial, LocalDate fechaFinal, double pesoInicial, double pesoFinal, boolean estado) {
         this.idDieta = idDieta;
         this.nombre = nombre;
@@ -102,6 +107,11 @@ public class Dieta {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 
    

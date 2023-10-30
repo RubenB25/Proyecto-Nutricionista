@@ -195,26 +195,46 @@ public void modificarDietaPorID(int id,double pesoActual) {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Código de dieta duplicado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }}
-        public ArrayList<Dieta> obtenerDietaDelPaciente(int id) {
-        ArrayList<Dieta> listaDieta = new ArrayList<>();
+        public void modificarEstadoDietaPorID(int id) {
+
         try {
-            String sql = "SELECT * FROM Dietas where id_paciente = " + id;
+            String sql = "UPDATE dietas SET estado=? where id_dieta="+id ;
 
-            PreparedStatement psm = conex.prepareStatement(sql);
-            ResultSet resultado = psm.executeQuery();
-            while (resultado.next()) {
+            PreparedStatement ps = conex.prepareStatement(sql);
+           
+            ps.setBoolean(1,false);
+            ps.executeUpdate();
 
-                Paciente paciente = new Paciente();
-                paciente.setIdPaciente(resultado.getInt("id_paciente"));
-                Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente,
-                        resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(),
-                        resultado.getDouble("peso_Inicial"), resultado.getDouble("peso_Final"), resultado.getBoolean("estado"));
-                listaDieta.add(dieta);
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas == 1) {
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al modificar dieta", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
-}
-        return listaDieta;
-        
-}
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Código de dieta duplicado", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }}
+//        public ArrayList<Dieta> obtenerDietaDelPaciente(int id) {
+//        ArrayList<Dieta> listaDieta = new ArrayList<>();
+//        try {
+//            String sql = "SELECT * FROM Dietas where id_paciente = " + id;
+//
+//            PreparedStatement psm = conex.prepareStatement(sql);
+//            ResultSet resultado = psm.executeQuery();
+//            while (resultado.next()) {
+//
+//                Paciente paciente = new Paciente();
+//                paciente.setIdPaciente(resultado.getInt("id_paciente"));
+//                Dieta dieta = new Dieta(resultado.getInt("id_dieta"), resultado.getString("nombre"), paciente,
+//                        resultado.getDate("inicio_dieta").toLocalDate(), resultado.getDate("fin_dieta").toLocalDate(),
+//                        resultado.getDouble("peso_Inicial"), resultado.getDouble("peso_Final"), resultado.getBoolean("estado"));
+//                listaDieta.add(dieta);
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla" + ex.getMessage());
+//}
+//        return listaDieta;
+//        
+//}
 }
